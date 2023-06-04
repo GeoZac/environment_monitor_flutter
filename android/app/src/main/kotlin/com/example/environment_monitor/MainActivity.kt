@@ -1,4 +1,4 @@
-package com.example.environment_monitor
+package com.unconv.environment_monitor
 
 import io.flutter.embedding.android.FlutterActivity
 

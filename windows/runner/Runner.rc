@@ -93,7 +93,7 @@ BEGIN
             VALUE "FileDescription", "environment_monitor" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
             VALUE "InternalName", "environment_monitor" "\0"
-            VALUE "LegalCopyright", "Copyright (C) 2023 com.example. All rights reserved." "\0"
+            VALUE "LegalCopyright", "Copyright (C) 2023 com.unconv. All rights reserved." "\0"
             VALUE "OriginalFilename", "environment_monitor.exe" "\0"
             VALUE "ProductName", "environment_monitor" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
