@@ -1,7 +1,9 @@
 version: 2.1
+
 orbs:
   android: circleci/android@1.0.3
   flutter: circleci/flutter@2.0.0
+
 jobs:
   bundle:
     executor:
@@ -14,6 +16,7 @@ jobs:
       - run:
           command: bundle exec fastlane distribute
           working_directory: ios
+
   lint:
     executor:
       name: android/android-machine
@@ -25,6 +28,7 @@ jobs:
       - run:
           command: lint
           working_directory: ios
+
 workflows:
   distribute:
     jobs:
