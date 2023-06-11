@@ -12,8 +12,10 @@ jobs:
       - flutter/install_android_gradle_dependencies
       - flutter/install_android_gem
       - run:
-          command: bundle exec fastlane distribute
-          working_directory: ios
+          command: |
+            source $BASH_ENV
+            bundle exec fastlane distribute
+            working_directory: ios
 workflows:
   distribute:
     jobs:
