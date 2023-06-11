@@ -1,20 +1,15 @@
-version: '2.1'
-orbs:
-  android: circleci/android@1.0.3
-  flutter: circleci/flutter@2.0.0
+version: 2.1
 jobs:
-  distribute:
-    executor:
-      name: android/android-machine
+  build:
+    docker:
+      - image: cirrusci/flutter@3.3.10
     steps:
-      - flutter/install_sdk_and_pub:
-          version: 3.0.3
-      - flutter/install_android_gradle_dependencies
-      - flutter/install_android_gem
-      - run:
-          command: bundle exec fastlane distribute
-          working_directory: ios
+      - checkout
+      - run: flutter doctor
+      - run: flutter test 
+      - run: flutter -v build apk
+
 workflows:
-  distribute:
+  build-lint:
     jobs:
-      - distribute
+      - build
