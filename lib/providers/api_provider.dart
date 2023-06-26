@@ -6,10 +6,16 @@ import 'dart:async';
 import '../models/http/custom_exception.dart';
 
 class ApiProvider {
-  Future<dynamic> makeHttpGet(Uri url) async {
-    var responseJson;
+  Future<dynamic> makeHttpGet(
+    Uri url, {
+    Map<String, String>? headers,
+  }) async {
+    dynamic responseJson;
     try {
-      final response = await http.get(url);
+      final response = await http.get(
+        url,
+        headers: headers,
+      );
       responseJson = _response(response);
     } on SocketException {
       throw FetchDataException('No Internet connection');
@@ -20,8 +26,8 @@ class ApiProvider {
   dynamic _response(http.Response response) {
     switch (response.statusCode) {
       case 200:
+      case 201:
         var responseJson = json.decode(response.body.toString());
-        print(responseJson);
         return responseJson;
       case 400:
         throw BadRequestException(response.body.toString());
