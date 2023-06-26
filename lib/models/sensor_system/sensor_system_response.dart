@@ -1,0 +1,54 @@
+import 'sensor_system.dart';
+
+class SensorSystemResponse {
+  bool? isFirst;
+  bool? isLast;
+  bool? hasNext;
+  bool? hasPrevious;
+  List<SensorSystem>? data;
+  int? totalElements;
+  int? pageNumber;
+  int? totalPages;
+
+  SensorSystemResponse({
+    this.isFirst,
+    this.isLast,
+    this.hasNext,
+    this.hasPrevious,
+    this.data,
+    this.totalElements,
+    this.pageNumber,
+    this.totalPages,
+  });
+
+  SensorSystemResponse.fromJson(Map<String, dynamic> json) {
+    isFirst = json['isFirst'];
+    isLast = json['isLast'];
+    hasNext = json['hasNext'];
+    hasPrevious = json['hasPrevious'];
+    if (json['data'] != null) {
+      data = <SensorSystem>[];
+      json['data'].forEach((v) {
+        data!.add(SensorSystem.fromJson(v));
+      });
+    }
+    totalElements = json['totalElements'];
+    pageNumber = json['pageNumber'];
+    totalPages = json['totalPages'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['isFirst'] = isFirst;
+    data['isLast'] = isLast;
+    data['hasNext'] = hasNext;
+    data['hasPrevious'] = hasPrevious;
+    if (this.data != null) {
+      data['data'] = this.data!.map((v) => v.toJson()).toList();
+    }
+    data['totalElements'] = totalElements;
+    data['pageNumber'] = pageNumber;
+    data['totalPages'] = totalPages;
+    return data;
+  }
+}
