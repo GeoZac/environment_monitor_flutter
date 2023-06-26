@@ -42,4 +42,23 @@ class ApiProvider {
             'Error occured while Communication with Server with StatusCode : ${response.statusCode}');
     }
   }
+
+  Future<dynamic> makeHttpPost(
+    Uri url,
+    Map<String, String>? headers,
+    Map<String, dynamic> body,
+  ) async {
+    dynamic responseJson;
+    try {
+      final response = await http.post(
+        url,
+        headers: {'Content-Type': 'application/json'},
+        body: jsonEncode(body),
+      );
+      responseJson = _response(response);
+    } on SocketException {
+      throw FetchDataException('No Internet connection');
+    }
+    return responseJson;
+  }
 }
