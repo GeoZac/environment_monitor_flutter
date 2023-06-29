@@ -19,6 +19,12 @@ commands:
           flutter_version: ${FLUTTER_VERSION}
       - run: flutter pub run build_runner build --delete-conflicting-outputs
 
+  apply_placeholder:
+    steps:
+      - run:
+          name: Apply placeholder
+          command: mv lib/config/secrets.dart.example lib/config/secrets.dart
+
   dart_analyze:
     steps:
       - run:
@@ -48,6 +54,7 @@ jobs:
       name: android
     steps:
       - checkout
+      - apply_placeholder
       - install-flutter
       - format
       - dart_analyze
@@ -56,6 +63,7 @@ jobs:
     executor: android
     steps:
       - checkout
+      - apply_placeholder
       - install-flutter
       - build-android
 
