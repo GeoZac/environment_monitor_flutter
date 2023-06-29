@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import 'providers/environmental_reading_provider.dart';
+import 'providers/sensor_system_provider.dart';
+import 'providers/unconv_api_provider.dart';
 
 void main() {
   runApp(const MyApp());
@@ -10,13 +15,22 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Environment Monitor',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: const MyHomePage(
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+            create: (context) => EnvironmentalReadingProvider()),
+        ChangeNotifierProvider(create: (context) => SensorSystemProvider()),
+        ChangeNotifierProvider(create: ((context) => UnconvApiProvider())),
+      ],
+      child: MaterialApp(
         title: 'Environment Monitor',
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+        ),
+        home: const MyHomePage(
+          title: 'Environment Monitor',
+        ),
+        debugShowCheckedModeBanner: false,
       ),
     );
   }
