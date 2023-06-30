@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'providers/environmental_reading_provider.dart';
 import 'providers/sensor_system_provider.dart';
 import 'providers/unconv_api_provider.dart';
+import 'screens/login.dart';
 
 void main() {
   runApp(const MyApp());
@@ -48,14 +49,6 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(
-          title: Text(widget.title),
-        ),
-        body: const Center(
-          child: Icon(
-            Icons.add,
-          ),
-        ));
+    return const LoginScreen();
   }
 }
