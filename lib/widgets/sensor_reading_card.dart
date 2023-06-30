@@ -20,7 +20,7 @@ class SensorReadingCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              formatTimestamp(environmentalReading.timestamp),
+              formatTimestamp(environmentalReading.timestamp!),
               style: TextStyle(
                 fontSize: fontSize,
                 fontWeight: FontWeight.normal,
@@ -39,9 +39,9 @@ class SensorReadingCard extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                Spacer(),
+                const Spacer(),
                 Text(
-                  "${environmentalReading.temperature.toStringAsFixed(2)} \u2103",
+                  "${environmentalReading.temperature?.toStringAsFixed(2)} \u2103",
                   style: TextStyle(
                     fontSize: fontSize,
                   ),
@@ -60,9 +60,9 @@ class SensorReadingCard extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                Spacer(),
+                const Spacer(),
                 Text(
-                  "${environmentalReading.humidity.toStringAsFixed(2)} %",
+                  "${environmentalReading.humidity?.toStringAsFixed(2)} %",
                   style: TextStyle(
                     fontSize: fontSize,
                     fontWeight: FontWeight.normal,

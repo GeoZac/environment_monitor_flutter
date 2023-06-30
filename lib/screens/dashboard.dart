@@ -127,7 +127,7 @@ class _DashboardState extends State<Dashboard> {
                 ],
               ),
             )
-          : CenteredCircularProgress(),
+          : const CenteredCircularProgress(),
     );
   }
 }
