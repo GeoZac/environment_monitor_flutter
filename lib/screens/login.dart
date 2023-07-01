@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../models/user/auth_request.dart';
+import '../models/user/auth_response.dart';
+import '../providers/unconv_api_provider.dart';
+import 'dashboard.dart';
+
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
 
@@ -20,6 +25,8 @@ class _LoginScreenState extends State<LoginScreen> {
   initState() {
     super.initState();
     loadSavedCredentials();
+    usernameController.addListener(_checkFields);
+    passwordController.addListener(_checkFields);
   }
 
   @override
@@ -136,7 +143,30 @@ class _LoginScreenState extends State<LoginScreen> {
                 onPressed: isButtonDisabled
                     ? null
                     : () async {
-                        return;
+                        saveCredentials();
+                        final AuthResponse authResponse =
+                            await UnconvApiProvider().login(
+                          AuthRequest(
+                            usernameController.text,
+                            passwordController.text,
+                          ),
+                        );
+                        if (authResponse.unconvUser != null) {
+                          // ignore: use_build_context_synchronously
+                          Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => Dashboard(
+                                        unconvUser: authResponse.unconvUser!,
+                                      )));
+                        } else {
+                          // ignore: prefer_const_constructors, use_build_context_synchronously
+                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                            content:
+                                const Text("Invalid User Name or Password !"),
+                            backgroundColor: Colors.red,
+                          ));
+                        }
                       },
                 child: const Text("Login",
                     style: TextStyle(
@@ -147,6 +177,14 @@ class _LoginScreenState extends State<LoginScreen> {
           ],
         ));
   }
+
+  void _checkFields() {
+    setState(() {
+      isButtonDisabled = usernameController.text.trim().isEmpty ||
+          passwordController.text.isEmpty;
+    });
+  }
+
   void loadSavedCredentials() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     setState(() {
