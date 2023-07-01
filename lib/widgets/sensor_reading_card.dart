@@ -8,7 +8,10 @@ class SensorReadingCard extends StatelessWidget {
 
   final double fontSize = 20.0;
 
-  const SensorReadingCard({super.key, required this.environmentalReading});
+  const SensorReadingCard({
+    super.key,
+    required this.environmentalReading,
+  });
 
   @override
   Widget build(BuildContext context) {

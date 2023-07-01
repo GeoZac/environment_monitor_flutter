@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
+import '../main.dart';
 import '../models/sensor_system/sensor_system.dart';
+import '../screens/sensor_readings.dart';
 
 class SensorSystemDashboardCard extends StatelessWidget {
   const SensorSystemDashboardCard({
@@ -53,7 +55,15 @@ class SensorSystemDashboardCard extends StatelessWidget {
               icon: const Icon(
                 Icons.arrow_right,
               ),
-              onPressed: () {},
+              onPressed: () {
+                Navigator.pushNamed(
+                  context,
+                  SensorReadings.routeName,
+                  arguments: ScreenArguments(
+                    sensorSystem!,
+                  ),
+                );
+              },
             )
           ],
         ),
