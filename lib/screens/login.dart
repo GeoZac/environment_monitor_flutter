@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -18,6 +19,7 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   initState() {
     super.initState();
+    loadSavedCredentials();
   }
 
   @override
@@ -144,5 +146,27 @@ class _LoginScreenState extends State<LoginScreen> {
                     ))),
           ],
         ));
+  }
+  void loadSavedCredentials() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    setState(() {
+      rememberMe = prefs.getBool('rememberMe') ?? false;
+      if (rememberMe) {
+        usernameController.text = prefs.getString('username') ?? '';
+        passwordController.text = prefs.getString('password') ?? '';
+      }
+    });
+  }
+
+  void saveCredentials() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    if (rememberMe) {
+      await prefs.setString('username', usernameController.text);
+      await prefs.setString('password', passwordController.text);
+    } else {
+      await prefs.remove('username');
+      await prefs.remove('password');
+    }
+    await prefs.setBool('rememberMe', rememberMe);
   }
 }
