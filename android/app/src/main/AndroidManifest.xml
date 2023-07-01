@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.unconv.environment_monitor">
    <application
-        android:label="environment_monitor"
+        android:label="Environment Monitor"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
