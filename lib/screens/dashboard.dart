@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import '../models/sensor_system/sensor_system.dart';
 import '../models/sensor_system/sensor_system_response.dart';
 import '../models/user/unconv_user.dart';
+import '../providers/sensor_system_provider.dart';
 import '../widgets/common/center_circular_progress.dart';
 import '../widgets/dashboard_sensor_card.dart';
 
@@ -19,9 +20,16 @@ class Dashboard extends StatefulWidget {
 }
 
 class _DashboardState extends State<Dashboard> {
-  final bool _init = false;
-  late List<SensorSystem> sensorSystems;
-  late SensorSystemResponse sensorSystemResponse;
+  bool _init = false;
+  late List<SensorSystem>? sensorSystems;
+  late SensorSystemResponse? sensorSystemResponse;
+  SensorSystem? selectedSensorSystem;
+
+  @override
+  void initState() {
+    super.initState();
+    fetchAllSensorSystems();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -71,7 +79,7 @@ class _DashboardState extends State<Dashboard> {
                                       left: 8.0,
                                     ),
                                     child: Text(
-                                      sensorSystemResponse.totalElements
+                                      sensorSystemResponse!.totalElements
                                           .toString(),
                                       style: const TextStyle(
                                           fontSize: 64,
@@ -117,10 +125,10 @@ class _DashboardState extends State<Dashboard> {
                   ),
                   Expanded(
                     child: ListView.builder(
-                      itemCount: sensorSystems.length,
+                      itemCount: sensorSystems?.length,
                       itemBuilder: (context, index) {
                         return SensorSystemDashboardCard(
-                            sensorSystem: sensorSystems[index]);
+                            sensorSystem: sensorSystems![index]);
                       },
                     ),
                   )
@@ -129,5 +137,20 @@ class _DashboardState extends State<Dashboard> {
             )
           : const CenteredCircularProgress(),
     );
+  }
+
+  fetchAllSensorSystems() {
+    _init = false;
+    SensorSystemProvider sensorSystemProvider = SensorSystemProvider();
+    sensorSystemProvider
+        .fetchSensorSystems(widget.unconvUser.id!)
+        .then((response) {
+      sensorSystemResponse = response;
+      sensorSystems = sensorSystemResponse?.data!;
+
+      setState(() {
+        _init = true;
+      });
+    });
   }
 }
