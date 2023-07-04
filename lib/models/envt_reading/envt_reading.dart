@@ -1,28 +1,28 @@
 import '../sensor_system/sensor_system.dart';
 
 class EnvironmentalReading {
-  String? id;
-  double? temperature;
-  double? humidity;
-  String? timestamp;
-  SensorSystem? sensorSystem;
+  String id;
+  double temperature;
+  double humidity;
+  String timestamp;
+  SensorSystem sensorSystem;
 
   EnvironmentalReading({
-    this.id,
-    this.temperature,
-    this.humidity,
-    this.timestamp,
-    this.sensorSystem,
+    required this.id,
+    required this.temperature,
+    required this.humidity,
+    required this.timestamp,
+    required this.sensorSystem,
   });
 
-  EnvironmentalReading.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    temperature = json['temperature'];
-    humidity = json['humidity'];
-    timestamp = json['timestamp'];
-    sensorSystem = json['sensorSystem'] != null
-        ? SensorSystem.fromJson(json['sensorSystem'])
-        : null;
+  factory EnvironmentalReading.fromJson(Map<String, dynamic> json) {
+    return EnvironmentalReading(
+      id: json['id'],
+      temperature: json['temperature'],
+      humidity: json['humidity'],
+      timestamp: json['timestamp'],
+      sensorSystem: SensorSystem.fromJson(json['sensorSystem']),
+    );
   }
 
   Map<String, dynamic> toJson() {
@@ -31,9 +31,7 @@ class EnvironmentalReading {
     data['temperature'] = temperature;
     data['humidity'] = humidity;
     data['timestamp'] = timestamp;
-    if (sensorSystem != null) {
-      data['sensorSystem'] = sensorSystem!.toJson();
-    }
+    data['sensorSystem'] = sensorSystem.toJson();
     return data;
   }
 }
