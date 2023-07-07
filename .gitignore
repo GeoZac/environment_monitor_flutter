@@ -45,3 +45,6 @@ app.*.map.json
 
 # Some basic secrets
 lib/config/secrets.dart
+
+# VS Code specific config
+.vscode/
