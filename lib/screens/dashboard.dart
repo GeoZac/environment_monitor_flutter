@@ -143,10 +143,10 @@ class _DashboardState extends State<Dashboard> {
     _init = false;
     SensorSystemProvider sensorSystemProvider = SensorSystemProvider();
     sensorSystemProvider
-        .fetchSensorSystems(widget.unconvUser.id!)
+        .fetchSensorSystems(widget.unconvUser.id)
         .then((response) {
       sensorSystemResponse = response;
-      sensorSystems = sensorSystemResponse?.data!;
+      sensorSystems = sensorSystemResponse?.data;
 
       setState(() {
         _init = true;
