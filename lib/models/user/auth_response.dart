@@ -12,6 +12,18 @@ class AuthResponse {
   });
 
   factory AuthResponse.fromJson(Map<String, dynamic> json) {
+    final List<String> requiredFields = [
+      'expires',
+      'unconvUser',
+      'token',
+    ];
+
+    final bool missingFields =
+        requiredFields.any((field) => json[field] == null);
+    if (missingFields) {
+      throw const FormatException("Missing required fields in JSON");
+    }
+
     return AuthResponse(
       expires: json['expires'],
       unconvUser: UnconvUser.fromJson(json['unconvUser']),
