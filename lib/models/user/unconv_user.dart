@@ -1,18 +1,20 @@
 class UnconvUser {
-  String? id;
-  String? username;
-  String? email;
+  String id;
+  String username;
+  String email;
 
   UnconvUser({
-    this.id,
-    this.username,
-    this.email,
+    required this.id,
+    required this.username,
+    required this.email,
   });
 
-  UnconvUser.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    username = json['username'];
-    email = json['email'];
+  factory UnconvUser.fromJson(Map<String, dynamic> json) {
+    return UnconvUser(
+      id: json['id'],
+      username: json['username'],
+      email: json['email'],
+    );
   }
 
   Map<String, dynamic> toJson() {
