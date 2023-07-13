@@ -29,12 +29,12 @@ void main() {
     expect(reading.temperature, 30.5);
     expect(reading.humidity, 72.4);
     expect(reading.timestamp, "2023-06-21T22:10:29Z");
-    expect(reading.sensorSystem!.id, "508baef0-bc82-4481-9af8-83d2e5132100");
-    expect(reading.sensorSystem!.sensorName, "Test Sensor");
-    expect(reading.sensorSystem!.unconvUser!.id,
+    expect(reading.sensorSystem.id, "508baef0-bc82-4481-9af8-83d2e5132100");
+    expect(reading.sensorSystem.sensorName, "Test Sensor");
+    expect(reading.sensorSystem.unconvUser!.id,
         "a5bbd1bd-c89b-4219-b0a8-379abe41b879");
-    expect(reading.sensorSystem!.unconvUser!.username, "Test User");
-    expect(reading.sensorSystem!.unconvUser!.email, "noname@email.com");
+    expect(reading.sensorSystem.unconvUser.username, "Test User");
+    expect(reading.sensorSystem.unconvUser.email, "noname@email.com");
   });
 
   test("Failure", (() {
