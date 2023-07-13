@@ -75,6 +75,7 @@ jobs:
       - apply_placeholder
       - install-flutter
       - test-flutter
+      - codecov/upload
 
   build-android:
     executor: android
