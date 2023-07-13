@@ -22,6 +22,23 @@ class SensorSystemResponse {
   });
 
   factory SensorSystemResponse.fromJson(Map<String, dynamic> json) {
+    final List<String> requiredFields = [
+      "isFirst",
+      "isLast",
+      "hasNext",
+      "hasPrevious",
+      "data",
+      "totalElements",
+      "pageNumber",
+      "totalPages",
+    ];
+
+    final bool missingFields =
+        requiredFields.any((field) => json[field] == null);
+    if (missingFields) {
+      throw const FormatException("Missing required fields in JSON");
+    }
+
     List<SensorSystem> data = <SensorSystem>[];
     json['data'].forEach((v) {
       data.add(SensorSystem.fromJson(v));
