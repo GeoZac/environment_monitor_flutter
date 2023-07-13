@@ -10,6 +10,18 @@ class UnconvUser {
   });
 
   factory UnconvUser.fromJson(Map<String, dynamic> json) {
+    final List<String> requiredFields = [
+      'id',
+      'username',
+      'email',
+    ];
+
+    final bool missingFields =
+        requiredFields.any((field) => json[field] == null);
+    if (missingFields) {
+      throw const FormatException("Missing required fields in JSON");
+    }
+
     return UnconvUser(
       id: json['id'],
       username: json['username'],
