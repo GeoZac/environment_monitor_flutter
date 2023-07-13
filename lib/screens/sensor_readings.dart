@@ -106,7 +106,7 @@ class _SensorReadingsState extends State<SensorReadings> {
         .then((value) {
       environmentalReadingResponse = value;
       environmentalReadings =
-          environmentalReadingResponse.data!.cast<EnvironmentalReading>();
+          environmentalReadingResponse.data.cast<EnvironmentalReading>();
 
       setState(() {
         _init = true;

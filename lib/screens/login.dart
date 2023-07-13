@@ -151,13 +151,14 @@ class _LoginScreenState extends State<LoginScreen> {
                             passwordController.text,
                           ),
                         );
+                        // ignore: unnecessary_null_comparison
                         if (authResponse.unconvUser != null) {
                           // ignore: use_build_context_synchronously
                           Navigator.pushReplacement(
                               context,
                               MaterialPageRoute(
                                   builder: (context) => Dashboard(
-                                        unconvUser: authResponse.unconvUser!,
+                                        unconvUser: authResponse.unconvUser,
                                       )));
                         } else {
                           // ignore: prefer_const_constructors, use_build_context_synchronously

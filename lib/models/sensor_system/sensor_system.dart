@@ -12,6 +12,18 @@ class SensorSystem {
   });
 
   SensorSystem.fromJson(Map<String, dynamic> json) {
+    final List<String> requiredFields = [
+      'id',
+      'sensorName',
+      'unconvUser',
+    ];
+
+    final bool missingFields =
+        requiredFields.any((field) => json[field] == null);
+    if (missingFields) {
+      throw const FormatException("Missing required fields in JSON");
+    }
+
     id = json['id'];
     sensorName = json['sensorName'];
     unconvUser = json['unconvUser'] != null

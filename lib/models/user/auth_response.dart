@@ -1,30 +1,40 @@
 import 'unconv_user.dart';
 
 class AuthResponse {
-  int? expires;
-  UnconvUser? unconvUser;
-  String? token;
+  int expires;
+  UnconvUser unconvUser;
+  String token;
 
   AuthResponse({
-    this.expires,
-    this.unconvUser,
-    this.token,
+    required this.expires,
+    required this.unconvUser,
+    required this.token,
   });
 
-  AuthResponse.fromJson(Map<String, dynamic> json) {
-    expires = json['expires'];
-    unconvUser = json['unconvUser'] != null
-        ? UnconvUser.fromJson(json['unconvUser'])
-        : null;
-    token = json['token'];
+  factory AuthResponse.fromJson(Map<String, dynamic> json) {
+    final List<String> requiredFields = [
+      'expires',
+      'unconvUser',
+      'token',
+    ];
+
+    final bool missingFields =
+        requiredFields.any((field) => json[field] == null);
+    if (missingFields) {
+      throw const FormatException("Missing required fields in JSON");
+    }
+
+    return AuthResponse(
+      expires: json['expires'],
+      unconvUser: UnconvUser.fromJson(json['unconvUser']),
+      token: json['token'],
+    );
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['expires'] = expires;
-    if (unconvUser != null) {
-      data['unconvUser'] = unconvUser!.toJson();
-    }
+    data['unconvUser'] = unconvUser.toJson();
     data['token'] = token;
     return data;
   }
