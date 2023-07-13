@@ -74,7 +74,7 @@ jobs:
       - checkout
       - apply_placeholder
       - install-flutter
-      - test
+      - test-flutter
 
   build-android:
     executor: android
