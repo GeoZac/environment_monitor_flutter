@@ -33,8 +33,8 @@ void main() {
     expect(reading.sensorSystem.sensorName, "Test Sensor");
     expect(reading.sensorSystem.unconvUser!.id,
         "a5bbd1bd-c89b-4219-b0a8-379abe41b879");
-    expect(reading.sensorSystem.unconvUser.username, "Test User");
-    expect(reading.sensorSystem.unconvUser.email, "noname@email.com");
+    expect(reading.sensorSystem.unconvUser!.username, "Test User");
+    expect(reading.sensorSystem.unconvUser!.email, "noname@email.com");
   });
 
   test("Failure", (() {
