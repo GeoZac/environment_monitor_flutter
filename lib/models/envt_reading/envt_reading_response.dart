@@ -54,17 +54,4 @@ class EnvironmentalReadingResponse {
         pageNumber: json['pageNumber'],
         totalPages: json['totalPages']);
   }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['isFirst'] = isFirst;
-    data['isLast'] = isLast;
-    data['hasNext'] = hasNext;
-    data['hasPrevious'] = hasPrevious;
-    data['data'] = this.data.map((v) => v.toJson()).toList();
-    data['totalElements'] = totalElements;
-    data['pageNumber'] = pageNumber;
-    data['totalPages'] = totalPages;
-    return data;
-  }
 }
