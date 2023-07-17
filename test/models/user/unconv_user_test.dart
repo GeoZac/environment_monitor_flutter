@@ -25,4 +25,21 @@ void main() {
 
     expect(() => UnconvUser.fromJson(json2), throwsFormatException);
   }));
+
+  test('toJson() should return a valid JSON map', () {
+    // Create an instance of the class to test
+    final instance = UnconvUser(
+      id: "a5bbd1bd-c89b-4219-b0a8-379abe41b879",
+      username: "Test User",
+      email: "test@example.com",
+    );
+
+    final json = instance.toJson();
+
+    expect(json, isA<Map<String, dynamic>>());
+
+    expect(json['id'], equals('a5bbd1bd-c89b-4219-b0a8-379abe41b879'));
+    expect(json['username'], equals("Test User"));
+    expect(json['email'], equals("test@example.com"));
+  });
 }
