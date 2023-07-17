@@ -33,6 +33,13 @@ commands:
           command: |
             flutter analyze || exit
 
+  test-flutter:
+    steps:
+      - run:
+          name: Run tests
+          command: |
+            flutter test --coverage
+
   build-android:
     description: Builds APK for Android
     steps:
@@ -60,6 +67,16 @@ jobs:
       - format
       - dart_analyze
 
+  test-coverage:
+    executor:
+      name: android
+    steps:
+      - checkout
+      - apply_placeholder
+      - install-flutter
+      - test-flutter
+      - codecov/upload
+
   build-android:
     executor: android
     steps:
@@ -76,5 +93,8 @@ workflows:
     jobs:
       - setup-and-format
       - build-android:
+          requires:
+            - setup-and-format
+      - test-coverage:
           requires:
             - setup-and-format
