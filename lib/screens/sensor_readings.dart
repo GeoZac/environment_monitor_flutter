@@ -29,7 +29,7 @@ class _SensorReadingsState extends State<SensorReadings> {
   @override
   void initState() {
     super.initState();
-    fetchSensorReadings(widget.selectedSensor.id!);
+    fetchSensorReadings(widget.selectedSensor.id);
   }
 
   @override
@@ -63,7 +63,7 @@ class _SensorReadingsState extends State<SensorReadings> {
                           ),
                           const Divider(),
                           Text(
-                            widget.selectedSensor.sensorName!,
+                            widget.selectedSensor.sensorName,
                             maxLines: 2,
                             style: const TextStyle(
                               fontSize: 48,
