@@ -18,7 +18,8 @@ class SensorSystem {
       'unconvUser',
     ];
 
-    final bool missingFields = requiredFields.any((field) => json[field] == null);
+    final bool missingFields =
+        requiredFields.any((field) => json[field] == null);
     if (missingFields) {
       throw const FormatException("Missing required fields in JSON");
     }
