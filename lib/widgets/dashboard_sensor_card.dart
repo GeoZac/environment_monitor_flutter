@@ -28,7 +28,7 @@ class SensorSystemDashboardCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    sensorSystem!.sensorName!,
+                    sensorSystem!.sensorName,
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                     style: const TextStyle(
@@ -40,7 +40,7 @@ class SensorSystemDashboardCard extends StatelessWidget {
                     height: 2,
                   ),
                   Text(
-                    sensorSystem!.id!,
+                    sensorSystem!.id,
                     maxLines: 1,
                     overflow: TextOverflow.clip,
                     style: const TextStyle(

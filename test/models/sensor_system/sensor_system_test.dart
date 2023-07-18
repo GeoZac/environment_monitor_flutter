@@ -22,9 +22,9 @@ void main() {
     // Verify the values
     expect(sensorSystem.id, "508baef0-bc82-4481-9af8-83d2e5132100");
     expect(sensorSystem.sensorName, "Test Sensor");
-    expect(sensorSystem.unconvUser!.id, "a5bbd1bd-c89b-4219-b0a8-379abe41b879");
-    expect(sensorSystem.unconvUser!.username, "Test User");
-    expect(sensorSystem.unconvUser!.email, "noname@email.com");
+    expect(sensorSystem.unconvUser.id, "a5bbd1bd-c89b-4219-b0a8-379abe41b879");
+    expect(sensorSystem.unconvUser.username, "Test User");
+    expect(sensorSystem.unconvUser.email, "noname@email.com");
   });
 
   test("Failure", (() {
