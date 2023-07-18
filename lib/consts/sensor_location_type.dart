@@ -1,0 +1,4 @@
+enum SensorLocationType {
+  indoor,
+  outdoor,
+}
