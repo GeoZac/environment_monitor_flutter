@@ -57,6 +57,18 @@ void main() {
     expect(() => SensorLocation.fromJson(json), throwsFormatException);
   }));
 
+  test("Throw ArgumentError when Sensor Location Type is invalid", (() {
+    final json = {
+      "id": "a45f79ce-2b9e-4cd4-b4e7-32acbbbed4fe",
+      "sensorLocationText": "Some Place",
+      "latitude": 18.499733,
+      "longitude": 56.9241666,
+      "sensorLocationType": "UNSPECIFIED",
+    };
+
+    expect(() => SensorLocation.fromJson(json), throwsArgumentError);
+  }));
+
   test('toJson() should return a valid JSON map for indoor Sensor', () {
     final instance = SensorLocation(
       id: "a45f79ce-2b9e-4cd4-b4e7-32acbbbed4fe",
