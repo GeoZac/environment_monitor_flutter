@@ -56,9 +56,8 @@ class SensorLocation {
       case SensorLocationType.indoor:
         return 'INDOOR';
       case SensorLocationType.outdoor:
-        return 'OUTDOOR';
       default:
-        throw ArgumentError('Invalid sensor location type: $value');
+        return 'OUTDOOR';
     }
   }
 
