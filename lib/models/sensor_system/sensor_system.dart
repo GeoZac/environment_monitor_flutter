@@ -1,13 +1,16 @@
+import '../sensor_location/sensor_location.dart';
 import '../user/unconv_user.dart';
 
 class SensorSystem {
   String id;
   String sensorName;
+  SensorLocation? sensorLocation;
   UnconvUser unconvUser;
 
   SensorSystem({
     required this.id,
     required this.sensorName,
+    this.sensorLocation,
     required this.unconvUser,
   });
 
@@ -27,6 +30,9 @@ class SensorSystem {
     return SensorSystem(
       id: json['id'],
       sensorName: json['sensorName'],
+      sensorLocation: json['sensorLocation'] != null
+          ? SensorLocation.fromJson(json['sensorLocation'])
+          : null,
       unconvUser: UnconvUser.fromJson(json['unconvUser']),
     );
   }
@@ -35,6 +41,9 @@ class SensorSystem {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['id'] = id;
     data['sensorName'] = sensorName;
+    if (sensorLocation != null) {
+      data['sensorLocation'] = sensorLocation!.toJson();
+    }
     data['unconvUser'] = unconvUser.toJson();
     return data;
   }
