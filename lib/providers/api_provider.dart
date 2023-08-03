@@ -6,13 +6,19 @@ import 'dart:async';
 import '../models/http/custom_exception.dart';
 
 class ApiProvider {
+  final http.Client httpClient;
+
+  ApiProvider(
+    this.httpClient,
+  );
+
   Future<dynamic> makeHttpGet(
     Uri url, {
     Map<String, String>? headers,
   }) async {
     dynamic responseJson;
     try {
-      final response = await http.get(
+      final response = await httpClient.get(
         url,
         headers: headers,
       );
@@ -50,7 +56,7 @@ class ApiProvider {
   ) async {
     dynamic responseJson;
     try {
-      final response = await http.post(
+      final response = await httpClient.post(
         url,
         headers: {'Content-Type': 'application/json'},
         body: jsonEncode(body),
