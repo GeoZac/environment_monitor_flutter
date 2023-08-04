@@ -16,10 +16,6 @@ class EnvironmentalReadingProvider with ChangeNotifier {
       scheme: 'https',
       host: Secrets.baseApiUrl,
       path: '/EnvironmentalReading/SensorSystem/$sensorSystemId',
-      queryParameters: {
-        "sortBy": "timestamp",
-        "sortDir": "desc",
-      },
     );
 
     ApiProvider apiProvider = ApiProvider();
