@@ -15,10 +15,6 @@ class SensorSystemProvider with ChangeNotifier {
       scheme: 'https',
       host: Secrets.baseApiUrl,
       path: '/SensorSystem/UnconvUser/$unconvUserId',
-      queryParameters: {
-        "sortBy": "sensorName",
-        "sortDir": "asc",
-      },
     );
 
     ApiProvider apiProvider = ApiProvider();
