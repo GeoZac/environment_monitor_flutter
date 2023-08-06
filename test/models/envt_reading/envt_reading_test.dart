@@ -19,7 +19,9 @@ void main() {
           "id": "a5bbd1bd-c89b-4219-b0a8-379abe41b879",
           "username": "Test User",
           "email": "noname@email.com"
-        }
+        },
+        "readingCount": 0,
+        "latestReading": null,
       }
     };
 
@@ -75,6 +77,7 @@ void main() {
           username: "Test User",
           email: "test@example.com",
         ),
+        readingCount: 0,
       ),
     );
 
