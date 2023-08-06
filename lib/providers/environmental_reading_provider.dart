@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 
 import '../config/secrets.dart';
 import '../models/envt_reading/envt_reading_response.dart';
@@ -18,7 +19,7 @@ class EnvironmentalReadingProvider with ChangeNotifier {
       path: '/EnvironmentalReading/SensorSystem/$sensorSystemId',
     );
 
-    ApiProvider apiProvider = ApiProvider();
+    ApiProvider apiProvider = ApiProvider(http.Client());
     final response = await apiProvider.makeHttpGet(
       uri,
       headers: headers,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 
 import '../config/secrets.dart';
 import '../models/sensor_system/sensor_system_response.dart';
@@ -17,7 +18,7 @@ class SensorSystemProvider with ChangeNotifier {
       path: '/SensorSystem/UnconvUser/$unconvUserId',
     );
 
-    ApiProvider apiProvider = ApiProvider();
+    ApiProvider apiProvider = ApiProvider(http.Client());
     final response = await apiProvider.makeHttpGet(
       uri,
       headers: headers,

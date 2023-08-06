@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 
 import '../config/secrets.dart';
 import '../models/user/auth_request.dart';
@@ -13,7 +14,7 @@ class UnconvApiProvider with ChangeNotifier {
       path: '/auth/login',
     );
 
-    ApiProvider apiProvider = ApiProvider();
+    ApiProvider apiProvider = ApiProvider(http.Client());
     final response = await apiProvider.makeHttpPost(
       uri,
       null,
