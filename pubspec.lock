@@ -317,6 +317,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.4"
+  mockito:
+    dependency: "direct main"
+    description:
+      name: mockito
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "5.4.0"
   nested:
     dependency: transitive
     description:
@@ -476,6 +483,13 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.99"
+  source_gen:
+    dependency: transitive
+    description:
+      name: source_gen
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.3.2"
   source_span:
     dependency: transitive
     description:
