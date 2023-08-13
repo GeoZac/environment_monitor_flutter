@@ -22,7 +22,9 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(
-            create: (context) => EnvironmentalReadingProvider()),
+            create: (context) => EnvironmentalReadingProvider(
+                  http.Client(),
+                )),
         ChangeNotifierProvider(
             create: (context) => SensorSystemProvider(
                   http.Client(),

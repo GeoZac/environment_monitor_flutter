@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:http/http.dart' as http;
 
 import '../models/envt_reading/envt_reading.dart';
 import '../models/envt_reading/envt_reading_response.dart';
@@ -99,7 +100,9 @@ class _SensorReadingsState extends State<SensorReadings> {
   void fetchSensorReadings(String selectedSensorSystemId) {
     // fetchReadings() {
     EnvironmentalReadingProvider environmentalReadingProvider =
-        EnvironmentalReadingProvider();
+        EnvironmentalReadingProvider(
+      http.Client(),
+    );
     _init = false;
     environmentalReadingProvider
         .fetchEnvironmentalReadingsOfSpecificSensor(selectedSensorSystemId)
