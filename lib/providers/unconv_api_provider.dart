@@ -7,6 +7,12 @@ import '../models/user/auth_response.dart';
 import 'api_provider.dart';
 
 class UnconvApiProvider with ChangeNotifier {
+  final http.Client httpClient;
+
+  UnconvApiProvider(
+    this.httpClient,
+  );
+
   Future<dynamic> login(AuthRequest authRequest) async {
     Uri uri = Uri(
       scheme: 'https',
@@ -14,7 +20,9 @@ class UnconvApiProvider with ChangeNotifier {
       path: '/auth/login',
     );
 
-    ApiProvider apiProvider = ApiProvider(http.Client());
+    ApiProvider apiProvider = ApiProvider(
+      http.Client(),
+    );
     final response = await apiProvider.makeHttpPost(
       uri,
       null,

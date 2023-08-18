@@ -29,7 +29,10 @@ class MyApp extends StatelessWidget {
             create: (context) => SensorSystemProvider(
                   http.Client(),
                 )),
-        ChangeNotifierProvider(create: ((context) => UnconvApiProvider())),
+        ChangeNotifierProvider(
+            create: ((context) => UnconvApiProvider(
+                  http.Client(),
+                ))),
       ],
       child: MaterialApp(
         onGenerateRoute: (settings) {
