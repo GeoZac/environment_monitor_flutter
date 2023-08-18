@@ -21,7 +21,7 @@ class UnconvApiProvider with ChangeNotifier {
     );
 
     ApiProvider apiProvider = ApiProvider(
-      http.Client(),
+      httpClient,
     );
     final response = await apiProvider.makeHttpPost(
       uri,
