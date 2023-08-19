@@ -145,6 +145,38 @@ void main() {
     );
   });
 
+  test('Test makeHttpPost 401 failure', () {
+    final mockClient = MockClient();
+    ApiProvider apiProvider = ApiProvider(mockClient);
+
+    final url = Uri.parse('https://example.com/api/invalid_endpoint');
+    final requestBody = {'key': 'value'};
+
+    when(
+      mockClient.post(
+        url,
+        headers: {'Content-Type': 'application/json'},
+        body: jsonEncode(requestBody),
+      ),
+    ).thenAnswer(
+      (_) async => http.Response(
+        '{"key": "value"}',
+        401,
+      ),
+    );
+
+    expect(
+      () async => await apiProvider.makeHttpPost(
+        url,
+        null,
+        requestBody,
+      ),
+      throwsA(
+        isA<UnauthorisedException>(),
+      ),
+    );
+  });
+
   test('Test makeHttpPost 403 failure', () {
     final mockClient = MockClient();
     ApiProvider apiProvider = ApiProvider(mockClient);
