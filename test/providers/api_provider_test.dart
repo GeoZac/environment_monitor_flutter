@@ -240,4 +240,36 @@ void main() {
       ),
     );
   });
+
+  test('Test makeHttpPost Unhandled failure with 404', () {
+    final mockClient = MockClient();
+    ApiProvider apiProvider = ApiProvider(mockClient);
+
+    final url = Uri.parse('https://example.com/api/invalid_endpoint');
+    final requestBody = {'key': 'value'};
+
+    when(
+      mockClient.post(
+        url,
+        headers: {'Content-Type': 'application/json'},
+        body: jsonEncode(requestBody),
+      ),
+    ).thenAnswer(
+      (_) async => http.Response(
+        '{"key": "value"}',
+        404,
+      ),
+    );
+
+    expect(
+      () async => await apiProvider.makeHttpPost(
+        url,
+        null,
+        requestBody,
+      ),
+      throwsA(
+        isA<FetchDataException>(),
+      ),
+    );
+  });
 }
