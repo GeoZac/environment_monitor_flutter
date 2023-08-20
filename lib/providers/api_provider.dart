@@ -45,7 +45,7 @@ class ApiProvider {
 
       default:
         throw FetchDataException(
-            'Error occured while Communication with Server with StatusCode : ${response.statusCode}');
+            'Error occurred while Communication with Server with StatusCode : ${response.statusCode}');
     }
   }
 

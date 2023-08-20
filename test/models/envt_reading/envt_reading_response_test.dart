@@ -2,7 +2,8 @@ import 'package:environment_monitor/models/envt_reading/envt_reading_response.da
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
-  test('Create EnvironmentaReadingReponse from JSON data with all fields', () {
+  test('Create EnvironmentalReadingResponse from JSON data with all fields',
+      () {
     Map<String, dynamic> jsonData = {
       "isFirst": true,
       "isLast": true,
