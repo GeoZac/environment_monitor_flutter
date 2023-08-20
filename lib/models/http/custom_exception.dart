@@ -8,6 +8,10 @@ class CustomException implements Exception {
   String toString() {
     return "$_prefix$_message";
   }
+
+  String get message => _message;
+
+  String get prefix => _prefix;
 }
 
 class FetchDataException extends CustomException {
