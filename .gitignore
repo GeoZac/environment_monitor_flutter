@@ -48,3 +48,6 @@ lib/config/secrets.dart
 
 # VS Code specific config
 .vscode/
+
+# Code coverage artifacts
+coverage/
