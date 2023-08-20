@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:http/http.dart' as http;
 
 import 'models/sensor_system/sensor_system.dart';
 import 'providers/environmental_reading_provider.dart';
@@ -21,9 +22,17 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(
-            create: (context) => EnvironmentalReadingProvider()),
-        ChangeNotifierProvider(create: (context) => SensorSystemProvider()),
-        ChangeNotifierProvider(create: ((context) => UnconvApiProvider())),
+            create: (context) => EnvironmentalReadingProvider(
+                  http.Client(),
+                )),
+        ChangeNotifierProvider(
+            create: (context) => SensorSystemProvider(
+                  http.Client(),
+                )),
+        ChangeNotifierProvider(
+            create: ((context) => UnconvApiProvider(
+                  http.Client(),
+                ))),
       ],
       child: MaterialApp(
         onGenerateRoute: (settings) {

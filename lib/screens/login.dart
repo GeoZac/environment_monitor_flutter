@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:http/http.dart' as http;
 
 import '../models/user/auth_request.dart';
 import '../models/user/auth_response.dart';
@@ -145,7 +146,9 @@ class _LoginScreenState extends State<LoginScreen> {
                     : () async {
                         saveCredentials();
                         final AuthResponse authResponse =
-                            await UnconvApiProvider().login(
+                            await UnconvApiProvider(
+                          http.Client(),
+                        ).login(
                           AuthRequest(
                             usernameController.text,
                             passwordController.text,

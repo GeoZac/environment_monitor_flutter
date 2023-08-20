@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:http/http.dart' as http;
 
 import '../models/sensor_system/sensor_system.dart';
 import '../models/sensor_system/sensor_system_response.dart';
@@ -141,7 +142,9 @@ class _DashboardState extends State<Dashboard> {
 
   fetchAllSensorSystems() {
     _init = false;
-    SensorSystemProvider sensorSystemProvider = SensorSystemProvider();
+    SensorSystemProvider sensorSystemProvider = SensorSystemProvider(
+      http.Client(),
+    );
     sensorSystemProvider
         .fetchSensorSystems(widget.unconvUser.id)
         .then((response) {
