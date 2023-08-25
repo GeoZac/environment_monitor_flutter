@@ -1,25 +1,26 @@
+import '../shared/page.dart';
 import 'sensor_system.dart';
 
-class SensorSystemResponse {
-  bool isFirst;
-  bool isLast;
-  bool hasNext;
-  bool hasPrevious;
-  List<SensorSystem> data;
-  int totalElements;
-  int pageNumber;
-  int totalPages;
-
+class SensorSystemResponse extends Page<SensorSystem> {
   SensorSystemResponse({
-    required this.isFirst,
-    required this.isLast,
-    required this.hasNext,
-    required this.hasPrevious,
-    required this.data,
-    required this.totalElements,
-    required this.pageNumber,
-    required this.totalPages,
-  });
+    required bool isFirst,
+    required bool isLast,
+    required bool hasNext,
+    required bool hasPrevious,
+    required List<SensorSystem> data,
+    required int totalElements,
+    required int pageNumber,
+    required int totalPages,
+  }) : super(
+          isFirst: isFirst,
+          isLast: isLast,
+          hasNext: hasNext,
+          hasPrevious: hasPrevious,
+          data: data,
+          totalElements: totalElements,
+          pageNumber: pageNumber,
+          totalPages: totalPages,
+        );
 
   factory SensorSystemResponse.fromJson(Map<String, dynamic> json) {
     final List<String> requiredFields = [
