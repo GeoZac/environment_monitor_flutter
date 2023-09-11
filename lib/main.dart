@@ -1,7 +1,9 @@
+import 'package:bugsnag_flutter/bugsnag_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:http/http.dart' as http;
 
+import 'config/secrets.dart';
 import 'models/sensor_system/sensor_system.dart';
 import 'providers/environmental_reading_provider.dart';
 import 'providers/sensor_system_provider.dart';
@@ -9,7 +11,8 @@ import 'providers/unconv_api_provider.dart';
 import 'screens/login.dart';
 import 'screens/sensor_readings.dart';
 
-void main() {
+Future<void> main() async {
+  await bugsnag.start(apiKey: Secrets.bugSnagKey);
   runApp(const MyApp());
 }
 
