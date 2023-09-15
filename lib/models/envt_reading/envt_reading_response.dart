@@ -1,25 +1,26 @@
+import '../shared/page.dart';
 import 'envt_reading.dart';
 
-class EnvironmentalReadingResponse {
-  bool isFirst;
-  bool isLast;
-  bool hasNext;
-  bool hasPrevious;
-  List<EnvironmentalReading> data;
-  int totalElements;
-  int pageNumber;
-  int totalPages;
-
+class EnvironmentalReadingResponse extends Page<EnvironmentalReading> {
   EnvironmentalReadingResponse({
-    required this.isFirst,
-    required this.isLast,
-    required this.hasNext,
-    required this.hasPrevious,
-    required this.data,
-    required this.totalElements,
-    required this.pageNumber,
-    required this.totalPages,
-  });
+    required bool isFirst,
+    required bool isLast,
+    required bool hasNext,
+    required bool hasPrevious,
+    required List<EnvironmentalReading> data,
+    required int totalElements,
+    required int pageNumber,
+    required int totalPages,
+  }) : super(
+          isFirst: isFirst,
+          isLast: isLast,
+          hasNext: hasNext,
+          hasPrevious: hasPrevious,
+          data: data,
+          totalElements: totalElements,
+          pageNumber: pageNumber,
+          totalPages: totalPages,
+        );
 
   factory EnvironmentalReadingResponse.fromJson(Map<String, dynamic> json) {
     final List<String> requiredFields = [
