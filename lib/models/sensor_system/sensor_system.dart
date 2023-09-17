@@ -70,7 +70,7 @@ class SensorSystem {
     }
   }
 
-  static String parseSensorLocationTypeToJson(SensorStatus value) {
+  static String parseSensorStatusToJson(SensorStatus value) {
     switch (value) {
       case SensorStatus.active:
         return 'ACTIVE';
@@ -84,10 +84,15 @@ class SensorSystem {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['id'] = id;
     data['sensorName'] = sensorName;
+    data['description'] = description;
+    data['deleted'] = deleted;
+    data['sensorStatus'] = sensorStatus;
     if (sensorLocation != null) {
       data['sensorLocation'] = sensorLocation!.toJson();
     }
     data['unconvUser'] = unconvUser.toJson();
+    data['readingCount'] = readingCount;
+    data['latestReading'] = latestReading;
     return data;
   }
 }
