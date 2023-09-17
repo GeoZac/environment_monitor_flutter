@@ -59,7 +59,7 @@ void main() {
       "unconvUser": {
         "id": "a5bbd1bd-c89b-4219-b0a8-379abe41b879",
         "username": "Test User",
-        "email": "noname@email.com"
+        "email": "noname@email.com",
       },
       "readingCount": 0,
       "latestReading": null,
@@ -87,11 +87,30 @@ void main() {
       "unconvUser": {
         "id": "a5bbd1bd-c89b-4219-b0a8-379abe41b879",
         "username": "Test User",
-        "email": "noname@email.com"
+        "email": "noname@email.com",
       }
     };
 
     expect(() => SensorSystem.fromJson(json2), throwsFormatException);
+  }));
+
+  test("Throw ArgumentError when Sensor Status is invalid", (() {
+    final json = {
+      "id": "508baef0-bc82-4481-9af8-83d2e5132100",
+      "sensorName": "Test Sensor",
+      "deleted": false,
+      "sensorStatus": "UNSPECIFIED",
+      "sensorLocation": null,
+      "unconvUser": {
+        "id": "a5bbd1bd-c89b-4219-b0a8-379abe41b879",
+        "username": "Test User",
+        "email": "noname@email.com",
+      },
+      "readingCount": 0,
+      "latestReading": null,
+    };
+
+    expect(() => SensorSystem.fromJson(json), throwsArgumentError);
   }));
 
   test('toJson() should return a valid JSON map', () {
@@ -147,6 +166,8 @@ void main() {
 
     expect(json['id'], equals('508baef0-bc82-4481-9af8-83d2e5132100'));
     expect(json['sensorName'], equals('Test Sensor'));
+    expect(json['deleted'], equals(true));
+    expect(json['sensorStatus'], equals("ACTIVE"));
     expect(json['sensorLocation'], isA<Map<String, dynamic>>());
     expect(json['sensorLocation']['sensorLocationType'], isA<String>());
     expect(json['unconvUser'], isA<Map<String, dynamic>>());

@@ -86,7 +86,7 @@ class SensorSystem {
     data['sensorName'] = sensorName;
     data['description'] = description;
     data['deleted'] = deleted;
-    data['sensorStatus'] = sensorStatus;
+    data['sensorStatus'] = parseSensorStatusToJson(sensorStatus);
     if (sensorLocation != null) {
       data['sensorLocation'] = sensorLocation!.toJson();
     }
