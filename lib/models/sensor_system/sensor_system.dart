@@ -1,4 +1,4 @@
-import '../envt_reading/envt_reading.dart';
+import '../envt_reading/base_envt_reading.dart';
 import '../sensor_location/sensor_location.dart';
 import '../user/unconv_user.dart';
 
@@ -8,7 +8,7 @@ class SensorSystem {
   SensorLocation? sensorLocation;
   UnconvUser unconvUser;
   int readingCount;
-  EnvironmentalReading? latestReading;
+  BaseEnvironmentalReading? latestReading;
 
   SensorSystem({
     required this.id,
@@ -42,7 +42,7 @@ class SensorSystem {
       unconvUser: UnconvUser.fromJson(json['unconvUser']),
       readingCount: json['readingCount'] ?? 0,
       latestReading: json['latestReading'] != null
-          ? EnvironmentalReading.fromJson(json['latestReading'])
+          ? BaseEnvironmentalReading.fromJson(json['latestReading'])
           : null,
     );
   }
