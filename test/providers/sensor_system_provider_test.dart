@@ -24,6 +24,8 @@ void main() {
         {
           "id": "2d1f53b1-a177-484c-a323-a3cd91134fb8",
           "sensorName": "EFBMOVZ",
+          "deleted": false,
+          "sensorStatus": "ACTIVE",
           "sensorLocation": null,
           "unconvUser": {
             "id": "9c06ee96-4353-4377-b423-83a186da7f7a",
@@ -36,6 +38,8 @@ void main() {
         {
           "id": "b7a30f45-fa48-4cff-b111-a2931d270809",
           "sensorName": "FCT",
+          "deleted": false,
+          "sensorStatus": "ACTIVE",
           "sensorLocation": null,
           "unconvUser": {
             "id": "9c06ee96-4353-4377-b423-83a186da7f7a",

@@ -1,19 +1,21 @@
 import '../sensor_system/sensor_system.dart';
+import 'base_envt_reading.dart';
 
-class EnvironmentalReading {
+class EnvironmentalReading extends BaseEnvironmentalReading {
   String id;
-  double temperature;
-  double humidity;
-  String timestamp;
   SensorSystem sensorSystem;
 
   EnvironmentalReading({
     required this.id,
-    required this.temperature,
-    required this.humidity,
-    required this.timestamp,
+    required double temperature,
+    required double humidity,
+    required String timestamp,
     required this.sensorSystem,
-  });
+  }) : super(
+          temperature: temperature,
+          humidity: humidity,
+          timestamp: timestamp,
+        );
 
   factory EnvironmentalReading.fromJson(Map<String, dynamic> json) {
     final List<String> requiredFields = [
