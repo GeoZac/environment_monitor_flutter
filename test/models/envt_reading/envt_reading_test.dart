@@ -1,3 +1,4 @@
+import 'package:environment_monitor/consts/sensor_status.dart';
 import 'package:environment_monitor/models/envt_reading/envt_reading.dart';
 import 'package:environment_monitor/models/sensor_system/sensor_system.dart';
 import 'package:environment_monitor/models/user/unconv_user.dart';
@@ -14,6 +15,8 @@ void main() {
       "sensorSystem": {
         "id": "508baef0-bc82-4481-9af8-83d2e5132100",
         "sensorName": "Test Sensor",
+        "deleted": false,
+        "sensorStatus": "ACTIVE",
         "sensorLocation": null,
         "unconvUser": {
           "id": "a5bbd1bd-c89b-4219-b0a8-379abe41b879",
@@ -50,6 +53,8 @@ void main() {
       "sensorSystem": {
         "id": "508baef0-bc82-4481-9af8-83d2e5132100",
         "sensorName": "Test Sensor",
+        "deleted": false,
+        "sensorStatus": "ACTIVE",
         "sensorLocation": null,
         "unconvUser": {
           "id": "a5bbd1bd-c89b-4219-b0a8-379abe41b879",
@@ -72,6 +77,8 @@ void main() {
       sensorSystem: SensorSystem(
         id: "508baef0-bc82-4481-9af8-83d2e5132100",
         sensorName: "Test Sensor",
+        deleted: false,
+        sensorStatus: SensorStatus.active,
         unconvUser: UnconvUser(
           id: "a5bbd1bd-c89b-4219-b0a8-379abe41b879",
           username: "Test User",

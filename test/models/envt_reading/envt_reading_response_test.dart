@@ -17,6 +17,8 @@ void main() {
           "sensorSystem": {
             "id": "eacc8c6d-d16b-4a8d-ba83-47f1a2cd4846",
             "sensorName": "Specific Sensor System",
+            "deleted": false,
+            "sensorStatus": "ACTIVE",
             "sensorLocation": null,
             "unconvUser": {
               "id": "532c476c-0eed-4d46-97f5-e7a6eefaa2d0",
@@ -35,6 +37,8 @@ void main() {
           "sensorSystem": {
             "id": "eacc8c6d-d16b-4a8d-ba83-47f1a2cd4846",
             "sensorName": "Specific Sensor System",
+            "deleted": false,
+            "sensorStatus": "ACTIVE",
             "sensorLocation": null,
             "unconvUser": {
               "id": "532c476c-0eed-4d46-97f5-e7a6eefaa2d0",
@@ -53,6 +57,8 @@ void main() {
           "sensorSystem": {
             "id": "eacc8c6d-d16b-4a8d-ba83-47f1a2cd4846",
             "sensorName": "Specific Sensor System",
+            "deleted": false,
+            "sensorStatus": "ACTIVE",
             "sensorLocation": null,
             "unconvUser": {
               "id": "532c476c-0eed-4d46-97f5-e7a6eefaa2d0",
@@ -71,6 +77,8 @@ void main() {
           "sensorSystem": {
             "id": "eacc8c6d-d16b-4a8d-ba83-47f1a2cd4846",
             "sensorName": "Specific Sensor System",
+            "deleted": false,
+            "sensorStatus": "ACTIVE",
             "sensorLocation": null,
             "unconvUser": {
               "id": "532c476c-0eed-4d46-97f5-e7a6eefaa2d0",
@@ -89,6 +97,8 @@ void main() {
           "sensorSystem": {
             "id": "eacc8c6d-d16b-4a8d-ba83-47f1a2cd4846",
             "sensorName": "Specific Sensor System",
+            "deleted": false,
+            "sensorStatus": "ACTIVE",
             "sensorLocation": null,
             "unconvUser": {
               "id": "532c476c-0eed-4d46-97f5-e7a6eefaa2d0",
