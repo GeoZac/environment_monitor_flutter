@@ -1,0 +1,4 @@
+enum SensorStatus {
+  active,
+  inactive,
+}
