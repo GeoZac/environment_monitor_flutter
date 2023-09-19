@@ -1,13 +1,13 @@
 import '../shared/page.dart';
 import 'sensor_system.dart';
 
-class SensorSystemResponse extends Page<SensorSystem> {
+class SensorSystemResponse extends Page<SensorSystemDTO> {
   SensorSystemResponse({
     required bool isFirst,
     required bool isLast,
     required bool hasNext,
     required bool hasPrevious,
-    required List<SensorSystem> data,
+    required List<SensorSystemDTO> data,
     required int totalElements,
     required int pageNumber,
     required int totalPages,
@@ -40,9 +40,9 @@ class SensorSystemResponse extends Page<SensorSystem> {
       throw const FormatException("Missing required fields in JSON");
     }
 
-    List<SensorSystem> data = <SensorSystem>[];
+    List<SensorSystemDTO> data = <SensorSystemDTO>[];
     json['data'].forEach((v) {
-      data.add(SensorSystem.fromJson(v));
+      data.add(SensorSystemDTO.fromJson(v));
     });
 
     return SensorSystemResponse(
