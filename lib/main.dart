@@ -68,7 +68,7 @@ class MyApp extends StatelessWidget {
 }
 
 class ScreenArguments {
-  final SensorSystem sensorSystem;
+  final SensorSystemDTO sensorSystem;
 
   ScreenArguments(this.sensorSystem);
 }

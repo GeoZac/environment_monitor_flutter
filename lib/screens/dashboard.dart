@@ -22,9 +22,9 @@ class Dashboard extends StatefulWidget {
 
 class _DashboardState extends State<Dashboard> {
   bool _init = false;
-  late List<SensorSystem>? sensorSystems;
+  late List<SensorSystemDTO>? sensorSystems;
   late SensorSystemResponse? sensorSystemResponse;
-  SensorSystem? selectedSensorSystem;
+  SensorSystemDTO? selectedSensorSystem;
 
   @override
   void initState() {

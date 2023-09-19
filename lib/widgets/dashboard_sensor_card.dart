@@ -10,7 +10,7 @@ class SensorSystemDashboardCard extends StatelessWidget {
     required this.sensorSystem,
   });
 
-  final SensorSystem? sensorSystem;
+  final SensorSystemDTO? sensorSystem;
 
   @override
   Widget build(BuildContext context) {

@@ -12,7 +12,7 @@ import '../widgets/sensor_reading_card.dart';
 class SensorReadings extends StatefulWidget {
   static const routeName = '/sensor_readings';
 
-  final SensorSystem selectedSensor;
+  final SensorSystemDTO selectedSensor;
 
   const SensorReadings({super.key, required this.selectedSensor});
 
