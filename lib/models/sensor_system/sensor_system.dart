@@ -3,7 +3,7 @@ import '../envt_reading/base_envt_reading.dart';
 import '../sensor_location/sensor_location.dart';
 import '../user/unconv_user.dart';
 
-class SensorSystem {
+class SensorSystemDTO {
   String id;
   String sensorName;
   String? description;
@@ -14,7 +14,7 @@ class SensorSystem {
   int readingCount;
   BaseEnvironmentalReading? latestReading;
 
-  SensorSystem({
+  SensorSystemDTO({
     required this.id,
     required this.sensorName,
     this.description,
@@ -26,7 +26,7 @@ class SensorSystem {
     this.latestReading,
   });
 
-  factory SensorSystem.fromJson(Map<String, dynamic> json) {
+  factory SensorSystemDTO.fromJson(Map<String, dynamic> json) {
     final List<String> requiredFields = [
       'id',
       'sensorName',
@@ -42,7 +42,7 @@ class SensorSystem {
       throw const FormatException("Missing required fields in JSON");
     }
 
-    return SensorSystem(
+    return SensorSystemDTO(
       id: json['id'],
       sensorName: json['sensorName'],
       description: json['description'],
