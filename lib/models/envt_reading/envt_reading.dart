@@ -1,9 +1,9 @@
-import '../sensor_system/sensor_system_dto.dart';
+import '../sensor_system/sensor_system.dart';
 import 'base_envt_reading.dart';
 
 class EnvironmentalReading extends BaseEnvironmentalReading {
   String id;
-  SensorSystemDTO sensorSystem;
+  SensorSystem sensorSystem;
 
   EnvironmentalReading({
     required this.id,
@@ -37,7 +37,7 @@ class EnvironmentalReading extends BaseEnvironmentalReading {
       temperature: json['temperature'],
       humidity: json['humidity'],
       timestamp: json['timestamp'],
-      sensorSystem: SensorSystemDTO.fromJson(json['sensorSystem']),
+      sensorSystem: SensorSystem.fromJson(json['sensorSystem']),
     );
   }
 
