@@ -74,7 +74,7 @@ void main() {
       temperature: 25.0,
       humidity: 50.0,
       timestamp: "2023-06-21T22:10:29Z",
-      sensorSystem: SensorSystem(
+      sensorSystem: SensorSystemDTO(
         id: "508baef0-bc82-4481-9af8-83d2e5132100",
         sensorName: "Test Sensor",
         deleted: false,

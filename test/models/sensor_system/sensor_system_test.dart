@@ -31,7 +31,7 @@ void main() {
     };
 
     // Perform the model mapping
-    final SensorSystem sensorSystem = SensorSystem.fromJson(json);
+    final SensorSystemDTO sensorSystem = SensorSystemDTO.fromJson(json);
 
     // Verify the values
     expect(sensorSystem.id, "508baef0-bc82-4481-9af8-83d2e5132100");
@@ -66,7 +66,7 @@ void main() {
     };
 
     // Perform the model mapping
-    final SensorSystem sensorSystem = SensorSystem.fromJson(json);
+    final SensorSystemDTO sensorSystem = SensorSystemDTO.fromJson(json);
 
     // Verify the values
     expect(sensorSystem.id, "508baef0-bc82-4481-9af8-83d2e5132100");
@@ -91,7 +91,7 @@ void main() {
       }
     };
 
-    expect(() => SensorSystem.fromJson(json2), throwsFormatException);
+    expect(() => SensorSystemDTO.fromJson(json2), throwsFormatException);
   }));
 
   test("Throw ArgumentError when Sensor Status is invalid", (() {
@@ -110,12 +110,12 @@ void main() {
       "latestReading": null,
     };
 
-    expect(() => SensorSystem.fromJson(json), throwsArgumentError);
+    expect(() => SensorSystemDTO.fromJson(json), throwsArgumentError);
   }));
 
   test('toJson() should return a valid JSON map', () {
     // Create an instance of the class to test
-    final instance = SensorSystem(
+    final instance = SensorSystemDTO(
       id: "508baef0-bc82-4481-9af8-83d2e5132100",
       sensorName: "Test Sensor",
       deleted: false,
@@ -140,7 +140,7 @@ void main() {
   test('toJson() should return a valid JSON map with SensorLocation present',
       () {
     // Create an instance of the class to test
-    final instance = SensorSystem(
+    final instance = SensorSystemDTO(
       id: "508baef0-bc82-4481-9af8-83d2e5132100",
       sensorName: "Test Sensor",
       deleted: true,
