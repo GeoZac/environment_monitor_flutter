@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
 
-import '../models/sensor_system/sensor_system.dart';
+import '../models/sensor_system/sensor_system_dto.dart';
 import '../models/sensor_system/sensor_system_response.dart';
 import '../models/user/unconv_user.dart';
 import '../providers/sensor_system_provider.dart';

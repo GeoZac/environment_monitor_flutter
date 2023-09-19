@@ -1,5 +1,5 @@
 import '../shared/page.dart';
-import 'sensor_system.dart';
+import 'sensor_system_dto.dart';
 
 class SensorSystemResponse extends Page<SensorSystemDTO> {
   SensorSystemResponse({

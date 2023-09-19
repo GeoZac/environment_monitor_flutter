@@ -1,4 +1,4 @@
-import '../sensor_system/sensor_system.dart';
+import '../sensor_system/sensor_system_dto.dart';
 import 'base_envt_reading.dart';
 
 class EnvironmentalReading extends BaseEnvironmentalReading {

@@ -5,7 +5,7 @@ import 'package:http/http.dart' as http;
 
 import 'config/globals.dart';
 import 'config/secrets.dart';
-import 'models/sensor_system/sensor_system.dart';
+import 'models/sensor_system/sensor_system_dto.dart';
 import 'providers/environmental_reading_provider.dart';
 import 'providers/sensor_system_provider.dart';
 import 'providers/unconv_api_provider.dart';

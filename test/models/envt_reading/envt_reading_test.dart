@@ -1,6 +1,6 @@
 import 'package:environment_monitor/consts/sensor_status.dart';
 import 'package:environment_monitor/models/envt_reading/envt_reading.dart';
-import 'package:environment_monitor/models/sensor_system/sensor_system.dart';
+import 'package:environment_monitor/models/sensor_system/sensor_system_dto.dart';
 import 'package:environment_monitor/models/user/unconv_user.dart';
 import 'package:flutter_test/flutter_test.dart';
 
