@@ -1,7 +1,7 @@
 import 'package:environment_monitor/consts/sensor_location_type.dart';
 import 'package:environment_monitor/consts/sensor_status.dart';
 import 'package:environment_monitor/models/sensor_location/sensor_location.dart';
-import 'package:environment_monitor/models/sensor_system/sensor_system_dto.dart';
+import 'package:environment_monitor/models/sensor_system/sensor_system.dart';
 import 'package:environment_monitor/models/user/unconv_user.dart';
 import 'package:flutter_test/flutter_test.dart';
 
@@ -31,7 +31,7 @@ void main() {
     };
 
     // Perform the model mapping
-    final SensorSystemDTO sensorSystem = SensorSystemDTO.fromJson(json);
+    final SensorSystem sensorSystem = SensorSystem.fromJson(json);
 
     // Verify the values
     expect(sensorSystem.id, "508baef0-bc82-4481-9af8-83d2e5132100");
@@ -66,7 +66,7 @@ void main() {
     };
 
     // Perform the model mapping
-    final SensorSystemDTO sensorSystem = SensorSystemDTO.fromJson(json);
+    final SensorSystem sensorSystem = SensorSystem.fromJson(json);
 
     // Verify the values
     expect(sensorSystem.id, "508baef0-bc82-4481-9af8-83d2e5132100");
@@ -91,7 +91,7 @@ void main() {
       }
     };
 
-    expect(() => SensorSystemDTO.fromJson(json2), throwsFormatException);
+    expect(() => SensorSystem.fromJson(json2), throwsFormatException);
   }));
 
   test("Throw ArgumentError when Sensor Status is invalid", (() {
@@ -110,12 +110,12 @@ void main() {
       "latestReading": null,
     };
 
-    expect(() => SensorSystemDTO.fromJson(json), throwsArgumentError);
+    expect(() => SensorSystem.fromJson(json), throwsArgumentError);
   }));
 
   test('toJson() should return a valid JSON map', () {
     // Create an instance of the class to test
-    final instance = SensorSystemDTO(
+    final instance = SensorSystem(
       id: "508baef0-bc82-4481-9af8-83d2e5132100",
       sensorName: "Test Sensor",
       deleted: false,
@@ -125,7 +125,6 @@ void main() {
         username: "Test User",
         email: "test@example.com",
       ),
-      readingCount: 0,
     );
 
     final json = instance.toJson();
@@ -140,7 +139,7 @@ void main() {
   test('toJson() should return a valid JSON map with SensorLocation present',
       () {
     // Create an instance of the class to test
-    final instance = SensorSystemDTO(
+    final instance = SensorSystem(
       id: "508baef0-bc82-4481-9af8-83d2e5132100",
       sensorName: "Test Sensor",
       deleted: true,
@@ -157,7 +156,6 @@ void main() {
         username: "Test User",
         email: "test@example.com",
       ),
-      readingCount: 0,
     );
 
     final json = instance.toJson();
