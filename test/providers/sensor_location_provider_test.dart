@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:environment_monitor/models/sensor_location/sensor_location.dart';
 import 'package:environment_monitor/providers/sensor_location_provider.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
@@ -47,5 +48,42 @@ void main() {
     final result = await sensorLocationProvider.fetchSensorLocations("123");
 
     expect(result, isA<List>());
+  });
+
+  test(
+      "createSensorLocation should create a new SensorLocation with valid values",
+      () async {
+    final mockClient = MockClient();
+
+    final sensorLocationData = {
+      "id": "bb713d65-75a6-4b85-a638-a4a118c224aa",
+      "sensorLocationText": "Moai Statues",
+      "latitude": -27.1212,
+      "longitude": -109.3667,
+      "sensorLocationType": "OUTDOOR"
+    };
+
+    when(
+      mockClient.post(any,
+          headers: anyNamed('headers'),
+          body: anyNamed('body'),
+          encoding: anyNamed('encoding')),
+    ).thenAnswer(
+      (_) async => http.Response(
+        jsonEncode(sensorLocationData),
+        201,
+      ),
+    );
+
+    final SensorLocationProvider sensorLocationProvider =
+        SensorLocationProvider(mockClient);
+
+    SensorLocation sensorLocation = SensorLocation.fromJson(sensorLocationData);
+    sensorLocation.id = null;
+
+    final result =
+        await sensorLocationProvider.createSensorLocation(sensorLocation);
+    expect(result, isA<SensorLocation>());
+    expect(result.id, sensorLocationData['id']);
   });
 }
