@@ -39,4 +39,29 @@ class SensorLocationProvider with ChangeNotifier {
 
     return sensorList;
   }
+
+  Future<SensorLocation> createSensorLocation(
+      SensorLocation sensorLocation) async {
+    Map<String, String> headers = {
+      "Content-Type": "application/json",
+      "Authorization": "Bearer ${Secrets.bearerToken}",
+    };
+
+    Uri uri = Uri(
+      scheme: 'https',
+      host: Secrets.baseApiUrl,
+      path: '$baseUrlPath',
+    );
+
+    ApiProvider apiProvider = ApiProvider(
+      httpClient,
+    );
+    final response = await apiProvider.makeHttpPost(
+      uri,
+      headers,
+      sensorLocation.toJson(),
+    );
+
+    return SensorLocation.fromJson(response);
+  }
 }
