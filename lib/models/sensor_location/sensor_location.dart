@@ -1,7 +1,7 @@
 import '../../consts/sensor_location_type.dart';
 
 class SensorLocation {
-  String id;
+  String? id;
   String sensorLocationText;
   double latitude;
   double longitude;
@@ -17,7 +17,6 @@ class SensorLocation {
 
   factory SensorLocation.fromJson(Map<String, dynamic> json) {
     final List<String> requiredFields = [
-      'id',
       'sensorLocationText',
       'latitude',
       'longitude',
