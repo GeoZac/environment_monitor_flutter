@@ -50,7 +50,7 @@ class SensorLocationProvider with ChangeNotifier {
     Uri uri = Uri(
       scheme: 'https',
       host: Secrets.baseApiUrl,
-      path: '$baseUrlPath',
+      path: baseUrlPath,
     );
 
     ApiProvider apiProvider = ApiProvider(
