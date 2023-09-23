@@ -4,7 +4,7 @@ import 'package:http/http.dart' as http;
 
 import '../models/envt_reading/envt_reading.dart';
 import '../models/envt_reading/envt_reading_response.dart';
-import '../models/sensor_system/sensor_system.dart';
+import '../models/sensor_system/sensor_system_dto.dart';
 import '../providers/environmental_reading_provider.dart';
 import '../widgets/common/center_circular_progress.dart';
 import '../widgets/sensor_reading_card.dart';
@@ -12,7 +12,7 @@ import '../widgets/sensor_reading_card.dart';
 class SensorReadings extends StatefulWidget {
   static const routeName = '/sensor_readings';
 
-  final SensorSystem selectedSensor;
+  final SensorSystemDTO selectedSensor;
 
   const SensorReadings({super.key, required this.selectedSensor});
 
