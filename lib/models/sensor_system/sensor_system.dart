@@ -1,5 +1,4 @@
 import '../../consts/sensor_status.dart';
-import '../envt_reading/base_envt_reading.dart';
 import '../sensor_location/sensor_location.dart';
 import '../user/unconv_user.dart';
 
@@ -11,8 +10,6 @@ class SensorSystem {
   SensorStatus sensorStatus;
   SensorLocation? sensorLocation;
   UnconvUser unconvUser;
-  int readingCount;
-  BaseEnvironmentalReading? latestReading;
 
   SensorSystem({
     required this.id,
@@ -22,8 +19,6 @@ class SensorSystem {
     required this.sensorStatus,
     this.sensorLocation,
     required this.unconvUser,
-    required this.readingCount,
-    this.latestReading,
   });
 
   factory SensorSystem.fromJson(Map<String, dynamic> json) {
@@ -33,7 +28,6 @@ class SensorSystem {
       'deleted',
       'sensorStatus',
       'unconvUser',
-      'readingCount',
     ];
 
     final bool missingFields =
@@ -52,10 +46,6 @@ class SensorSystem {
           ? SensorLocation.fromJson(json['sensorLocation'])
           : null,
       unconvUser: UnconvUser.fromJson(json['unconvUser']),
-      readingCount: json['readingCount'] ?? 0,
-      latestReading: json['latestReading'] != null
-          ? BaseEnvironmentalReading.fromJson(json['latestReading'])
-          : null,
     );
   }
 
@@ -91,8 +81,6 @@ class SensorSystem {
       data['sensorLocation'] = sensorLocation!.toJson();
     }
     data['unconvUser'] = unconvUser.toJson();
-    data['readingCount'] = readingCount;
-    data['latestReading'] = latestReading;
     return data;
   }
 }

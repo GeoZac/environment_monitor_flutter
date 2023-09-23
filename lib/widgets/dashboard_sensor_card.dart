@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../main.dart';
-import '../models/sensor_system/sensor_system.dart';
+import '../models/sensor_system/sensor_system_dto.dart';
 import '../screens/sensor_readings.dart';
 
 class SensorSystemDashboardCard extends StatelessWidget {
@@ -10,7 +10,7 @@ class SensorSystemDashboardCard extends StatelessWidget {
     required this.sensorSystem,
   });
 
-  final SensorSystem? sensorSystem;
+  final SensorSystemDTO? sensorSystem;
 
   @override
   Widget build(BuildContext context) {

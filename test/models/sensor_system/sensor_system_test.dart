@@ -125,7 +125,6 @@ void main() {
         username: "Test User",
         email: "test@example.com",
       ),
-      readingCount: 0,
     );
 
     final json = instance.toJson();
@@ -157,7 +156,6 @@ void main() {
         username: "Test User",
         email: "test@example.com",
       ),
-      readingCount: 0,
     );
 
     final json = instance.toJson();
