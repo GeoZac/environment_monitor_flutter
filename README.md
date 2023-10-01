@@ -1,16 +1,9 @@
-# environment_monitor
+# Environment Monitor
 
-A new Flutter project.
+A Flutter project around the spring boot application to monitor specific enviroments the user desires
 
-## Getting Started
+## Build Status
+[![CircleCI](https://dl.circleci.com/status-badge/img/gh/GeoZac/environment_monitor_flutter/tree/master.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/GeoZac/environment_monitor_flutter/tree/master)
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Code Coverage
+[![codecov](https://codecov.io/gh/GeoZac/environment_monitor_flutter/graph/badge.svg?token=1XBWU2QNQA)](https://codecov.io/gh/GeoZac/environment_monitor_flutter)
