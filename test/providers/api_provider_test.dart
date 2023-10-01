@@ -67,7 +67,7 @@ void main() {
       when(
         mockClient.post(
           url,
-          headers: {'Content-Type': 'application/json'},
+          headers: anyNamed('headers'),
           body: jsonEncode(requestBody),
         ),
       ).thenAnswer(
@@ -93,7 +93,7 @@ void main() {
       when(
         mockClient.post(
           url,
-          headers: {'Content-Type': 'application/json'},
+          headers: anyNamed('headers'),
           body: jsonEncode(requestBody),
         ),
       ).thenThrow(
@@ -123,7 +123,7 @@ void main() {
     when(
       mockClient.post(
         url,
-        headers: {'Content-Type': 'application/json'},
+        headers: anyNamed('headers'),
         body: jsonEncode(requestBody),
       ),
     ).thenAnswer(
@@ -155,7 +155,7 @@ void main() {
     when(
       mockClient.post(
         url,
-        headers: {'Content-Type': 'application/json'},
+        headers: anyNamed('headers'),
         body: jsonEncode(requestBody),
       ),
     ).thenAnswer(
@@ -187,7 +187,7 @@ void main() {
     when(
       mockClient.post(
         url,
-        headers: {'Content-Type': 'application/json'},
+        headers: anyNamed('headers'),
         body: jsonEncode(requestBody),
       ),
     ).thenAnswer(
@@ -219,7 +219,7 @@ void main() {
     when(
       mockClient.post(
         url,
-        headers: {'Content-Type': 'application/json'},
+        headers: anyNamed('headers'),
         body: jsonEncode(requestBody),
       ),
     ).thenAnswer(
@@ -251,7 +251,7 @@ void main() {
     when(
       mockClient.post(
         url,
-        headers: {'Content-Type': 'application/json'},
+        headers: anyNamed('headers'),
         body: jsonEncode(requestBody),
       ),
     ).thenAnswer(
