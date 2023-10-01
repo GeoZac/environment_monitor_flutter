@@ -58,7 +58,7 @@ class ApiProvider {
     try {
       final response = await httpClient.post(
         url,
-        headers: {'Content-Type': 'application/json'},
+        headers: headers,
         body: jsonEncode(body),
       );
       responseJson = _response(response);
