@@ -170,4 +170,39 @@ void main() {
     expect(json['sensorLocation']['sensorLocationType'], isA<String>());
     expect(json['unconvUser'], isA<Map<String, dynamic>>());
   });
+
+  test('toJson() should return a valid JSON map with SensorLocation present',
+      () {
+    // Create an instance of the class to test
+    final instance = SensorSystem(
+      id: "508baef0-bc82-4481-9af8-83d2e5132100",
+      sensorName: "Test Sensor",
+      deleted: false,
+      sensorStatus: SensorStatus.active,
+      sensorLocation: SensorLocation(
+        id: '508baef0-bc82-4481-9af8-83d2e5132199',
+        sensorLocationText: 'Good Place',
+        latitude: 0.0,
+        longitude: 0.0,
+        sensorLocationType: SensorLocationType.outdoor,
+      ),
+      unconvUser: UnconvUser(
+        id: "a5bbd1bd-c89b-4219-b0a8-379abe41b879",
+        username: "Test User",
+        email: "test@example.com",
+      ),
+    );
+
+    final json = instance.toJson();
+
+    expect(json, isA<Map<String, dynamic>>());
+
+    expect(json['id'], equals('508baef0-bc82-4481-9af8-83d2e5132100'));
+    expect(json['sensorName'], equals('Test Sensor'));
+    expect(json['sensorStatus'], equals('ACTIVE'));
+    expect(json['deleted'], equals(false));
+    expect(json['sensorLocation'], isA<Map<String, dynamic>>());
+    expect(json['sensorLocation']['sensorLocationType'], isA<String>());
+    expect(json['unconvUser'], isA<Map<String, dynamic>>());
+  });
 }
