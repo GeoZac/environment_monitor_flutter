@@ -40,7 +40,7 @@ class SensorSystemDashboardCard extends StatelessWidget {
                     height: 2,
                   ),
                   Text(
-                    sensorSystem!.id,
+                    sensorSystem!.id!,
                     maxLines: 1,
                     overflow: TextOverflow.clip,
                     style: const TextStyle(
