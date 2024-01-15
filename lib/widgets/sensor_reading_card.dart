@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
+import '../consts/color_consts.dart';
 import '../models/envt_reading/envt_reading.dart';
+import 'sensor_reading_container.dart';
 
 class SensorReadingCard extends StatelessWidget {
   final EnvironmentalReading environmentalReading;
@@ -16,63 +18,46 @@ class SensorReadingCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      color: Colors.teal.shade100,
+      elevation: 0,
+      color: Colors.white,
+      shape: RoundedRectangleBorder(
+        side: const BorderSide(color: ColorConstants.mutedIconColor),
+        borderRadius: BorderRadius.circular(
+          16.0,
+        ),
+      ),
       child: Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              formatTimestamp(environmentalReading.timestamp),
-              style: TextStyle(
-                fontSize: fontSize,
-                fontWeight: FontWeight.normal,
-                fontStyle: FontStyle.italic,
-              ),
+            Row(
+              children: [
+                Text(
+                  formatTimestampAsDate(environmentalReading.timestamp),
+                  style: const TextStyle(
+                    color: ColorConstants.textColorBlack,
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                const Spacer(),
+                Text(
+                  formatTimestampAsTime(environmentalReading.timestamp),
+                  style: const TextStyle(
+                    color: ColorConstants.textColorMuted,
+                    fontSize: 16,
+                  ),
+                ),
+              ],
             ),
             const Divider(
               thickness: 2,
             ),
-            Row(
-              children: [
-                Text(
-                  "Temperature",
-                  style: TextStyle(
-                    fontSize: fontSize,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                const Spacer(),
-                Text(
-                  "${environmentalReading.temperature.toStringAsFixed(2)} \u2103",
-                  style: TextStyle(
-                    fontSize: fontSize,
-                  ),
-                ),
-              ],
-            ),
-            const SizedBox(
-              height: 6,
-            ),
-            Row(
-              children: [
-                Text(
-                  "Humidity",
-                  style: TextStyle(
-                    fontSize: fontSize,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                const Spacer(),
-                Text(
-                  "${environmentalReading.humidity.toStringAsFixed(2)} %",
-                  style: TextStyle(
-                    fontSize: fontSize,
-                    fontWeight: FontWeight.normal,
-                  ),
-                ),
-              ],
-            ),
+            SensorReadingContainer(
+              temperature: environmentalReading.temperature,
+              humidity: environmentalReading.humidity,
+            )
           ],
         ),
       ),
@@ -82,6 +67,18 @@ class SensorReadingCard extends StatelessWidget {
   String formatTimestamp(String timestamp) {
     final date = DateTime.parse(timestamp).toLocal();
     final formatter = DateFormat('EEE dd/MM/yy hh:mm a');
+    return formatter.format(date);
+  }
+
+  String formatTimestampAsDate(String timestamp) {
+    final date = DateTime.parse(timestamp).toLocal();
+    final formatter = DateFormat('MMMM dd, yyyy');
+    return formatter.format(date);
+  }
+
+  String formatTimestampAsTime(String timestamp) {
+    final date = DateTime.parse(timestamp).toLocal();
+    final formatter = DateFormat('hh:mm a');
     return formatter.format(date);
   }
 }
