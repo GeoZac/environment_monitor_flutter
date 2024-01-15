@@ -18,9 +18,17 @@ void main() {
           "sensorSystem": {
             "id": "eacc8c6d-d16b-4a8d-ba83-47f1a2cd4846",
             "sensorName": "Specific Sensor System",
+            "description":
+                "A sleek home climate control system featuring sensors that precisely monitor room temperature and humidity, adapting heating and cooling settings for optimal comfort and energy efficiency.",
             "deleted": false,
             "sensorStatus": "ACTIVE",
-            "sensorLocation": null,
+            "sensorLocation": {
+              "id": "015d1f16-f13f-3961-bef8-3c652ab7b5cf",
+              "sensorLocationText": "ETRCFOEHJN",
+              "latitude": 3102.055641968899,
+              "longitude": 1480.7077446255694,
+              "sensorLocationType": "OUTDOOR"
+            },
             "unconvUser": {
               "id": "532c476c-0eed-4d46-97f5-e7a6eefaa2d0",
               "username": "UnconvUser",
@@ -38,9 +46,17 @@ void main() {
           "sensorSystem": {
             "id": "eacc8c6d-d16b-4a8d-ba83-47f1a2cd4846",
             "sensorName": "Specific Sensor System",
+            "description":
+                "A sleek home climate control system featuring sensors that precisely monitor room temperature and humidity, adapting heating and cooling settings for optimal comfort and energy efficiency.",
             "deleted": false,
             "sensorStatus": "ACTIVE",
-            "sensorLocation": null,
+            "sensorLocation": {
+              "id": "fcfe6dff-a6bb-3c53-a272-3b7bf4b09c4e",
+              "sensorLocationText": "NSRIZH",
+              "latitude": 7670.714648114199,
+              "longitude": 4376.48542429605,
+              "sensorLocationType": "OUTDOOR"
+            },
             "unconvUser": {
               "id": "532c476c-0eed-4d46-97f5-e7a6eefaa2d0",
               "username": "UnconvUser",
@@ -58,9 +74,17 @@ void main() {
           "sensorSystem": {
             "id": "eacc8c6d-d16b-4a8d-ba83-47f1a2cd4846",
             "sensorName": "Specific Sensor System",
+            "description":
+                "A sleek home climate control system featuring sensors that precisely monitor room temperature and humidity, adapting heating and cooling settings for optimal comfort and energy efficiency.",
             "deleted": false,
-            "sensorStatus": "ACTIVE",
-            "sensorLocation": null,
+            "sensorStatus": "INACTIVE",
+            "sensorLocation": {
+              "id": "0902a89f-41b4-3a47-b150-60fa42feb60e",
+              "sensorLocationText": "LCTGC",
+              "latitude": 5246.859920461906,
+              "longitude": 1403.88627798368,
+              "sensorLocationType": "OUTDOOR"
+            },
             "unconvUser": {
               "id": "532c476c-0eed-4d46-97f5-e7a6eefaa2d0",
               "username": "UnconvUser",
@@ -78,9 +102,16 @@ void main() {
           "sensorSystem": {
             "id": "eacc8c6d-d16b-4a8d-ba83-47f1a2cd4846",
             "sensorName": "Specific Sensor System",
+            "description": "XTNVFQDP",
             "deleted": false,
             "sensorStatus": "ACTIVE",
-            "sensorLocation": null,
+            "sensorLocation": {
+              "id": "f247c10d-65c8-3179-a8ae-93f68c417e1b",
+              "sensorLocationText": "DGVKXURVXZ",
+              "latitude": 6394.838778916884,
+              "longitude": 3326.533194516762,
+              "sensorLocationType": "INDOOR"
+            },
             "unconvUser": {
               "id": "532c476c-0eed-4d46-97f5-e7a6eefaa2d0",
               "username": "UnconvUser",
@@ -100,7 +131,13 @@ void main() {
             "sensorName": "Specific Sensor System",
             "deleted": false,
             "sensorStatus": "ACTIVE",
-            "sensorLocation": null,
+            "sensorLocation": {
+              "id": "85f18ec3-4a35-39db-95b1-197a6bd787a9",
+              "sensorLocationText": "QPQJNRMUEW",
+              "latitude": 9281.933719220495,
+              "longitude": 5753.433261160702,
+              "sensorLocationType": "OUTDOOR"
+            },
             "unconvUser": {
               "id": "532c476c-0eed-4d46-97f5-e7a6eefaa2d0",
               "username": "UnconvUser",
