@@ -15,9 +15,9 @@ commands:
       - checkout
       - run:
           name: Set Flutter vesion
-          command: echo 'export FLUTTER_VERSION="3.7.12"' >> $BASH_ENV
+          command: echo 'export FLUTTER_VERSION="3.13.9"' >> $BASH_ENV
       - flutter/install_sdk_and_pub:
-          version: 3.7.12
+          version: 3.13.9
       - run: flutter pub run build_runner build --delete-conflicting-outputs
 
   apply_placeholder:
