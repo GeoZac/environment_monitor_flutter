@@ -18,6 +18,7 @@ commands:
           command: echo 'export FLUTTER_VERSION="3.13.9"' >> $BASH_ENV
       - flutter/install_sdk_and_pub:
           version: 3.13.9
+      - run: dart pub upgrade
       - run: flutter pub get
       - run: flutter pub run build_runner build --delete-conflicting-outputs
 
