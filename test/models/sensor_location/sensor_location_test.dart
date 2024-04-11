@@ -106,4 +106,36 @@ void main() {
     expect(json['longitude'], 56.9241666);
     expect(json['sensorLocationType'], equals('OUTDOOR'));
   });
+
+  test("Parse SensorLocation json data to List", (() {
+    final List jsonData = [
+      {
+        "id": "d3082569-2667-466e-b51a-f69d1319034e",
+        "sensorLocationText": "GQI",
+        "latitude": 13.436140660577678,
+        "longitude": 179.7779088773541,
+        "sensorLocationType": "OUTDOOR",
+      },
+      {
+        "id": "737aa1e2-4b07-4058-8bbc-89bee8208fa9",
+        "sensorLocationText": "QEEREHDMFQ",
+        "latitude": -8.683114422179202,
+        "longitude": -64.29258062822183,
+        "sensorLocationType": "OUTDOOR",
+      },
+      {
+        "id": "c414fa34-45a7-4626-9c6c-26188366d793",
+        "sensorLocationText": "DTF",
+        "latitude": -47.02522450124238,
+        "longitude": 87.83869742329769,
+        "sensorLocationType": "INDOOR",
+      }
+    ];
+
+    List<SensorLocation> sensorList =
+        jsonData.map((dynamic item) => SensorLocation.fromJson(item)).toList();
+
+    expect(sensorList, isA<List<SensorLocation>>());
+    expect(sensorList.length, 3);
+  }));
 }
