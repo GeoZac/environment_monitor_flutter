@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
+import '../config/secrets.dart';
+import '../models/sensor_auth_token/sensor_auth_token.dart';
+import 'api_provider.dart';
 
 class SensorAuthTokenProvider with ChangeNotifier {
   final http.Client httpClient;
@@ -10,4 +13,30 @@ class SensorAuthTokenProvider with ChangeNotifier {
   SensorAuthTokenProvider(
     this.httpClient,
   );
+
+  Future<SensorAuthToken?> fetchSensorAuthToken(String sensorSystemId) async {
+    Map<String, String> headers = {
+      "Content-Type": "application/json",
+      "Authorization": "Bearer ${Secrets.bearerToken}",
+    };
+
+    Uri uri = Uri(
+      scheme: 'https',
+      host: Secrets.baseApiUrl,
+      path: '$baseUrlPath/SensorSystem/$sensorSystemId',
+    );
+
+    ApiProvider apiProvider = ApiProvider(
+      httpClient,
+    );
+    final response = await apiProvider.makeHttpGet(
+      uri,
+      headers: headers,
+    );
+
+    if (response == null) {
+      return null;
+    }
+    return SensorAuthToken.fromJson(response);
+  }
 }
