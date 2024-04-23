@@ -14,6 +14,19 @@ class SensorAuthToken {
   });
 
   factory SensorAuthToken.fromJson(Map<String, dynamic> json) {
+    final List<String> requiredFields = [
+      'id',
+      'authToken',
+      'expiry',
+      'sensorSystem',
+    ];
+
+    final bool missingFields =
+        requiredFields.any((field) => json[field] == null);
+    if (missingFields) {
+      throw const FormatException("Missing required fields in JSON");
+    }
+
     return SensorAuthToken(
       id: json['id'],
       authToken: json['authToken'],
