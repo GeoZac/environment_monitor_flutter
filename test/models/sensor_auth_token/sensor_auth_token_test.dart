@@ -54,4 +54,14 @@ void main() {
     expect(sensorAuthToken.sensorSystem.id,
         "e14a2750-b1e8-4c46-9d91-f2b80f9b80f7");
   });
+
+  test("Throw Formatexception when parsing invalid SensorAuthToken", (() {
+    final json = {
+      "ID": "d3128132-6e43-4837-b536-7c2baef42118",
+      "AuthToken": "UNCONVGt1ihXH4pJXjt5cjhmv",
+      "Expiry": "2024-04-23T14:48:34.0982243Z",
+    };
+
+    expect(() => SensorAuthToken.fromJson(json), throwsFormatException);
+  }));
 }
