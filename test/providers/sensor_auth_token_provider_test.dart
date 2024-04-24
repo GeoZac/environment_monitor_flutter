@@ -55,6 +55,28 @@ void main() {
   });
 
   test(
+      'fetchSensorAuthToken should return a 204 status code for a valid SensorAuthToken without SensorAuthtoken',
+      () async {
+    final mockClient = MockClient();
+
+    String sensorSystemId = "9ce6ac10-0ac6-409c-82fd-0413b148d4a9";
+
+    Map<String, dynamic> jsonData = {};
+
+    when(mockClient.get(any, headers: anyNamed('headers')))
+        .thenAnswer((_) async => http.Response(jsonEncode(jsonData), 204));
+
+    final SensorAuthTokenProvider sensorAuthTokenProvider =
+        SensorAuthTokenProvider(mockClient);
+
+    final result =
+        await sensorAuthTokenProvider.fetchSensorAuthToken(sensorSystemId);
+
+    // Verify the result
+    expect(result, null);
+  });
+
+  test(
       'generateSensorAuthToken should generate and return new SensorAuthToken for a sensorSystem',
       () async {
     final mockClient = MockClient();
