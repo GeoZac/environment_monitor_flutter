@@ -35,6 +35,10 @@ class ApiProvider {
       case 201:
         var responseJson = json.decode(response.body.toString());
         return responseJson;
+
+      case 204:
+        return null;
+
       case 400:
         throw BadRequestException(response.body.toString());
       case 401:
