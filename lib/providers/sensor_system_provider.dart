@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
+import '../config/globals.dart';
 import '../config/secrets.dart';
 import '../models/sensor_system/sensor_system.dart';
 import '../models/sensor_system/sensor_system_response.dart';
@@ -22,7 +23,7 @@ class SensorSystemProvider with ChangeNotifier {
     };
 
     Uri uri = Uri(
-      scheme: 'https',
+      scheme: Globals.uriScheme,
       host: Secrets.baseApiUrl,
       path: '$baseUrlPath/UnconvUser/$unconvUserId',
     );

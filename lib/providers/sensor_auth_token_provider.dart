@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
+import '../config/globals.dart';
 import '../config/secrets.dart';
 import '../models/sensor_auth_token/sensor_auth_token.dart';
 import '../models/shared/message_response.dart';
@@ -35,7 +36,7 @@ class SensorAuthTokenProvider with ChangeNotifier {
     };
 
     Uri uri = Uri(
-      scheme: 'https',
+      scheme: Globals.uriScheme,
       host: Secrets.baseApiUrl,
       path: '$baseUrlPath/SensorSystem/$sensorSystemId',
     );
@@ -66,7 +67,7 @@ class SensorAuthTokenProvider with ChangeNotifier {
     };
 
     Uri uri = Uri(
-      scheme: 'https',
+      scheme: Globals.uriScheme,
       host: Secrets.baseApiUrl,
       path: '$baseUrlPath/GenerateToken/SensorSystem/$sensorSystemId',
     );
