@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
+import '../config/globals.dart';
 import '../config/secrets.dart';
 import '../models/envt_reading/envt_reading_response.dart';
 import 'api_provider.dart';
@@ -20,7 +21,7 @@ class EnvironmentalReadingProvider with ChangeNotifier {
     };
 
     Uri uri = Uri(
-      scheme: 'https',
+      scheme: Globals.uriScheme,
       host: Secrets.baseApiUrl,
       path: '/EnvironmentalReading/SensorSystem/$sensorSystemId',
     );
