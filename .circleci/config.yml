@@ -2,7 +2,7 @@ version: 2.1
 
 orbs:
   flutter: circleci/flutter@2.0.2
-  codecov: codecov/codecov@3.3.0
+  codecov: codecov/codecov@4.1.0
 
 executors:
   android:
