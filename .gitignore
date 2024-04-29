@@ -51,3 +51,6 @@ lib/config/secrets.dart
 
 # Code coverage artifacts
 coverage/
+
+# Generated mocks
+test/providers/*.mocks.dart
