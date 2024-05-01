@@ -45,10 +45,10 @@ packages:
     dependency: "direct main"
     description:
       name: bugsnag_flutter
-      sha256: "38d85eb4894633fcfdd7b31b12c3f247c589ac075635b2f4b827134a7c0abb87"
+      sha256: "8a1a84e7e33528cef1d59af69db92d16321136b2016ef130b7333e1817232a4d"
       url: "https://pub.dev"
     source: hosted
-    version: "2.5.0"
+    version: "3.1.1"
   build:
     dependency: transitive
     description:
