@@ -7,10 +7,10 @@ class SensorReadingContainer extends StatelessWidget {
   final double humidity;
 
   const SensorReadingContainer({
-    Key? key,
+    super.key,
     required this.temperature,
     required this.humidity,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -59,9 +59,9 @@ class SensorReadingContainer extends StatelessWidget {
 
 class SensorReadingContainerTitle extends StatelessWidget {
   const SensorReadingContainerTitle({
-    Key? key,
+    super.key,
     required this.title,
-  }) : super(key: key);
+  });
 
   final String title;
 
@@ -82,9 +82,9 @@ class SensorReadingContainerSubTitle extends StatelessWidget {
   final String subTitle;
 
   const SensorReadingContainerSubTitle({
-    Key? key,
+    super.key,
     required this.subTitle,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
