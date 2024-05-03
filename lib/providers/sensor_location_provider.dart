@@ -1,29 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
-import '../config/globals.dart';
 import '../config/secrets.dart';
-import '../models/sensor_system/sensor_system.dart';
-import '../models/sensor_system/sensor_system_response.dart';
+import '../models/sensor_location/sensor_location.dart';
 import 'api_provider.dart';
 
-class SensorSystemProvider with ChangeNotifier {
+class SensorLocationProvider with ChangeNotifier {
   final http.Client httpClient;
 
-  final String baseUrlPath = "/SensorSystem";
+  final String baseUrlPath = "/SensorLocation";
 
-  SensorSystemProvider(
+  SensorLocationProvider(
     this.httpClient,
   );
 
-  Future<SensorSystemResponse> fetchSensorSystems(String unconvUserId) async {
+  Future<List<SensorLocation>> fetchSensorLocations(String unconvUserId) async {
     Map<String, String> headers = {
       "Content-Type": "application/json",
       "Authorization": "Bearer ${Secrets.bearerToken}",
     };
 
     Uri uri = Uri(
-      scheme: Globals.uriScheme,
+      scheme: 'https',
       host: Secrets.baseApiUrl,
       path: '$baseUrlPath/UnconvUser/$unconvUserId',
     );
@@ -34,12 +32,16 @@ class SensorSystemProvider with ChangeNotifier {
     final response = await apiProvider.makeHttpGet(
       uri,
       headers: headers,
-    );
+    ) as List;
 
-    return SensorSystemResponse.fromJson(response);
+    List<SensorLocation> sensorList =
+        response.map((dynamic item) => SensorLocation.fromJson(item)).toList();
+
+    return sensorList;
   }
 
-  Future<SensorSystem> createSensorSystem(SensorSystem sensorSystem) async {
+  Future<SensorLocation> createSensorLocation(
+      SensorLocation sensorLocation) async {
     Map<String, String> headers = {
       "Content-Type": "application/json",
       "Authorization": "Bearer ${Secrets.bearerToken}",
@@ -57,8 +59,9 @@ class SensorSystemProvider with ChangeNotifier {
     final response = await apiProvider.makeHttpPost(
       uri,
       headers,
-      sensorSystem.toJson(),
+      sensorLocation.toJson(),
     );
-    return SensorSystem.fromJson(response['entity']);
+
+    return SensorLocation.fromJson(response);
   }
 }
