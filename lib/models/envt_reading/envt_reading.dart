@@ -7,15 +7,11 @@ class EnvironmentalReading extends BaseEnvironmentalReading {
 
   EnvironmentalReading({
     required this.id,
-    required double temperature,
-    required double humidity,
-    required String timestamp,
+    required super.temperature,
+    required super.humidity,
+    required super.timestamp,
     required this.sensorSystem,
-  }) : super(
-          temperature: temperature,
-          humidity: humidity,
-          timestamp: timestamp,
-        );
+  });
 
   factory EnvironmentalReading.fromJson(Map<String, dynamic> json) {
     final List<String> requiredFields = [
