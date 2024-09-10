@@ -14,6 +14,20 @@ class RecentReadings {
   });
 
   factory RecentReadings.fromJson(Map<String, dynamic> json) {
+    const requiredFields = [
+      '1',
+      '3',
+      '8',
+      '24',
+      '168',
+    ];
+
+    final bool missingFields =
+        requiredFields.any((field) => json[field] == null);
+    if (missingFields) {
+      throw const FormatException("Missing required fields in JSON");
+    }
+
     return RecentReadings(
       i1: json['1'],
       i3: json['3'],
