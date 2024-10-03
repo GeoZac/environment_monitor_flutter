@@ -48,9 +48,6 @@ void main() {
       final formattedDate = DateFormat('MMMM dd, yyyy').format(localDate);
       final formattedTime = DateFormat('hh:mm a').format(localDate);
 
-      print('Expected date: $formattedDate');
-      print('Expected time: $formattedTime');
-
       expect(find.text(formattedDate), findsOneWidget);
       expect(find.text(formattedTime), findsOneWidget);
 
