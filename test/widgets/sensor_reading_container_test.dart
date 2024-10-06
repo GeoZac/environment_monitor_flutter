@@ -24,9 +24,9 @@ void main() {
     );
 
     // Assert
-    expect(find.text('23.45 °C'), findsOneWidget);
+    expect(find.text("23.45 ℃"), findsOneWidget);
     expect(find.text('Temperature'), findsOneWidget);
-    expect(find.text('60.78 %'), findsOneWidget);
+    expect(find.text("60.78 %"), findsOneWidget);
     expect(find.text('Humidity'), findsOneWidget);
   });
 
@@ -49,13 +49,13 @@ void main() {
     );
 
     // Assert for text style of temperature
-    final tempText = tester.widget<Text>(find.text('23.45 °C'));
+    final tempText = tester.widget<Text>(find.text("23.45 ℃"));
     expect(tempText.style!.color, ColorConstants.textColorGreen);
     expect(tempText.style!.fontSize, 32);
     expect(tempText.style!.fontWeight, FontWeight.bold);
 
     // Assert for text style of humidity
-    final humidityText = tester.widget<Text>(find.text('60.78 %'));
+    final humidityText = tester.widget<Text>(find.text("60.78 %"));
     expect(humidityText.style!.color, ColorConstants.textColorGreen);
     expect(humidityText.style!.fontSize, 32);
     expect(humidityText.style!.fontWeight, FontWeight.bold);
