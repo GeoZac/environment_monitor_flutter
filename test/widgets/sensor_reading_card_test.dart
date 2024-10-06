@@ -43,6 +43,8 @@ void main() {
         ),
       );
 
+      Intl.defaultLocale = 'en_US';
+
       final localDate =
           DateTime.parse(environmentalReading.timestamp).toLocal();
       final formattedDate = DateFormat('MMMM dd, yyyy').format(localDate);
@@ -84,6 +86,8 @@ void main() {
           ),
         ),
       );
+
+      Intl.defaultLocale = 'en_US';
 
       final localDate =
           DateTime.parse(environmentalReading.timestamp).toLocal();
