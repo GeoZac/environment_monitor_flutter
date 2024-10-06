@@ -1,4 +1,6 @@
+import 'package:environment_monitor/consts/sensor_location_type.dart';
 import 'package:environment_monitor/consts/sensor_status.dart';
+import 'package:environment_monitor/models/sensor_location/sensor_location.dart';
 import 'package:environment_monitor/models/sensor_system/sensor_system.dart';
 import 'package:environment_monitor/models/user/unconv_user.dart';
 import 'package:environment_monitor/widgets/sensor_location_container.dart';
@@ -14,6 +16,13 @@ void main() {
       sensorName: "Test Sensor",
       deleted: false,
       sensorStatus: SensorStatus.active,
+      sensorLocation: SensorLocation(
+        id: '508baef0-bc82-4481-9af8-83d2e5132199',
+        sensorLocationText: 'Living Room',
+        latitude: 0.0,
+        longitude: 0.0,
+        sensorLocationType: SensorLocationType.outdoor,
+      ),
       unconvUser: UnconvUser(
         id: "a5bbd1bd-c89b-4219-b0a8-379abe41b879",
         username: "Test User",
