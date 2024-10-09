@@ -37,22 +37,18 @@ void main() {
       expect(readings.i168, 50);
     });
 
-    test('fromJson handles missing fields', () {
+    test('fromJson throws FormatException if a key is missing', () {
       final json = {
-        '1': null,
+        '1': 10,
         '3': 20,
-        '8': null,
-        '24': 40,
-        // '168' is missing
+        '8': 30,
+        // '24' and '168' are missing
       };
 
-      final readings = RecentReadings.fromJson(json);
-
-      expect(readings.i1, null);
-      expect(readings.i3, 20);
-      expect(readings.i8, null);
-      expect(readings.i24, 40);
-      expect(readings.i168, null);
+      expect(
+          () => RecentReadings.fromJson(json),
+          throwsA(isA<FormatException>().having((e) => e.message, 'message',
+              contains('Missing required fields in JSON'))));
     });
   });
 }
