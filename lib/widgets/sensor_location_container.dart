@@ -5,9 +5,9 @@ import '../models/sensor_system/sensor_system.dart';
 
 class SensorLocationContainer extends StatelessWidget {
   const SensorLocationContainer({
-    Key? key,
+    super.key,
     required this.sensorSystem,
-  }) : super(key: key);
+  });
 
   final SensorSystem? sensorSystem;
 

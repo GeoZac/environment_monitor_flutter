@@ -3,24 +3,15 @@ import 'sensor_system_dto.dart';
 
 class SensorSystemResponse extends Page<SensorSystemDTO> {
   SensorSystemResponse({
-    required bool isFirst,
-    required bool isLast,
-    required bool hasNext,
-    required bool hasPrevious,
-    required List<SensorSystemDTO> data,
-    required int totalElements,
-    required int pageNumber,
-    required int totalPages,
-  }) : super(
-          isFirst: isFirst,
-          isLast: isLast,
-          hasNext: hasNext,
-          hasPrevious: hasPrevious,
-          data: data,
-          totalElements: totalElements,
-          pageNumber: pageNumber,
-          totalPages: totalPages,
-        );
+    required super.isFirst,
+    required super.isLast,
+    required super.hasNext,
+    required super.hasPrevious,
+    required super.data,
+    required super.totalElements,
+    required super.pageNumber,
+    required super.totalPages,
+  });
 
   factory SensorSystemResponse.fromJson(Map<String, dynamic> json) {
     final List<String> requiredFields = [

@@ -1,4 +1,3 @@
-import '../../consts/sensor_status.dart';
 import '../envt_reading/base_envt_reading.dart';
 import '../sensor_location/sensor_location.dart';
 import '../user/unconv_user.dart';
@@ -9,24 +8,16 @@ class SensorSystemDTO extends SensorSystem {
   BaseEnvironmentalReading? latestReading;
 
   SensorSystemDTO({
-    required String id,
-    required String sensorName,
-    String? description,
-    required bool deleted,
-    required SensorStatus sensorStatus,
-    SensorLocation? sensorLocation,
-    required UnconvUser unconvUser,
+    required super.id,
+    required super.sensorName,
+    super.description,
+    required super.deleted,
+    required super.sensorStatus,
+    super.sensorLocation,
+    required super.unconvUser,
     required this.readingCount,
     this.latestReading,
-  }) : super(
-          id: id,
-          sensorName: sensorName,
-          description: description,
-          deleted: deleted,
-          sensorStatus: sensorStatus,
-          sensorLocation: sensorLocation,
-          unconvUser: unconvUser,
-        );
+  });
 
   factory SensorSystemDTO.fromJson(Map<String, dynamic> json) {
     final List<String> requiredFields = [
