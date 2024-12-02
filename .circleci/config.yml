@@ -78,7 +78,7 @@ jobs:
       - install-flutter
       - run:
           name: Install JUnitReport
-          command: pub global activate junitreport
+          command: flutter pub global activate junitreport
       - run:
           name: Create directory structure for test-results
           command: mkdir --parents /tmp/results/
