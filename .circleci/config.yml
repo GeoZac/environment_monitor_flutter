@@ -40,7 +40,7 @@ commands:
       - run:
           name: Run tests
           command: |
-            flutter test --coverage --file-reporter json:tmp/results/flutter.json 
+            flutter test --coverage --file-reporter json:/tmp/results/flutter.json 
 
   build-apk:
     description: Builds APK for Android
