@@ -40,7 +40,7 @@ commands:
       - run:
           name: Run tests
           command: |
-            flutter test --coverage
+            flutter test --coverage --file-reporter json:tmp/results/flutter.json 
 
   build-apk:
     description: Builds APK for Android
@@ -76,6 +76,9 @@ jobs:
       - checkout
       - apply_placeholder
       - install-flutter
+      - run:
+          name: Create directory structure for test-results
+          command: mkdir --parents /tmp/results/
       - test-flutter
       - codecov/upload
 
