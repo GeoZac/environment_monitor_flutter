@@ -20,9 +20,7 @@ class SensorSystemDashboardCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(
-        12.0,
-      ),
+      padding: const EdgeInsets.all(12.0),
       child: Card(
           shadowColor: ColorConstants.backgroundColor,
           elevation: 0,
@@ -36,9 +34,7 @@ class SensorSystemDashboardCard extends StatelessWidget {
             ),
           ),
           child: Padding(
-            padding: const EdgeInsets.all(
-              16.0,
-            ),
+            padding: const EdgeInsets.all(16.0),
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -61,6 +57,18 @@ class SensorSystemDashboardCard extends StatelessWidget {
                                   style: const TextStyle(
                                     color: ColorConstants.textColorBlack,
                                     fontSize: 24,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                const SizedBox(
+                                  height: 2,
+                                ),
+                                Text(
+                                  sensorSystem!.id!,
+                                  maxLines: 1,
+                                  overflow: TextOverflow.clip,
+                                  style: const TextStyle(
+                                    fontSize: 12,
                                     fontWeight: FontWeight.bold,
                                   ),
                                 ),
