@@ -8,7 +8,7 @@ import 'recent_readings_row.dart';
 class RecentReadingsCard extends StatefulWidget {
   final String sensorSystemId;
 
-  RecentReadingsCard({
+  const RecentReadingsCard({
     super.key,
     required this.sensorSystemId,
   });
@@ -22,7 +22,6 @@ class _RecentReadingsCardState extends State<RecentReadingsCard> {
   bool isViewExpanded = false;
 
   late RecentReadings recentReadings;
-  // final sensorSystemProvider = getIt<SensorSystemProvider>();
 
   @override
   void initState() {
@@ -79,9 +78,6 @@ class _RecentReadingsCardState extends State<RecentReadingsCard> {
         recentReadings = value;
         _init = true;
       });
-    }).onError((error, stackTrace) {
-      print("HERE");
-      print(error.toString());
     });
   }
 
