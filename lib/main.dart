@@ -48,6 +48,7 @@ class MyApp extends StatelessWidget {
               builder: (context) {
                 return SensorReadings(
                   selectedSensor: args.sensorSystem,
+                  httpClient: http.Client(),
                 );
               },
             );
