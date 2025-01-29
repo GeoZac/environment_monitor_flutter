@@ -162,6 +162,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               MaterialPageRoute(
                                   builder: (context) => Dashboard(
                                         unconvUser: authResponse.unconvUser,
+                                        httpClient: http.Client(),
                                       )));
                         } else {
                           // ignore: prefer_const_constructors, use_build_context_synchronously
