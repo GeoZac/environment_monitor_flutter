@@ -5,6 +5,7 @@ import 'package:environment_monitor/models/sensor_system/sensor_system_dto.dart'
 import 'package:environment_monitor/models/user/unconv_user.dart';
 import 'package:environment_monitor/screens/sensor_readings.dart';
 import 'package:environment_monitor/widgets/common/center_circular_progress.dart';
+import 'package:environment_monitor/widgets/sensor_reading_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
@@ -57,5 +58,59 @@ void main() {
     // Assert
     expect(find.byType(CenteredCircularProgress), findsOneWidget);
     expect(find.text('Sensor Readings'), findsOneWidget);
+  });
+
+  testWidgets('Displays sensor readings after data is fetched',
+      (WidgetTester tester) async {
+    // Arrange
+    Map<String, dynamic> jsonData = {
+      "isFirst": true,
+      "isLast": true,
+      "hasNext": false,
+      "hasPrevious": false,
+      "data": [
+        {
+          "id": "c4bd4221-369f-4ba8-b3d8-a7c7d6e25c10",
+          "temperature": -8532.269,
+          "humidity": 74.344,
+          "timestamp": "2068-11-12T07:40:41.578527Z",
+          "sensorSystem": {
+            "id": "eacc8c6d-d16b-4a8d-ba83-47f1a2cd4846",
+            "sensorName": "Specific Sensor System",
+            "deleted": false,
+            "sensorStatus": "ACTIVE",
+            "sensorLocation": null,
+            "unconvUser": {
+              "id": "532c476c-0eed-4d46-97f5-e7a6eefaa2d0",
+              "username": "UnconvUser",
+              "email": "unconvuser@email.com"
+            },
+            "readingCount": 0,
+            "latestReading": null,
+          }
+        },
+      ],
+      "totalElements": 1,
+      "pageNumber": 1,
+      "totalPages": 1
+    };
+
+    final mockClient = MockClient((request) async {
+      return http.Response(jsonEncode(jsonData), 200);
+    });
+
+    // Act
+    await tester.pumpWidget(MaterialApp(
+      home: SensorReadings(
+        selectedSensor: mockSensorSystem,
+        httpClient: mockClient,
+      ),
+    ));
+
+    await tester.pumpAndSettle(); // Wait for the Future to complete
+
+    // Assert
+    expect(find.byType(SensorReadingCard), findsNWidgets(1));
+    expect(find.text('Test Sensor'), findsOneWidget);
   });
 }
