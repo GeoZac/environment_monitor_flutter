@@ -247,6 +247,7 @@ void main() {
     expect(
         find.byType(
           SensorSystemDashboardCard,
+          skipOffstage: false,
         ),
         findsNWidgets(5));
   });
