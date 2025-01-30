@@ -8,7 +8,12 @@ import '../providers/unconv_api_provider.dart';
 import 'dashboard.dart';
 
 class LoginScreen extends StatefulWidget {
-  const LoginScreen({super.key});
+  final http.Client httpClient;
+
+  const LoginScreen({
+    super.key,
+    required this.httpClient,
+  });
 
   @override
   State<LoginScreen> createState() => _LoginScreenState();
@@ -147,7 +152,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         saveCredentials();
                         final AuthResponse authResponse =
                             await UnconvApiProvider(
-                          http.Client(),
+                          widget.httpClient,
                         ).login(
                           AuthRequest(
                             usernameController.text,
@@ -162,7 +167,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               MaterialPageRoute(
                                   builder: (context) => Dashboard(
                                         unconvUser: authResponse.unconvUser,
-                                        httpClient: http.Client(),
+                                        httpClient: widget.httpClient,
                                       )));
                         } else {
                           // ignore: prefer_const_constructors, use_build_context_synchronously
