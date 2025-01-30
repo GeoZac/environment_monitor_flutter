@@ -8,9 +8,12 @@ import 'recent_readings_row.dart';
 class RecentReadingsCard extends StatefulWidget {
   final String sensorSystemId;
 
+  final http.Client httpClient;
+
   const RecentReadingsCard({
     super.key,
     required this.sensorSystemId,
+    required this.httpClient,
   });
 
   @override
@@ -67,7 +70,7 @@ class _RecentReadingsCardState extends State<RecentReadingsCard> {
 
   void fetchRecentSensorReadings() {
     SensorSystemProvider sensorSystemProvider = SensorSystemProvider(
-      http.Client(),
+      widget.httpClient,
     );
 
     _init = false;
