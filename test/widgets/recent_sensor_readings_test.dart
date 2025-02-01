@@ -31,4 +31,33 @@ void main() {
     // Assert
     expect(find.byType(CenteredCircularProgress), findsOneWidget);
   });
+
+  testWidgets('Displays sensor readings after data is fetched',
+      (WidgetTester tester) async {
+    // Arrange
+    Map<String, dynamic> jsonData = {
+      '1': 10,
+      '3': 20,
+      '8': 30,
+      '24': 40,
+      '168': 50,
+    };
+
+    final mockClient = MockClient((request) async {
+      return http.Response(jsonEncode(jsonData), 200);
+    });
+
+    // Act
+    await tester.pumpWidget(MaterialApp(
+      home: RecentReadingsCard(
+        sensorSystemId: '',
+        httpClient: mockClient,
+      ),
+    ));
+
+    await tester.pumpAndSettle();
+
+    // Assert
+    expect(find.text('Recent reading count'), findsOneWidget);
+  });
 }
