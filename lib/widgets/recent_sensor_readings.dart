@@ -3,6 +3,7 @@ import 'package:http/http.dart' as http;
 
 import '../models/misc/recent_readings.dart';
 import '../providers/sensor_system_provider.dart';
+import 'common/center_circular_progress.dart';
 import 'recent_readings_row.dart';
 
 class RecentReadingsCard extends StatefulWidget {
@@ -35,7 +36,7 @@ class _RecentReadingsCardState extends State<RecentReadingsCard> {
   @override
   Widget build(BuildContext context) {
     return !_init
-        ? Container()
+        ? const CenteredCircularProgress()
         : Card(
             child: Padding(
             padding: const EdgeInsets.all(8.0),
