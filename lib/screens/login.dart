@@ -5,6 +5,7 @@ import 'package:http/http.dart' as http;
 import '../models/user/auth_request.dart';
 import '../models/user/auth_response.dart';
 import '../providers/unconv_api_provider.dart';
+import '../utils/token_singleton.dart';
 import 'dashboard.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -201,6 +202,8 @@ class _LoginScreenState extends State<LoginScreen> {
           passwordController.text,
         ),
       );
+
+      TokenSingleton().bearerToken = authResponse!.token;
 
       if (!mounted) {
         return;
