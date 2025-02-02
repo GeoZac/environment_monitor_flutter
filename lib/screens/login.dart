@@ -141,49 +141,21 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
             ),
             ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  minimumSize: const Size(150, 40),
-                  shape: const StadiumBorder(),
-                  elevation: 0,
+              style: ElevatedButton.styleFrom(
+                minimumSize: const Size(150, 40),
+                shape: const StadiumBorder(),
+                elevation: 0,
+              ),
+              onPressed: isButtonDisabled ? null : _handleLogin,
+              child: const Text(
+                "Login",
+                style: TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 18,
                 ),
-                onPressed: isButtonDisabled
-                    ? null
-                    : () async {
-                        saveCredentials();
-                        final AuthResponse authResponse =
-                            await UnconvApiProvider(
-                          widget.httpClient,
-                        ).login(
-                          AuthRequest(
-                            usernameController.text,
-                            passwordController.text,
-                          ),
-                        );
-                        // ignore: unnecessary_null_comparison
-                        if (authResponse.unconvUser != null) {
-                          // ignore: use_build_context_synchronously
-                          Navigator.pushReplacement(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => Dashboard(
-                                        unconvUser: authResponse.unconvUser,
-                                        httpClient: widget.httpClient,
-                                      )));
-                        } else {
-                          // ignore: prefer_const_constructors, use_build_context_synchronously
-                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                            content:
-                                const Text("Invalid User Name or Password !"),
-                            backgroundColor: Colors.red,
-                          ));
-                        }
-                      },
-                child: const Text("Login",
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 18,
-                    ))),
+              ),
+            ),
           ],
         ));
   }
@@ -216,5 +188,41 @@ class _LoginScreenState extends State<LoginScreen> {
       await prefs.remove('password');
     }
     await prefs.setBool('rememberMe', rememberMe);
+  }
+
+  Future<void> _handleLogin() async {
+    try {
+      saveCredentials();
+
+      final AuthResponse? authResponse =
+          await UnconvApiProvider(widget.httpClient).login(
+        AuthRequest(
+          usernameController.text,
+          passwordController.text,
+        ),
+      );
+
+      if (!mounted) {
+        return;
+      }
+
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+          builder: (context) => Dashboard(
+            unconvUser: authResponse.unconvUser,
+            httpClient: widget.httpClient,
+          ),
+        ),
+      );
+    } catch (error) {
+      if (!mounted) return;
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text("Invalid User Name or Password!"),
+          backgroundColor: Colors.red,
+        ),
+      );
+    }
   }
 }
