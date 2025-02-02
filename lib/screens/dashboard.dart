@@ -10,11 +10,16 @@ import '../widgets/common/center_circular_progress.dart';
 import '../widgets/dashboard_sensor_card.dart';
 
 class Dashboard extends StatefulWidget {
-  const Dashboard({super.key, required this.unconvUser});
+  const Dashboard({
+    super.key,
+    required this.unconvUser,
+    required this.httpClient,
+  });
 
   static const routeName = '/dashboard';
 
   final UnconvUser unconvUser;
+  final http.Client httpClient;
 
   @override
   State<Dashboard> createState() => _DashboardState();
@@ -143,7 +148,7 @@ class _DashboardState extends State<Dashboard> {
   fetchAllSensorSystems() {
     _init = false;
     SensorSystemProvider sensorSystemProvider = SensorSystemProvider(
-      http.Client(),
+      widget.httpClient,
     );
     sensorSystemProvider
         .fetchSensorSystems(widget.unconvUser.id)

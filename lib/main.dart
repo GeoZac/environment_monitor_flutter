@@ -48,6 +48,7 @@ class MyApp extends StatelessWidget {
               builder: (context) {
                 return SensorReadings(
                   selectedSensor: args.sensorSystem,
+                  httpClient: http.Client(),
                 );
               },
             );
@@ -85,6 +86,8 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
-    return const LoginScreen();
+    return LoginScreen(
+      httpClient: http.Client(),
+    );
   }
 }

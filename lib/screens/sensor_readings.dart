@@ -14,7 +14,13 @@ class SensorReadings extends StatefulWidget {
 
   final SensorSystemDTO selectedSensor;
 
-  const SensorReadings({super.key, required this.selectedSensor});
+  final http.Client httpClient;
+
+  const SensorReadings({
+    super.key,
+    required this.selectedSensor,
+    required this.httpClient,
+  });
 
   @override
   State<SensorReadings> createState() => _SensorReadingsState();
@@ -101,7 +107,7 @@ class _SensorReadingsState extends State<SensorReadings> {
     // fetchReadings() {
     EnvironmentalReadingProvider environmentalReadingProvider =
         EnvironmentalReadingProvider(
-      http.Client(),
+      widget.httpClient,
     );
     _init = false;
     environmentalReadingProvider
