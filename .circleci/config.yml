@@ -43,7 +43,7 @@ commands:
       - run:
           name: Run tests
           command: |
-            flutter test --coverage
+            flutter test --coverage --file-reporter json:/tmp/results/flutter.json 
 
   build-apk:
     description: Builds APK for Android
@@ -79,7 +79,19 @@ jobs:
       - checkout
       - apply_placeholder
       - install-flutter
+      - run:
+          name: Install JUnitReport
+          command: flutter pub global activate junitreport
+      - run:
+          name: Create directory structure for test-results
+          command: mkdir --parents /tmp/results/
       - test-flutter
+      - run:
+          name: Convert Flutter tests to JUnit
+          command: $HOME/.pub-cache/bin/tojunit --input /tmp/results/flutter.json --output /tmp/results/junit.xml
+          when: always
+      - store_test_results:
+          path: /tmp/results
       - codecov/upload
 
   build-android:
