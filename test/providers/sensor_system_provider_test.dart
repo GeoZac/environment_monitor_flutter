@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:environment_monitor/models/misc/recent_readings.dart';
 import 'package:environment_monitor/models/sensor_system/sensor_system.dart';
 import 'package:environment_monitor/models/sensor_system/sensor_system_response.dart';
 import 'package:environment_monitor/providers/sensor_system_provider.dart';
@@ -68,6 +69,31 @@ void main() {
     // Verify the result
     expect(result, isA<SensorSystemResponse>());
     expect(result.totalElements, jsonData['totalElements']);
+  });
+
+  test('fetchSensorSystems should return a valid SensorSystemResponse',
+      () async {
+    final mockClient = MockClient();
+
+    Map<String, dynamic> jsonData = {
+      "1": 0,
+      "3": 4,
+      "8": 23,
+      "24": 40,
+      "168": 64
+    };
+
+    when(mockClient.get(any, headers: anyNamed('headers')))
+        .thenAnswer((_) async => http.Response(jsonEncode(jsonData), 200));
+
+    final SensorSystemProvider sensorSystemProvider =
+        SensorSystemProvider(mockClient);
+
+    final result = await sensorSystemProvider.fetchRecentReadings('123');
+
+    expect(result, isA<RecentReadings>());
+    expect(result.i1, jsonData['1']);
+    expect(result.i168, jsonData['168']);
   });
 
   test("createSensorSystem should create a new SensorSystem with valid values",
