@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import '../models/sensor_location/sensor_location.dart';
 import '../models/user/unconv_user.dart';
 
 class SensorSystemForm extends StatefulWidget {
@@ -81,6 +82,41 @@ class _SensorSystemFormState extends State<SensorSystemForm> {
                           textAlign: TextAlign.start,
                           textAlignVertical: TextAlignVertical.top,
                         ),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(
+                            vertical: 8.0,
+                          ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              FormSectionTitle(
+                                titleString: "Location details *",
+                              ),
+                              TextButton(
+                                  onPressed: () {},
+                                  child: Text(
+                                    "Add new",
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ))
+                            ],
+                          ),
+                        ),
+                        DropdownMenu<SensorLocation>(
+                          hintText: "Select a Sensor Location",
+                          enableSearch: true,
+                          inputDecorationTheme: InputDecorationTheme(
+                            border: outlineInputBorder8(),
+                          ),
+                          dropdownMenuEntries:
+                              getSensorLocationDropDownEntries(),
+                          onSelected: null,
+                        ),
+                        const SizedBox(
+                          height: 16,
+                        ),
                       ],
                     ),
                   ),
@@ -115,6 +151,8 @@ class _SensorSystemFormState extends State<SensorSystemForm> {
         ));
   }
 }
+
+getSensorLocationDropDownEntries() {}
 
 OutlineInputBorder outlineInputBorder8() {
   return OutlineInputBorder(
