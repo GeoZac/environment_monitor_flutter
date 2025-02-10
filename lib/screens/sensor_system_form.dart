@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import '../models/user/unconv_user.dart';
 
@@ -63,6 +64,22 @@ class _SensorSystemFormState extends State<SensorSystemForm> {
                             return null;
                           },
                           onSaved: null,
+                        ),
+                        const SizedBox(
+                          height: 16,
+                        ),
+                        TextFormField(
+                          maxLength: 500,
+                          maxLines: 3,
+                          maxLengthEnforcement: MaxLengthEnforcement.enforced,
+                          decoration: InputDecoration(
+                            alignLabelWithHint: true,
+                            labelText: 'Description (Optional)',
+                            border: outlineInputBorder8(),
+                          ),
+                          onSaved: null,
+                          textAlign: TextAlign.start,
+                          textAlignVertical: TextAlignVertical.top,
                         ),
                       ],
                     ),
