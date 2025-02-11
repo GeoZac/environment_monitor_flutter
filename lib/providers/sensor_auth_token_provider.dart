@@ -5,6 +5,7 @@ import '../config/globals.dart';
 import '../config/secrets.dart';
 import '../models/sensor_auth_token/sensor_auth_token.dart';
 import '../models/shared/message_response.dart';
+import '../utils/token_singleton.dart';
 import 'api_provider.dart';
 
 /// A class responsible for providing functionality related to sensor authentication tokens.
@@ -32,7 +33,7 @@ class SensorAuthTokenProvider with ChangeNotifier {
   Future<SensorAuthToken?> fetchSensorAuthToken(String sensorSystemId) async {
     Map<String, String> headers = {
       "Content-Type": "application/json",
-      "Authorization": "Bearer ${Secrets.bearerToken}",
+      "Authorization": "Bearer ${TokenSingleton().bearerToken}",
     };
 
     Uri uri = Uri(
@@ -63,7 +64,7 @@ class SensorAuthTokenProvider with ChangeNotifier {
       String sensorSystemId) async {
     Map<String, String> headers = {
       "Content-Type": "application/json",
-      "Authorization": "Bearer ${Secrets.bearerToken}",
+      "Authorization": "Bearer ${TokenSingleton().bearerToken}",
     };
 
     Uri uri = Uri(
