@@ -10,21 +10,21 @@ import '../models/user/unconv_user.dart';
 import '../providers/sensor_location_provider.dart';
 import '../widgets/common/center_circular_progress.dart';
 
-class SensorSystemForm extends StatefulWidget {
-  static const routeName = '/sensorSystemForm';
+class AddSensorSystem extends StatefulWidget {
+  static const routeName = '/addSensorSystem';
 
   final UnconvUser unconvUser;
 
-  const SensorSystemForm({
+  const AddSensorSystem({
     super.key,
     required this.unconvUser,
   });
 
   @override
-  State<SensorSystemForm> createState() => _SensorSystemFormState();
+  State<AddSensorSystem> createState() => _AddSensorSystemState();
 }
 
-class _SensorSystemFormState extends State<SensorSystemForm> {
+class _AddSensorSystemState extends State<AddSensorSystem> {
   bool _init = false;
 
   final _formKey = GlobalKey<FormState>();
