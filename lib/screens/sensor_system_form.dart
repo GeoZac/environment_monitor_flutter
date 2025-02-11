@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
 
+import '../consts/sensor_location_type.dart';
 import '../models/sensor_location/sensor_location.dart';
 import '../models/user/unconv_user.dart';
 import '../providers/sensor_location_provider.dart';
@@ -177,9 +178,31 @@ class _SensorSystemFormState extends State<SensorSystemForm> {
       });
     });
   }
-}
 
-getSensorLocationDropDownEntries() {}
+  List<DropdownMenuEntry<SensorLocation>> getSensorLocationDropDownEntries() {
+    List<DropdownMenuEntry<SensorLocation>> existingSensorLocationsList =
+        existingSensorLocations.map((SensorLocation sensorLocation) {
+      return DropdownMenuEntry<SensorLocation>(
+        value: sensorLocation,
+        label: sensorLocation.locationToString(),
+      );
+    }).toList();
+
+    existingSensorLocationsList.insert(
+        0,
+        DropdownMenuEntry(
+            value: SensorLocation(
+              id: "-1",
+              sensorLocationText: "No sensor location",
+              latitude: 0,
+              longitude: 0,
+              sensorLocationType: SensorLocationType.indoor,
+            ),
+            label: "No location"));
+
+    return existingSensorLocationsList;
+  }
+}
 
 OutlineInputBorder outlineInputBorder8() {
   return OutlineInputBorder(
