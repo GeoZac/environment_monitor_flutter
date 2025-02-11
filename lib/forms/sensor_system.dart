@@ -110,6 +110,35 @@ class _SensorSystemFormState extends State<SensorSystemForm> {
                           setState(() => sensorLocation = value),
                     ),
                     const SizedBox(height: 16),
+                    const FormSectionTitle(
+                      titleString: "Temperature limits",
+                    ),
+                    Row(
+                      children: [
+                        Expanded(
+                          child: TextFormField(
+                            keyboardType: TextInputType.number,
+                            decoration: InputDecoration(
+                              errorMaxLines: 2,
+                              labelText: 'Max. limit',
+                              border: outlineInputBorder8(),
+                            ),
+                            onSaved: null,
+                          ),
+                        ),
+                        const SizedBox(width: 12),
+                        Expanded(
+                          child: TextFormField(
+                              keyboardType: TextInputType.number,
+                              decoration: InputDecoration(
+                                errorMaxLines: 2,
+                                labelText: 'Min limit',
+                                border: outlineInputBorder8(),
+                              ),
+                              onSaved: null),
+                        ),
+                      ],
+                    ),
                   ],
                 ),
               ),
