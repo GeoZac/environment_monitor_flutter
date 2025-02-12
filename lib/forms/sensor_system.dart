@@ -47,79 +47,106 @@ class _SensorSystemFormState extends State<SensorSystemForm> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(16.0),
-      child: SingleChildScrollView(
-        child: Form(
-          key: _formKey,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const FormSectionTitle(titleString: "Device details *"),
-              TextFormField(
-                autofocus: true,
-                decoration: InputDecoration(
-                  labelText: 'Sensor Name *',
-                  border: outlineInputBorder8(),
-                ),
-                validator: (value) =>
-                    value!.isEmpty ? 'Please enter a sensor name' : null,
-                onSaved: (value) => sensorName = value!,
-              ),
-              const SizedBox(height: 16),
-              TextFormField(
-                maxLength: 500,
-                maxLines: 3,
-                maxLengthEnforcement: MaxLengthEnforcement.enforced,
-                decoration: InputDecoration(
-                  alignLabelWithHint: true,
-                  labelText: 'Description (Optional)',
-                  border: outlineInputBorder8(),
-                ),
-                onSaved: (value) => description = value,
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 8.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    return Column(
+      children: [
+        Expanded(
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: SingleChildScrollView(
+              child: Form(
+                key: _formKey,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const FormSectionTitle(titleString: "Location details *"),
-                    TextButton(
-                        onPressed: () {},
-                        child: const Text("Add new",
-                            style: TextStyle(fontWeight: FontWeight.bold)))
+                    const FormSectionTitle(titleString: "Device details *"),
+                    TextFormField(
+                      autofocus: true,
+                      decoration: InputDecoration(
+                        labelText: 'Sensor Name *',
+                        border: outlineInputBorder8(),
+                      ),
+                      validator: (value) =>
+                          value!.isEmpty ? 'Please enter a sensor name' : null,
+                      onSaved: (value) => sensorName = value!,
+                    ),
+                    const SizedBox(height: 16),
+                    TextFormField(
+                      maxLength: 500,
+                      maxLines: 3,
+                      maxLengthEnforcement: MaxLengthEnforcement.enforced,
+                      decoration: InputDecoration(
+                        alignLabelWithHint: true,
+                        labelText: 'Description (Optional)',
+                        border: outlineInputBorder8(),
+                      ),
+                      onSaved: (value) => description = value,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 8.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          const FormSectionTitle(
+                              titleString: "Location details *"),
+                          TextButton(
+                              onPressed: () {},
+                              child: const Text("Add new",
+                                  style:
+                                      TextStyle(fontWeight: FontWeight.bold)))
+                        ],
+                      ),
+                    ),
+                    DropdownButtonFormField<SensorLocation>(
+                      decoration:
+                          InputDecoration(border: outlineInputBorder8()),
+                      hint: const Text("Select a Sensor Location"),
+                      items: widget.existingSensorLocations
+                          .map((sensorLocation) => DropdownMenuItem(
+                                value: sensorLocation,
+                                child: Text(sensorLocation.locationToString()),
+                              ))
+                          .toList(),
+                      onChanged: (value) =>
+                          setState(() => sensorLocation = value),
+                    ),
+                    const SizedBox(height: 16),
                   ],
                 ),
               ),
-              DropdownButtonFormField<SensorLocation>(
-                decoration: InputDecoration(border: outlineInputBorder8()),
-                hint: const Text("Select a Sensor Location"),
-                items: widget.existingSensorLocations
-                    .map((sensorLocation) => DropdownMenuItem(
-                          value: sensorLocation,
-                          child: Text(sensorLocation.locationToString()),
-                        ))
-                    .toList(),
-                onChanged: (value) => setState(() => sensorLocation = value),
+            ),
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.only(bottom: 8.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              ElevatedButton(
+                onPressed: () {
+                  if (_formKey.currentState!.validate()) {
+                    _formKey.currentState!.save();
+
+                    // widget.onSubmit();
+                  }
+                },
+                child: const Text(
+                  'Submit',
+                  style: TextStyle(fontSize: 24),
+                ),
               ),
-              const SizedBox(height: 16),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  ElevatedButton(
-                      onPressed: submitForm,
-                      child:
-                          const Text('Submit', style: TextStyle(fontSize: 24))),
-                  ElevatedButton(
-                      onPressed: () => Navigator.pop(context),
-                      child:
-                          const Text('Cancel', style: TextStyle(fontSize: 24))),
-                ],
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                child: const Text(
+                  'Cancel',
+                  style: TextStyle(fontSize: 24),
+                ),
               ),
             ],
           ),
         ),
-      ),
+      ],
     );
   }
 }
