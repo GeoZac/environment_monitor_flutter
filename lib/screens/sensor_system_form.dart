@@ -1,11 +1,12 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
 
 import '../consts/sensor_location_type.dart';
+import '../forms/sensor_system.dart';
 import '../models/sensor_location/sensor_location.dart';
+import '../models/sensor_system/sensor_system.dart';
 import '../models/user/unconv_user.dart';
 import '../providers/sensor_location_provider.dart';
 import '../widgets/common/center_circular_progress.dart';
@@ -41,126 +42,17 @@ class _AddSensorSystemState extends State<AddSensorSystem> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: const Text('Add New Sensor Form'),
-        ),
-        body: (!_init)
-            ? const CenteredCircularProgress()
-            : Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Expanded(
-                    child: Padding(
-                      padding: const EdgeInsets.all(16.0),
-                      child: SingleChildScrollView(
-                        child: Form(
-                          key: _formKey,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              FormSectionTitle(
-                                titleString: "Device details *",
-                              ),
-                              TextFormField(
-                                autofocus: true,
-                                decoration: InputDecoration(
-                                  labelText: 'Sensor Name *',
-                                  border: outlineInputBorder8(),
-                                ),
-                                validator: (String? newValue) {
-                                  if (newValue == null || newValue.isEmpty) {
-                                    return 'Please enter a sensor name';
-                                  }
-                                  return null;
-                                },
-                                onSaved: null,
-                              ),
-                              const SizedBox(
-                                height: 16,
-                              ),
-                              TextFormField(
-                                maxLength: 500,
-                                maxLines: 3,
-                                maxLengthEnforcement:
-                                    MaxLengthEnforcement.enforced,
-                                decoration: InputDecoration(
-                                  alignLabelWithHint: true,
-                                  labelText: 'Description (Optional)',
-                                  border: outlineInputBorder8(),
-                                ),
-                                onSaved: null,
-                                textAlign: TextAlign.start,
-                                textAlignVertical: TextAlignVertical.top,
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.symmetric(
-                                  vertical: 8.0,
-                                ),
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    FormSectionTitle(
-                                      titleString: "Location details *",
-                                    ),
-                                    TextButton(
-                                        onPressed: () {},
-                                        child: Text(
-                                          "Add new",
-                                          style: TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                        ))
-                                  ],
-                                ),
-                              ),
-                              DropdownMenu<SensorLocation>(
-                                hintText: "Select a Sensor Location",
-                                enableSearch: true,
-                                inputDecorationTheme: InputDecorationTheme(
-                                  border: outlineInputBorder8(),
-                                ),
-                                dropdownMenuEntries:
-                                    getSensorLocationDropDownEntries(),
-                                onSelected: null,
-                              ),
-                              const SizedBox(
-                                height: 16,
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 8.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        ElevatedButton(
-                          onPressed: null,
-                          child: const Text(
-                            'Submit',
-                            style: TextStyle(fontSize: 24),
-                          ),
-                        ),
-                        ElevatedButton(
-                          onPressed: () {
-                            Navigator.pop(context);
-                          },
-                          child: const Text(
-                            'Cancel',
-                            style: TextStyle(fontSize: 24),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ));
+      appBar: AppBar(
+        title: const Text('Add New Sensor Form'),
+      ),
+      body: (!_init)
+          ? const CenteredCircularProgress()
+          : SensorSystemForm(
+              existingSensorLocations: existingSensorLocations,
+              unconvUser: widget.unconvUser,
+              onSubmit: createNewSensorSystem,
+            ),
+    );
   }
 
   void fetchSensorLocations() {
@@ -202,6 +94,8 @@ class _AddSensorSystemState extends State<AddSensorSystem> {
 
     return existingSensorLocationsList;
   }
+
+  createNewSensorSystem(SensorSystem sensorSystem) {}
 }
 
 OutlineInputBorder outlineInputBorder8() {
