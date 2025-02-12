@@ -106,4 +106,9 @@ class SensorLocation {
       'sensorLocationType': parseSensorLocationTypeToJson(sensorLocationType),
     };
   }
+
+  /// Generates a formatted string representation of the sensor location.
+  String locationToString() {
+    return "$sensorLocationText (${latitude.toStringAsFixed(5)}, ${longitude.toStringAsFixed(5)})";
+  }
 }
