@@ -3,7 +3,6 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
-import '../consts/sensor_location_type.dart';
 import '../forms/sensor_system.dart';
 import '../models/sensor_location/sensor_location.dart';
 import '../models/sensor_system/sensor_system.dart';
@@ -69,61 +68,5 @@ class _AddSensorSystemState extends State<AddSensorSystem> {
     });
   }
 
-  List<DropdownMenuEntry<SensorLocation>> getSensorLocationDropDownEntries() {
-    List<DropdownMenuEntry<SensorLocation>> existingSensorLocationsList =
-        existingSensorLocations.map((SensorLocation sensorLocation) {
-      return DropdownMenuEntry<SensorLocation>(
-        value: sensorLocation,
-        label: sensorLocation.locationToString(),
-      );
-    }).toList();
-
-    existingSensorLocationsList.insert(
-        0,
-        DropdownMenuEntry(
-            value: SensorLocation(
-              id: "-1",
-              sensorLocationText: "No sensor location",
-              latitude: 0,
-              longitude: 0,
-              sensorLocationType: SensorLocationType.indoor,
-            ),
-            label: "No location"));
-
-    return existingSensorLocationsList;
-  }
-
   createNewSensorSystem(SensorSystem sensorSystem) {}
-}
-
-OutlineInputBorder outlineInputBorder8() {
-  return OutlineInputBorder(
-      borderRadius: BorderRadius.circular(
-    8,
-  ));
-}
-
-class FormSectionTitle extends StatelessWidget {
-  final String titleString;
-
-  const FormSectionTitle({
-    super.key,
-    required this.titleString,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.symmetric(
-        vertical: 8,
-      ),
-      child: Text(
-        titleString,
-        style: TextStyle(
-          fontSize: 22,
-          fontWeight: FontWeight.bold,
-        ),
-      ),
-    );
-  }
 }
