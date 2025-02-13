@@ -28,8 +28,6 @@ class AddSensorSystem extends StatefulWidget {
 class _AddSensorSystemState extends State<AddSensorSystem> {
   bool _init = false;
 
-  final _formKey = GlobalKey<FormState>();
-
   late List<SensorLocation> existingSensorLocations;
 
   @override
