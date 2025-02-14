@@ -6,6 +6,7 @@ import '../config/secrets.dart';
 import '../models/misc/recent_readings.dart';
 import '../models/sensor_system/sensor_system.dart';
 import '../models/sensor_system/sensor_system_response.dart';
+import '../utils/token_singleton.dart';
 import 'api_provider.dart';
 
 class SensorSystemProvider with ChangeNotifier {
@@ -20,7 +21,7 @@ class SensorSystemProvider with ChangeNotifier {
   Future<SensorSystemResponse> fetchSensorSystems(String unconvUserId) async {
     Map<String, String> headers = {
       "Content-Type": "application/json",
-      "Authorization": "Bearer ${Secrets.bearerToken}",
+      "Authorization": "Bearer ${TokenSingleton().bearerToken}",
     };
 
     Uri uri = Uri(
@@ -43,7 +44,7 @@ class SensorSystemProvider with ChangeNotifier {
   Future<RecentReadings> fetchRecentReadings(String sensorSystemId) async {
     Map<String, String> headers = {
       "Content-Type": "application/json",
-      "Authorization": "Bearer ${Secrets.bearerToken}",
+      "Authorization": "Bearer ${TokenSingleton().bearerToken}",
     };
 
     Uri uri = Uri(
