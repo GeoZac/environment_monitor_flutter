@@ -28,6 +28,8 @@ void main() {
       },
       "readingCount": 0,
       "latestReading": null,
+      "createdDate": "2024-02-29T14:57:56.795247158Z",
+      "updatedDate": "2025-01-23T12:57:56.795270236Z",
     };
 
     // Perform the model mapping
@@ -63,6 +65,8 @@ void main() {
       },
       "readingCount": 0,
       "latestReading": null,
+      "createdDate": "2024-02-29T14:57:56.795247158Z",
+      "updatedDate": "2025-01-23T12:57:56.795270236Z",
     };
 
     // Perform the model mapping
@@ -108,6 +112,8 @@ void main() {
       },
       "readingCount": 0,
       "latestReading": null,
+      "createdDate": "2024-02-29T14:57:56.795247158Z",
+      "updatedDate": "2025-01-23T12:57:56.795270236Z",
     };
 
     expect(() => SensorSystemDTO.fromJson(json), throwsArgumentError);
@@ -126,6 +132,8 @@ void main() {
         email: "test@example.com",
       ),
       readingCount: 0,
+      createdDate: "2024-02-29T14:57:56.795247158Z",
+      updatedDate: "2024-02-29T14:57:56.795247158Z",
     );
 
     final json = instance.toJson();
@@ -158,6 +166,8 @@ void main() {
         email: "test@example.com",
       ),
       readingCount: 0,
+      createdDate: "2024-02-29T14:57:56.795247158Z",
+      updatedDate: "2024-02-29T14:57:56.795247158Z",
     );
 
     final json = instance.toJson();
@@ -194,6 +204,8 @@ void main() {
         email: "test@example.com",
       ),
       readingCount: 0,
+      createdDate: "2024-02-29T14:57:56.795247158Z",
+      updatedDate: "2024-02-29T14:57:56.795247158Z",
     );
 
     final json = instance.toJson();
