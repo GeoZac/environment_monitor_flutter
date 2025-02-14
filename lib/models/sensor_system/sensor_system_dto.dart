@@ -6,6 +6,8 @@ import 'sensor_system.dart';
 class SensorSystemDTO extends SensorSystem {
   int readingCount;
   BaseEnvironmentalReading? latestReading;
+  String createdDate;
+  String updatedDate;
 
   SensorSystemDTO({
     required super.id,
@@ -17,6 +19,8 @@ class SensorSystemDTO extends SensorSystem {
     required super.unconvUser,
     required this.readingCount,
     this.latestReading,
+    required this.createdDate,
+    required this.updatedDate,
   });
 
   factory SensorSystemDTO.fromJson(Map<String, dynamic> json) {
@@ -27,6 +31,8 @@ class SensorSystemDTO extends SensorSystem {
       'sensorStatus',
       'unconvUser',
       'readingCount',
+      'createdDate',
+      'updatedDate',
     ];
 
     final bool missingFields =
@@ -50,6 +56,8 @@ class SensorSystemDTO extends SensorSystem {
       latestReading: json['latestReading'] != null
           ? BaseEnvironmentalReading.fromJson(json['latestReading'])
           : null,
+      createdDate: json['createdDate'],
+      updatedDate: json['updatedDate'],
     );
   }
 
@@ -67,6 +75,8 @@ class SensorSystemDTO extends SensorSystem {
     data['unconvUser'] = unconvUser.toJson();
     data['readingCount'] = readingCount;
     data['latestReading'] = latestReading;
+    data['createdDate'] = createdDate;
+    data['updateddate'] = updatedDate;
     return data;
   }
 }
