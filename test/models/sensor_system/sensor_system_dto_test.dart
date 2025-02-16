@@ -2,6 +2,7 @@ import 'package:environment_monitor/consts/sensor_location_type.dart';
 import 'package:environment_monitor/consts/sensor_status.dart';
 import 'package:environment_monitor/models/sensor_location/sensor_location.dart';
 import 'package:environment_monitor/models/sensor_system/sensor_system_dto.dart';
+import 'package:environment_monitor/models/threshold/threshold.dart';
 import 'package:environment_monitor/models/user/unconv_user.dart';
 import 'package:flutter_test/flutter_test.dart';
 
@@ -204,6 +205,14 @@ void main() {
         email: "test@example.com",
       ),
       readingCount: 0,
+      humidityThreshold: Threshold(
+        minValue: 25.1,
+        maxValue: 75.9,
+      ),
+      temperatureThreshold: Threshold(
+        minValue: 0.0,
+        maxValue: 100.0,
+      ),
     );
 
     final json = instance.toJson();
