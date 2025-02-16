@@ -1,5 +1,6 @@
 import '../envt_reading/base_envt_reading.dart';
 import '../sensor_location/sensor_location.dart';
+import '../threshold/threshold.dart';
 import '../user/unconv_user.dart';
 import 'sensor_system.dart';
 
@@ -19,6 +20,8 @@ class SensorSystemDTO extends SensorSystem {
     required super.unconvUser,
     required this.readingCount,
     this.latestReading,
+    super.humidityThreshold,
+    super.temperatureThreshold,
     required this.createdDate,
     required this.updatedDate,
   });
@@ -56,6 +59,12 @@ class SensorSystemDTO extends SensorSystem {
       latestReading: json['latestReading'] != null
           ? BaseEnvironmentalReading.fromJson(json['latestReading'])
           : null,
+      humidityThreshold: json['humidityThreshold'] != null
+          ? Threshold.fromJson(json['humidityThreshold'])
+          : null,
+      temperatureThreshold: json['temperatureThreshold'] != null
+          ? Threshold.fromJson(json['temperatureThreshold'])
+          : null,
       createdDate: json['createdDate'],
       updatedDate: json['updatedDate'],
     );
@@ -75,6 +84,12 @@ class SensorSystemDTO extends SensorSystem {
     data['unconvUser'] = unconvUser.toJson();
     data['readingCount'] = readingCount;
     data['latestReading'] = latestReading;
+    if (humidityThreshold != null) {
+      data['humidityThreshold'] = humidityThreshold!.toJson();
+    }
+    if (temperatureThreshold != null) {
+      data['temperatureThreshold'] = temperatureThreshold!.toJson();
+    }
     data['createdDate'] = createdDate;
     data['updateddate'] = updatedDate;
     return data;
