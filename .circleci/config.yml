@@ -3,6 +3,7 @@ version: 2.1
 orbs:
   flutter: circleci/flutter@2.0.2
   codecov: codecov/codecov@4.1.0
+  sonarcloud: sonarsource/sonarcloud@2.0.0
 
 executors:
   android:
@@ -110,5 +111,6 @@ workflows:
           requires:
             - setup-and-format
       - test-coverage:
+          context: SonarCloudEM
           requires:
             - setup-and-format
