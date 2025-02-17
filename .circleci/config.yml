@@ -91,6 +91,7 @@ jobs:
       - store_test_results:
           path: /tmp/results
       - codecov/upload
+      - sonarcloud/scan
 
   build-android:
     executor: android
