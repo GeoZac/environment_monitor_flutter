@@ -92,6 +92,8 @@ void main() {
         "humidity": 76.5,
         "timestamp": "2024-07-13T02:13:53.444839418Z"
       },
+      "createdDate": "2024-02-29T14:57:56.795247158Z",
+      "updatedDate": "2025-01-23T12:57:56.795270236Z",
     };
 
     // Perform the model mapping
