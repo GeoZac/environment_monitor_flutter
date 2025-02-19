@@ -1,5 +1,6 @@
 import '../../consts/sensor_status.dart';
 import '../sensor_location/sensor_location.dart';
+import '../threshold/threshold.dart';
 import '../user/unconv_user.dart';
 
 class SensorSystem {
@@ -10,6 +11,8 @@ class SensorSystem {
   SensorStatus sensorStatus;
   SensorLocation? sensorLocation;
   UnconvUser unconvUser;
+  Threshold? humidityThreshold;
+  Threshold? temperatureThreshold;
 
   SensorSystem({
     this.id,
@@ -19,6 +22,8 @@ class SensorSystem {
     required this.sensorStatus,
     this.sensorLocation,
     required this.unconvUser,
+    this.humidityThreshold,
+    this.temperatureThreshold,
   });
 
   factory SensorSystem.fromJson(Map<String, dynamic> json) {
@@ -45,6 +50,12 @@ class SensorSystem {
           ? SensorLocation.fromJson(json['sensorLocation'])
           : null,
       unconvUser: UnconvUser.fromJson(json['unconvUser']),
+      humidityThreshold: json['humidityThreshold'] != null
+          ? Threshold.fromJson(json['humidityThreshold'])
+          : null,
+      temperatureThreshold: json['temperatureThreshold'] != null
+          ? Threshold.fromJson(json['temperatureThreshold'])
+          : null,
     );
   }
 
@@ -80,6 +91,12 @@ class SensorSystem {
       data['sensorLocation'] = sensorLocation!.toJson();
     }
     data['unconvUser'] = unconvUser.toJson();
+    if (humidityThreshold != null) {
+      data['humidityThreshold'] = humidityThreshold!.toJson();
+    }
+    if (temperatureThreshold != null) {
+      data['temperatureThreshold'] = temperatureThreshold!.toJson();
+    }
     return data;
   }
 }

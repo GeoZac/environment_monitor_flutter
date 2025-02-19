@@ -32,7 +32,9 @@ void main() {
             "temperature": 1210.396,
             "humidity": 93.574,
             "timestamp": "2020-07-25T12:33:20.398478Z",
-          }
+          },
+          "createdDate": "2024-02-29T14:57:56.795247158Z",
+          "updatedDate": "2025-01-23T12:57:56.795270236Z",
         },
         {
           "id": "384711f2-9ded-4ab3-9278-bf6da61c9e96",
@@ -57,7 +59,9 @@ void main() {
             "temperature": 8198.453,
             "humidity": 72.599,
             "timestamp": "2020-10-24T01:53:15.231347Z",
-          }
+          },
+          "createdDate": "2024-02-29T14:57:56.795247158Z",
+          "updatedDate": "2025-01-23T12:57:56.795270236Z",
         },
         {
           "id": "44930f19-4434-43dc-8196-4aeb5bc75aa5",
@@ -82,7 +86,9 @@ void main() {
             "temperature": 3453.62,
             "humidity": 17.621,
             "timestamp": "2018-07-08T03:17:34.010608Z",
-          }
+          },
+          "createdDate": "2024-02-29T14:57:56.795247158Z",
+          "updatedDate": "2025-01-23T12:57:56.795270236Z",
         },
         {
           "id": "e282fe65-8761-41c7-b16e-551a7f507600",
@@ -107,7 +113,9 @@ void main() {
             "temperature": 7084.018,
             "humidity": 37.392,
             "timestamp": "2017-04-09T00:23:35.110871Z",
-          }
+          },
+          "createdDate": "2024-02-29T14:57:56.795247158Z",
+          "updatedDate": "2025-01-23T12:57:56.795270236Z",
         },
         {
           "id": "ff74bb42-778a-4c2c-ba29-3f60b5fb8365",
@@ -132,7 +140,9 @@ void main() {
             "temperature": 9988.489,
             "humidity": 38.377,
             "timestamp": "2017-10-17T13:25:36.745426Z",
-          }
+          },
+          "createdDate": "2024-02-29T14:57:56.795247158Z",
+          "updatedDate": "2025-01-23T12:57:56.795270236Z",
         },
         {
           "id": "c1d99a5e-86f8-4480-ab14-3abef9de7d59",
@@ -157,7 +167,9 @@ void main() {
             "temperature": -773.543,
             "humidity": 53.601,
             "timestamp": "2023-04-28T03:44:17.879594Z",
-          }
+          },
+          "createdDate": "2024-02-29T14:57:56.795247158Z",
+          "updatedDate": "2025-01-23T12:57:56.795270236Z",
         }
       ],
       "totalElements": 6,

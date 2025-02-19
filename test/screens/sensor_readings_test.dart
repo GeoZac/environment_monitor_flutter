@@ -26,6 +26,8 @@ void main() {
         email: "test@example.com",
       ),
       readingCount: 0,
+      createdDate: "2024-02-29T14:57:56.795247158Z",
+      updatedDate: "2025-01-23T12:57:56.795270236Z",
     );
   });
 
