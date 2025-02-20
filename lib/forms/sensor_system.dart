@@ -5,6 +5,7 @@ import '../consts/sensor_status.dart';
 import '../models/sensor_location/sensor_location.dart';
 import '../models/sensor_system/sensor_system.dart';
 import '../models/user/unconv_user.dart';
+import 'humidity_limits.dart';
 
 class SensorSystemForm extends StatefulWidget {
   final List<SensorLocation> existingSensorLocations;
@@ -140,34 +141,8 @@ class _SensorSystemFormState extends State<SensorSystemForm> {
                       ],
                     ),
                     const SizedBox(height: 16),
-                    const FormSectionTitle(
-                      titleString: "Humidity limits",
-                    ),
-                    Row(
-                      children: [
-                        Expanded(
-                          child: TextFormField(
-                            keyboardType: TextInputType.number,
-                            decoration: InputDecoration(
-                              errorMaxLines: 2,
-                              labelText: 'Max. limit',
-                              border: outlineInputBorder8(),
-                            ),
-                            onSaved: null,
-                          ),
-                        ),
-                        const SizedBox(width: 12),
-                        Expanded(
-                          child: TextFormField(
-                              keyboardType: TextInputType.number,
-                              decoration: InputDecoration(
-                                errorMaxLines: 2,
-                                labelText: 'Min limit',
-                                border: outlineInputBorder8(),
-                              ),
-                              onSaved: null),
-                        ),
-                      ],
+                    HumidityLimits(
+                      onSaved: (maxHumidity, minHumidity) {},
                     ),
                   ],
                 ),
