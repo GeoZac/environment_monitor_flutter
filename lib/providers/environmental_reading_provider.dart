@@ -4,6 +4,7 @@ import 'package:http/http.dart' as http;
 import '../config/globals.dart';
 import '../config/secrets.dart';
 import '../models/envt_reading/envt_reading_response.dart';
+import '../utils/token_singleton.dart';
 import 'api_provider.dart';
 
 class EnvironmentalReadingProvider with ChangeNotifier {
@@ -17,7 +18,7 @@ class EnvironmentalReadingProvider with ChangeNotifier {
       fetchEnvironmentalReadingsOfSpecificSensor(String sensorSystemId) async {
     Map<String, String> headers = {
       "Content-Type": "application/json",
-      "Authorization": "Bearer ${Secrets.bearerToken}",
+      "Authorization": "Bearer ${TokenSingleton().bearerToken}",
     };
 
     Uri uri = Uri(

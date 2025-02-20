@@ -34,7 +34,9 @@ void main() {
             "email": "unconvuser@email.com",
           },
           "readingCount": 0,
-          "latestReading": null
+          "latestReading": null,
+          "createdDate": "2024-02-29T14:57:56.795247158Z",
+          "updatedDate": "2025-01-23T12:57:56.795270236Z",
         },
         {
           "id": "b7a30f45-fa48-4cff-b111-a2931d270809",
@@ -48,7 +50,9 @@ void main() {
             "email": "unconvuser@email.com",
           },
           "readingCount": 0,
-          "latestReading": null
+          "latestReading": null,
+          "createdDate": "2024-02-29T14:57:56.795247158Z",
+          "updatedDate": "2025-01-23T12:57:56.795270236Z",
         },
       ],
       "totalElements": 5,

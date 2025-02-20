@@ -83,6 +83,8 @@ void main() {
           },
           "readingCount": 0,
           "latestReading": null,
+          "createdDate": "2024-02-29T14:57:56.795247158Z",
+          "updatedDate": "2025-01-23T12:57:56.795270236Z",
         },
       ],
       "totalElements": 1,
@@ -138,6 +140,8 @@ void main() {
           },
           "readingCount": 0,
           "latestReading": null,
+          "createdDate": "2024-02-29T14:57:56.795247158Z",
+          "updatedDate": "2025-01-23T12:57:56.795270236Z",
         },
         {
           "id": "508baef0-bc82-4481-9af8-83d2e5132100",
@@ -159,6 +163,8 @@ void main() {
           },
           "readingCount": 0,
           "latestReading": null,
+          "createdDate": "2024-02-29T14:57:56.795247158Z",
+          "updatedDate": "2025-01-23T12:57:56.795270236Z",
         },
         {
           "id": "508baef0-bc82-4481-9af8-83d2e5132100",
@@ -180,6 +186,8 @@ void main() {
           },
           "readingCount": 0,
           "latestReading": null,
+          "createdDate": "2024-02-29T14:57:56.795247158Z",
+          "updatedDate": "2025-01-23T12:57:56.795270236Z",
         },
         {
           "id": "508baef0-bc82-4481-9af8-83d2e5132100",
@@ -201,6 +209,8 @@ void main() {
           },
           "readingCount": 0,
           "latestReading": null,
+          "createdDate": "2024-02-29T14:57:56.795247158Z",
+          "updatedDate": "2025-01-23T12:57:56.795270236Z",
         },
         {
           "id": "508baef0-bc82-4481-9af8-83d2e5132100",
@@ -222,6 +232,8 @@ void main() {
           },
           "readingCount": 0,
           "latestReading": null,
+          "createdDate": "2024-02-29T14:57:56.795247158Z",
+          "updatedDate": "2025-01-23T12:57:56.795270236Z",
         },
       ],
       "totalElements": 5,
