@@ -3,7 +3,7 @@ import '../../consts/sensor_location_type.dart';
 /// A class representing a sensor location with associated information.
 class SensorLocation {
   /// The unique identifier for the sensor location.
-  String id;
+  String? id;
 
   /// The descriptive text for the sensor location.
   String sensorLocationText;
@@ -37,7 +37,6 @@ class SensorLocation {
   /// Throws a [FormatException] if required fields are missing in the JSON.
   factory SensorLocation.fromJson(Map<String, dynamic> json) {
     final List<String> requiredFields = [
-      'id',
       'sensorLocationText',
       'latitude',
       'longitude',
@@ -106,5 +105,10 @@ class SensorLocation {
       'longitude': longitude,
       'sensorLocationType': parseSensorLocationTypeToJson(sensorLocationType),
     };
+  }
+
+  /// Generates a formatted string representation of the sensor location.
+  String locationToString() {
+    return "$sensorLocationText (${latitude.toStringAsFixed(5)}, ${longitude.toStringAsFixed(5)})";
   }
 }

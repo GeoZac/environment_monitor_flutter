@@ -36,7 +36,7 @@ class _SensorReadingsState extends State<SensorReadings> {
   @override
   void initState() {
     super.initState();
-    fetchSensorReadings(widget.selectedSensor.id);
+    fetchSensorReadings(widget.selectedSensor.id!);
   }
 
   @override

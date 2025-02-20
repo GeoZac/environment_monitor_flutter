@@ -4,7 +4,7 @@ import '../threshold/threshold.dart';
 import '../user/unconv_user.dart';
 
 class SensorSystem {
-  String id;
+  String? id;
   String sensorName;
   String? description;
   bool deleted;
@@ -15,7 +15,7 @@ class SensorSystem {
   Threshold? temperatureThreshold;
 
   SensorSystem({
-    required this.id,
+    this.id,
     required this.sensorName,
     this.description,
     required this.deleted,
@@ -28,7 +28,6 @@ class SensorSystem {
 
   factory SensorSystem.fromJson(Map<String, dynamic> json) {
     final List<String> requiredFields = [
-      'id',
       'sensorName',
       'deleted',
       'sensorStatus',
