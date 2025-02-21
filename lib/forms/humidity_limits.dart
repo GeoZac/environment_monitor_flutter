@@ -1,10 +1,14 @@
-import 'package:environment_monitor/forms/sensor_system.dart';
 import 'package:flutter/material.dart';
+
+import 'sensor_system.dart';
 
 class HumidityLimits extends StatefulWidget {
   final Function(double? maxHumidity, double? minHumidity) onSaved;
 
-  const HumidityLimits({super.key, required this.onSaved});
+  const HumidityLimits({
+    super.key,
+    required this.onSaved,
+  });
 
   @override
   State<HumidityLimits> createState() => _HumidityLimitsState();
@@ -14,16 +18,26 @@ class _HumidityLimitsState extends State<HumidityLimits> {
   final TextEditingController _maxHumidityController = TextEditingController();
   final TextEditingController _minHumidityController = TextEditingController();
 
-  void saveValues() {
+  @override
+  void initState() {
+    super.initState();
+    _maxHumidityController.addListener(_onTextChange);
+    _minHumidityController.addListener(_onTextChange);
+  }
+
+  void _onTextChange() {
     double? maxHumidity = double.tryParse(_maxHumidityController.text);
     double? minHumidity = double.tryParse(_minHumidityController.text);
 
-    // Only save values if both fields are filled
-    if (maxHumidity != null && minHumidity != null) {
-      widget.onSaved(maxHumidity, minHumidity);
-    } else {
-      widget.onSaved(null, null);
-    }
+    // Save values whenever text changes
+    widget.onSaved(maxHumidity, minHumidity);
+  }
+
+  @override
+  void dispose() {
+    _maxHumidityController.dispose();
+    _minHumidityController.dispose();
+    super.dispose();
   }
 
   @override
@@ -36,6 +50,7 @@ class _HumidityLimitsState extends State<HumidityLimits> {
           children: [
             Expanded(
               child: TextFormField(
+                key: const Key('maxHumidityField'),
                 controller: _maxHumidityController,
                 keyboardType: TextInputType.number,
                 decoration: InputDecoration(
@@ -48,6 +63,7 @@ class _HumidityLimitsState extends State<HumidityLimits> {
             const SizedBox(width: 12),
             Expanded(
               child: TextFormField(
+                key: const Key('minHumidityField'),
                 controller: _minHumidityController,
                 keyboardType: TextInputType.number,
                 decoration: InputDecoration(
