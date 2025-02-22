@@ -39,6 +39,7 @@ class SensorAuthTokenProvider with ChangeNotifier {
     Uri uri = Uri(
       scheme: Globals.uriScheme,
       host: Secrets.baseApiUrl,
+      port: Secrets.baseApiPort,
       path: '$baseUrlPath/SensorSystem/$sensorSystemId',
     );
 
@@ -70,6 +71,7 @@ class SensorAuthTokenProvider with ChangeNotifier {
     Uri uri = Uri(
       scheme: Globals.uriScheme,
       host: Secrets.baseApiUrl,
+      port: Secrets.baseApiPort,
       path: '$baseUrlPath/GenerateToken/SensorSystem/$sensorSystemId',
     );
 
