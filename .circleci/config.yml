@@ -9,6 +9,9 @@ executors:
   android:
     docker:
       - image: "cimg/android:2022.06"
+  base:
+    docker:
+      - image: "cimg/base:current"
 
 commands:
   install-flutter:
@@ -62,7 +65,7 @@ commands:
 jobs:
   setup-and-format:
     executor:
-      name: android
+      name: base
     steps:
       - checkout
       - apply_placeholder
@@ -72,7 +75,7 @@ jobs:
 
   test-coverage:
     executor:
-      name: android
+      name: base
     steps:
       - checkout
       - apply_placeholder
