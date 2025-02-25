@@ -15,8 +15,10 @@ class TemperatureLimits extends StatefulWidget {
 }
 
 class _TemperatureLimitsState extends State<TemperatureLimits> {
-  final TextEditingController _maxTemperatureController = TextEditingController();
-  final TextEditingController _minTemperatureController = TextEditingController();
+  final TextEditingController _maxTemperatureController =
+      TextEditingController();
+  final TextEditingController _minTemperatureController =
+      TextEditingController();
 
   @override
   void initState() {
