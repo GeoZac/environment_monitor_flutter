@@ -6,6 +6,7 @@ import '../models/sensor_location/sensor_location.dart';
 import '../models/sensor_system/sensor_system.dart';
 import '../models/user/unconv_user.dart';
 import 'humidity_limits.dart';
+import 'temperature_limits.dart';
 
 class SensorSystemForm extends StatefulWidget {
   final List<SensorLocation> existingSensorLocations;
@@ -111,34 +112,8 @@ class _SensorSystemFormState extends State<SensorSystemForm> {
                           setState(() => sensorLocation = value),
                     ),
                     const SizedBox(height: 16),
-                    const FormSectionTitle(
-                      titleString: "Temperature limits",
-                    ),
-                    Row(
-                      children: [
-                        Expanded(
-                          child: TextFormField(
-                            keyboardType: TextInputType.number,
-                            decoration: InputDecoration(
-                              errorMaxLines: 2,
-                              labelText: 'Max. limit',
-                              border: outlineInputBorder8(),
-                            ),
-                            onSaved: null,
-                          ),
-                        ),
-                        const SizedBox(width: 12),
-                        Expanded(
-                          child: TextFormField(
-                              keyboardType: TextInputType.number,
-                              decoration: InputDecoration(
-                                errorMaxLines: 2,
-                                labelText: 'Min limit',
-                                border: outlineInputBorder8(),
-                              ),
-                              onSaved: null),
-                        ),
-                      ],
+                    TemperatureLimits(
+                      onSaved: (maxTemperature, minTemperature) {},
                     ),
                     const SizedBox(height: 16),
                     HumidityLimits(
