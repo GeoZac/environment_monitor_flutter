@@ -8,6 +8,7 @@ import '../models/sensor_location/sensor_location.dart';
 import '../models/sensor_system/sensor_system.dart';
 import '../models/user/unconv_user.dart';
 import '../providers/sensor_location_provider.dart';
+import '../providers/sensor_system_provider.dart';
 import '../widgets/common/center_circular_progress.dart';
 
 class AddSensorSystem extends StatefulWidget {
@@ -68,5 +69,16 @@ class _AddSensorSystemState extends State<AddSensorSystem> {
     });
   }
 
-  createNewSensorSystem(SensorSystem sensorSystem) {}
+  createNewSensorSystem(SensorSystem sensorSystem) {
+    _init = false;
+    SensorSystemProvider sensorSystemProvider = SensorSystemProvider(
+      http.Client(),
+    );
+
+    sensorSystemProvider.createSensorSystem(sensorSystem).then((response) {
+      setState(() {
+        _init = true;
+      });
+    });
+  }
 }
