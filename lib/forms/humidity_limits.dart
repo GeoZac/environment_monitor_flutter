@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../utils/sensor_form_helpers.dart';
 import 'sensor_system.dart';
 
 class HumidityLimits extends StatefulWidget {
@@ -58,6 +59,7 @@ class _HumidityLimitsState extends State<HumidityLimits> {
                   labelText: 'Max. limit',
                   border: outlineInputBorder8(),
                 ),
+                validator: (value) => validateHumidityValue(value),
               ),
             ),
             const SizedBox(width: 12),
@@ -71,6 +73,7 @@ class _HumidityLimitsState extends State<HumidityLimits> {
                   labelText: 'Min limit',
                   border: outlineInputBorder8(),
                 ),
+                validator: (value) => validateHumidityValue(value),
               ),
             ),
           ],

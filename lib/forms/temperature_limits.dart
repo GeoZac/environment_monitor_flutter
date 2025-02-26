@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../utils/sensor_form_helpers.dart';
 import 'sensor_system.dart';
 
 class TemperatureLimits extends StatefulWidget {
@@ -60,6 +61,7 @@ class _TemperatureLimitsState extends State<TemperatureLimits> {
                   labelText: 'Max. limit',
                   border: outlineInputBorder8(),
                 ),
+                validator: (value) => validateTemperatureValue(value!),
               ),
             ),
             const SizedBox(width: 12),
@@ -73,6 +75,7 @@ class _TemperatureLimitsState extends State<TemperatureLimits> {
                   labelText: 'Min limit',
                   border: outlineInputBorder8(),
                 ),
+                validator: (value) => validateTemperatureValue(value!),
               ),
             ),
           ],
