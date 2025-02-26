@@ -6,22 +6,36 @@ const double maxHumidityValue = 100;
 const double minTemperatureValue = -9999.000;
 const double maxTemperatureValue = 9999.000;
 
-String? validateHumidityValue(String minLimitValue) {
-  double? minLimit = double.tryParse(minLimitValue);
-  if (minLimit == null) {
+String? validateHumidityValue(String? value) {
+  if (value == null || value.isEmpty) {
     return "Should be within $minHumidityValue and $maxHumidityValue";
   }
-  if (minLimit < 0) return "Should be more than $minHumidityValue";
-  if (minLimit >= 100) return "Should be less than $maxHumidityValue";
+  double? humidity = double.tryParse(value);
+  if (humidity == null) {
+    return "Should be within $minHumidityValue and $maxHumidityValue";
+  }
+  if (humidity < minHumidityValue) {
+    return "Should be more than $minHumidityValue";
+  }
+  if (humidity >= maxHumidityValue) {
+    return "Should be less than $maxHumidityValue";
+  }
   return null;
 }
 
-String? validateTemperatureValue(String minLimitValue) {
-  double? minLimit = double.tryParse(minLimitValue);
-  if (minLimit == null) {
+String? validateTemperatureValue(String? value) {
+  if (value == null || value.isEmpty) {
+    return "Should be within $minTemperatureValue and $minTemperatureValue";
+  }
+  double? temperature = double.tryParse(value);
+  if (temperature == null) {
     return "Should be within $minTemperatureValue and $maxTemperatureValue";
   }
-  if (minLimit < 0) return "Should be more than $minTemperatureValue";
-  if (minLimit >= 100) return "Should be less than $maxTemperatureValue";
+  if (temperature < minTemperatureValue) {
+    return "Should be more than $minTemperatureValue";
+  }
+  if (temperature >= maxTemperatureValue) {
+    return "Should be less than $maxTemperatureValue";
+  }
   return null;
 }
