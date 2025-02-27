@@ -1,6 +1,7 @@
 import 'package:environment_monitor/consts/sensor_location_type.dart';
 import 'package:environment_monitor/forms/sensor_system.dart';
 import 'package:environment_monitor/models/sensor_location/sensor_location.dart';
+import 'package:environment_monitor/models/sensor_system/sensor_system.dart';
 import 'package:environment_monitor/models/user/unconv_user.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -8,7 +9,10 @@ import 'package:flutter_test/flutter_test.dart';
 void main() {
   testWidgets('SensorSystemForm validates and submits correctly',
       (WidgetTester tester) async {
-    mockOnSubmit(sensorSystem) {}
+    mockOnSubmit(SensorSystem sensorSystem) {
+      expect(sensorSystem.sensorName, "Test Sensor");
+    }
+
     final existingLocations = [
       SensorLocation(
         id: "a45f79ce-2b9e-4cd4-b4e7-32acbbbed4fe",
