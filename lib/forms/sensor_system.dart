@@ -101,18 +101,23 @@ class _SensorSystemFormState extends State<SensorSystemForm> {
                         ],
                       ),
                     ),
-                    DropdownButtonFormField<SensorLocation>(
-                      decoration:
-                          InputDecoration(border: outlineInputBorder8()),
-                      hint: const Text("Select a Sensor Location"),
-                      items: widget.existingSensorLocations
-                          .map((sensorLocation) => DropdownMenuItem(
-                                value: sensorLocation,
-                                child: Text(sensorLocation.locationToString()),
-                              ))
-                          .toList(),
-                      onChanged: (value) =>
-                          setState(() => sensorLocation = value),
+                    FormField<SensorLocation>(
+                      builder: (FormFieldState<SensorLocation> state) {
+                        return DropdownButtonFormField<SensorLocation>(
+                          decoration:
+                              InputDecoration(border: outlineInputBorder8()),
+                          hint: const Text("Select a Sensor Location"),
+                          items: widget.existingSensorLocations
+                              .map((sensorLocation) => DropdownMenuItem(
+                                    value: sensorLocation,
+                                    child:
+                                        Text(sensorLocation.locationToString()),
+                                  ))
+                              .toList(),
+                          onChanged: (value) =>
+                              setState(() => sensorLocation = value),
+                        );
+                      },
                     ),
                     const SizedBox(height: 16),
                     TemperatureLimits(
