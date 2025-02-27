@@ -158,7 +158,7 @@ class _SensorSystemFormState extends State<SensorSystemForm> {
                   if (_formKey.currentState!.validate()) {
                     _formKey.currentState!.save();
 
-                    // widget.onSubmit();
+                    submitForm();
                   }
                 },
                 child: const Text(
