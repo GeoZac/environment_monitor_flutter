@@ -35,6 +35,33 @@ class _SensorSystemFormState extends State<SensorSystemForm> {
   u_threshold.Threshold? humidityThreshold;
   u_threshold.Threshold? temperatureThreshold;
 
+  final TextEditingController _sensorNameController = TextEditingController();
+  final TextEditingController _descriptionController = TextEditingController();
+
+  @override
+  void dispose() {
+    _sensorNameController.dispose();
+    _descriptionController.dispose();
+    super.dispose();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+
+    _sensorNameController.addListener(() {
+      setState(() {
+        _formKey.currentState!.save();
+      });
+    });
+
+    _descriptionController.addListener(() {
+      setState(() {
+        _formKey.currentState!.save();
+      });
+    });
+  }
+
   void submitForm() {
     if (_formKey.currentState!.validate()) {
       _formKey.currentState!.save();
@@ -65,6 +92,7 @@ class _SensorSystemFormState extends State<SensorSystemForm> {
                   children: [
                     const FormSectionTitle(titleString: "Device details *"),
                     TextFormField(
+                      controller: _sensorNameController,
                       autofocus: true,
                       decoration: InputDecoration(
                         labelText: 'Sensor Name *',
@@ -76,6 +104,7 @@ class _SensorSystemFormState extends State<SensorSystemForm> {
                     ),
                     const SizedBox(height: 16),
                     TextFormField(
+                      controller: _descriptionController,
                       maxLength: 500,
                       maxLines: 3,
                       maxLengthEnforcement: MaxLengthEnforcement.enforced,
