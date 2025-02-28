@@ -6,8 +6,8 @@ import '../models/sensor_location/sensor_location.dart';
 import '../models/sensor_system/sensor_system.dart';
 import '../models/threshold/threshold.dart' as u_threshold;
 import '../models/user/unconv_user.dart';
-// import 'humidity_limits.dart';
-// import 'temperature_limits.dart';
+import 'humidity_limits.dart';
+import 'temperature_limits.dart';
 
 class SensorSystemForm extends StatefulWidget {
   final List<SensorLocation> existingSensorLocations;
@@ -149,33 +149,33 @@ class _SensorSystemFormState extends State<SensorSystemForm> {
                       },
                     ),
                     const SizedBox(height: 16),
-                    // TemperatureLimits(
-                    //   onSaved: (maxTemperature, minTemperature) {
-                    //     // Use the values if both are provided
-                    //     if (maxTemperature != null && minTemperature != null) {
-                    //       temperatureThreshold = u_threshold.Threshold(
-                    //         minValue: minTemperature,
-                    //         maxValue: maxTemperature,
-                    //       );
-                    //     } else {
-                    //       humidityThreshold = null;
-                    //     }
-                    //   },
-                    // ),
+                    TemperatureLimits(
+                      onSaved: (maxTemperature, minTemperature) {
+                        // Use the values if both are provided
+                        if (maxTemperature != null && minTemperature != null) {
+                          temperatureThreshold = u_threshold.Threshold(
+                            minValue: minTemperature,
+                            maxValue: maxTemperature,
+                          );
+                        } else {
+                          humidityThreshold = null;
+                        }
+                      },
+                    ),
                     const SizedBox(height: 16),
-                    // HumidityLimits(
-                    //   onSaved: (maxHumidity, minHumidity) {
-                    //     // Use the values if both are provided
-                    //     if (maxHumidity != null && minHumidity != null) {
-                    //       humidityThreshold = u_threshold.Threshold(
-                    //         minValue: minHumidity,
-                    //         maxValue: maxHumidity,
-                    //       );
-                    //     } else {
-                    //       humidityThreshold = null;
-                    //     }
-                    //   },
-                    // ),
+                    HumidityLimits(
+                      onSaved: (maxHumidity, minHumidity) {
+                        // Use the values if both are provided
+                        if (maxHumidity != null && minHumidity != null) {
+                          humidityThreshold = u_threshold.Threshold(
+                            minValue: minHumidity,
+                            maxValue: maxHumidity,
+                          );
+                        } else {
+                          humidityThreshold = null;
+                        }
+                      },
+                    ),
                   ],
                 ),
               ),
