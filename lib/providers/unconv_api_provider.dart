@@ -18,6 +18,7 @@ class UnconvApiProvider with ChangeNotifier {
     Uri uri = Uri(
       scheme: Globals.uriScheme,
       host: Secrets.baseApiUrl,
+      port: Secrets.baseApiPort,
       path: '/auth/login',
     );
 

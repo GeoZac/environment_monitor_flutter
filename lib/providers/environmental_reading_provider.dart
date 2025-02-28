@@ -24,6 +24,7 @@ class EnvironmentalReadingProvider with ChangeNotifier {
     Uri uri = Uri(
       scheme: Globals.uriScheme,
       host: Secrets.baseApiUrl,
+      port: Secrets.baseApiPort,
       path: '/EnvironmentalReading/SensorSystem/$sensorSystemId',
     );
 

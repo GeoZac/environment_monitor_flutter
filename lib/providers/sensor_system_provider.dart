@@ -27,6 +27,7 @@ class SensorSystemProvider with ChangeNotifier {
     Uri uri = Uri(
       scheme: Globals.uriScheme,
       host: Secrets.baseApiUrl,
+      port: Secrets.baseApiPort,
       path: '$baseUrlPath/UnconvUser/$unconvUserId',
     );
 
@@ -48,8 +49,9 @@ class SensorSystemProvider with ChangeNotifier {
     };
 
     Uri uri = Uri(
-      scheme: 'https',
+      scheme: Globals.uriScheme,
       host: Secrets.baseApiUrl,
+      port: Secrets.baseApiPort,
       path: '$baseUrlPath/ReadingsCount/$sensorSystemId',
     );
 
