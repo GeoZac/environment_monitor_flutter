@@ -8,7 +8,7 @@ const double maxTemperatureValue = 9999.000;
 
 String? validateHumidityValue(String? value) {
   if (value == null || value.isEmpty) {
-    return "Should be within $minHumidityValue and $maxHumidityValue";
+    return null;
   }
   double? humidity = double.tryParse(value);
   if (humidity == null) {
@@ -25,7 +25,7 @@ String? validateHumidityValue(String? value) {
 
 String? validateTemperatureValue(String? value) {
   if (value == null || value.isEmpty) {
-    return "Should be within $minTemperatureValue and $minTemperatureValue";
+    return null;
   }
   double? temperature = double.tryParse(value);
   if (temperature == null) {
