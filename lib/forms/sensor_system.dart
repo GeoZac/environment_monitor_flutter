@@ -92,6 +92,7 @@ class _SensorSystemFormState extends State<SensorSystemForm> {
                   children: [
                     const FormSectionTitle(titleString: "Device details *"),
                     TextFormField(
+                      key: const Key('sensorNameField'),
                       controller: _sensorNameController,
                       autofocus: true,
                       decoration: InputDecoration(
@@ -104,6 +105,7 @@ class _SensorSystemFormState extends State<SensorSystemForm> {
                     ),
                     const SizedBox(height: 16),
                     TextFormField(
+                      key: const Key('descriptionField'),
                       controller: _descriptionController,
                       maxLength: 500,
                       maxLines: 3,
