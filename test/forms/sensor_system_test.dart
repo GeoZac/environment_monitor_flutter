@@ -50,8 +50,8 @@ void main() {
     );
 
     // Verify initial state
-    expect(find.text('Sensor Name *'), findsOneWidget);
-    expect(find.text('Select a Sensor Location'), findsOneWidget);
+    expect(find.byKey(const Key('sensorNameField')), findsOneWidget);
+    expect(find.byKey(const Key('descriptionField')), findsOneWidget);
 
     expect(find.byKey(const Key('sensorLocationField')), findsOneWidget);
 
@@ -100,11 +100,12 @@ void main() {
     );
 
     // Enter sensor name
-    await tester.enterText(find.byType(TextFormField).first, 'Test Sensor');
+    await tester.enterText(
+        find.byKey(const Key('sensorNameField')), 'Test Sensor');
     await tester.pump();
 
     // Select a location
-    await tester.tap(find.byType(DropdownButtonFormField<SensorLocation>));
+    await tester.tap(find.byKey(const Key('sensorLocationField')));
     await tester.pumpAndSettle();
     await tester.tap(find.text(existingLocations[0].locationToString()).last);
     await tester.pump();
