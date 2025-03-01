@@ -86,6 +86,10 @@ void main() {
       (WidgetTester tester) async {
     mockOnSubmit(SensorSystem sensorSystem) {
       expect(sensorSystem.sensorName, "Test Sensor");
+      expect(sensorSystem.description, "");
+      expect(sensorSystem.sensorLocation, isNull);
+      expect(sensorSystem.humidityThreshold, isNull);
+      expect(sensorSystem.temperatureThreshold, isNull);
     }
 
     await tester.pumpWidget(
@@ -105,12 +109,6 @@ void main() {
         find.byKey(const Key('sensorNameField')), 'Test Sensor');
     await tester.pump();
 
-    // Select a location
-    await tester.tap(find.byKey(const Key('sensorLocationField')));
-    await tester.pumpAndSettle();
-    await tester.tap(find.text(existingLocations[0].locationToString()).last);
-    await tester.pump();
-
     // Submit form
     await tester.tap(find.text('Submit'));
     await tester.pump();
@@ -124,6 +122,8 @@ void main() {
       (WidgetTester tester) async {
     mockOnSubmit(SensorSystem sensorSystem) {
       expect(sensorSystem.sensorName, "Test Sensor");
+      expect(sensorSystem.description, isNotNull);
+      expect(sensorSystem.sensorLocation, isNotNull);
     }
 
     await tester.pumpWidget(
