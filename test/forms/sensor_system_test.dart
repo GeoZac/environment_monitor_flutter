@@ -59,6 +59,28 @@ void main() {
     expect(find.byKey(const Key('temperatureLimitsColumn')), findsOneWidget);
   });
 
+  testWidgets('SensorSystemForm validates and shows error on empty input',
+      (WidgetTester tester) async {
+    await tester.pumpWidget(
+      MaterialApp(
+        home: Scaffold(
+          body: SensorSystemForm(
+            existingSensorLocations: existingLocations,
+            unconvUser: testUser,
+            onSubmit: (sensorSystem) {},
+          ),
+        ),
+      ),
+    );
+
+    // Attempt submission without filling in required fields
+    await tester.tap(find.text('Submit'));
+    await tester.pump();
+
+    // Expect validation error
+    expect(find.text('Please enter a sensor name'), findsOneWidget);
+  });
+
   testWidgets('SensorSystemForm validates and submits correctly',
       (WidgetTester tester) async {
     mockOnSubmit(SensorSystem sensorSystem) {
@@ -76,13 +98,6 @@ void main() {
         ),
       ),
     );
-
-    // Attempt submission without filling in required fields
-    await tester.tap(find.text('Submit'));
-    await tester.pump();
-
-    // Expect validation error
-    expect(find.text('Please enter a sensor name'), findsOneWidget);
 
     // Enter sensor name
     await tester.enterText(find.byType(TextFormField).first, 'Test Sensor');
