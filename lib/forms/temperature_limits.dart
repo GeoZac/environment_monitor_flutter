@@ -46,6 +46,7 @@ class _TemperatureLimitsState extends State<TemperatureLimits> {
   @override
   Widget build(BuildContext context) {
     return Column(
+      key: const Key('temperatureLimitsColumn'),
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const FormSectionTitle(titleString: "Temperature limits"),

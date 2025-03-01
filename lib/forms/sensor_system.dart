@@ -133,6 +133,7 @@ class _SensorSystemFormState extends State<SensorSystemForm> {
                       ),
                     ),
                     FormField<SensorLocation>(
+                      key: const Key('sensorLocationField'),
                       builder: (FormFieldState<SensorLocation> state) {
                         return DropdownButtonFormField<SensorLocation>(
                           decoration:

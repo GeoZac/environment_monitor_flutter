@@ -44,6 +44,7 @@ class _HumidityLimitsState extends State<HumidityLimits> {
   @override
   Widget build(BuildContext context) {
     return Column(
+      key: const Key('humidityLimitsColumn'),
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const FormSectionTitle(titleString: "Humidity limits"),
