@@ -81,7 +81,8 @@ void main() {
     expect(find.text('Please enter a sensor name'), findsOneWidget);
   });
 
-  testWidgets('SensorSystemForm validates and submits correctly',
+  testWidgets(
+      'SensorSystemForm validates and submits correctly with required fields',
       (WidgetTester tester) async {
     mockOnSubmit(SensorSystem sensorSystem) {
       expect(sensorSystem.sensorName, "Test Sensor");
@@ -102,6 +103,48 @@ void main() {
     // Enter sensor name
     await tester.enterText(
         find.byKey(const Key('sensorNameField')), 'Test Sensor');
+    await tester.pump();
+
+    // Select a location
+    await tester.tap(find.byKey(const Key('sensorLocationField')));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text(existingLocations[0].locationToString()).last);
+    await tester.pump();
+
+    // Submit form
+    await tester.tap(find.text('Submit'));
+    await tester.pump();
+
+    // Expect form to be submitted successfully (no validation error should remain)
+    expect(find.text('Please enter a sensor name'), findsNothing);
+  });
+
+  testWidgets(
+      'SensorSystemForm validates and submits correctly with all fields',
+      (WidgetTester tester) async {
+    mockOnSubmit(SensorSystem sensorSystem) {
+      expect(sensorSystem.sensorName, "Test Sensor");
+    }
+
+    await tester.pumpWidget(
+      MaterialApp(
+        home: Scaffold(
+          body: SensorSystemForm(
+            existingSensorLocations: existingLocations,
+            unconvUser: testUser,
+            onSubmit: mockOnSubmit,
+          ),
+        ),
+      ),
+    );
+
+    // Enter sensor name
+    await tester.enterText(
+        find.byKey(const Key('sensorNameField')), 'Test Sensor');
+    await tester.pump();
+
+    await tester.enterText(
+        find.byKey(const Key('descriptionField')), 'Very short validation');
     await tester.pump();
 
     // Select a location
