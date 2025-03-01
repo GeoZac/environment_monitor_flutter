@@ -34,6 +34,26 @@ void main() {
       email: "test@example.com",
     );
   });
+
+  testWidgets('SensorSystemForm initializes correctly',
+      (WidgetTester tester) async {
+    await tester.pumpWidget(
+      MaterialApp(
+        home: Scaffold(
+          body: SensorSystemForm(
+            existingSensorLocations: existingLocations,
+            unconvUser: testUser,
+            onSubmit: (sensorSystem) {},
+          ),
+        ),
+      ),
+    );
+
+    // Verify initial state
+    expect(find.text('Sensor Name *'), findsOneWidget);
+    expect(find.text('Select a Sensor Location'), findsOneWidget);
+  });
+
   testWidgets('SensorSystemForm validates and submits correctly',
       (WidgetTester tester) async {
     mockOnSubmit(SensorSystem sensorSystem) {
@@ -51,10 +71,6 @@ void main() {
         ),
       ),
     );
-
-    // Verify initial state
-    expect(find.text('Sensor Name *'), findsOneWidget);
-    expect(find.text('Select a Sensor Location'), findsOneWidget);
 
     // Attempt submission without filling in required fields
     await tester.tap(find.text('Submit'));
