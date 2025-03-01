@@ -52,6 +52,11 @@ void main() {
     // Verify initial state
     expect(find.text('Sensor Name *'), findsOneWidget);
     expect(find.text('Select a Sensor Location'), findsOneWidget);
+
+    expect(find.byKey(const Key('sensorLocationField')), findsOneWidget);
+
+    expect(find.byKey(const Key('humidityLimitsColumn')), findsOneWidget);
+    expect(find.byKey(const Key('temperatureLimitsColumn')), findsOneWidget);
   });
 
   testWidgets('SensorSystemForm validates and submits correctly',
