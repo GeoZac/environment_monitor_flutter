@@ -7,13 +7,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
-  testWidgets('SensorSystemForm validates and submits correctly',
-      (WidgetTester tester) async {
-    mockOnSubmit(SensorSystem sensorSystem) {
-      expect(sensorSystem.sensorName, "Test Sensor");
-    }
+  late List<SensorLocation> existingLocations;
+  late UnconvUser testUser;
 
-    final existingLocations = [
+  setUp(() {
+    existingLocations = [
       SensorLocation(
         id: "a45f79ce-2b9e-4cd4-b4e7-32acbbbed4fe",
         sensorLocationText: "Place A",
@@ -29,11 +27,19 @@ void main() {
         sensorLocationType: SensorLocationType.indoor,
       ),
     ];
-    final testUser = UnconvUser(
+
+    testUser = UnconvUser(
       id: "a5bbd1bd-c89b-4219-b0a8-379abe41b879",
       username: "Test User",
       email: "test@example.com",
     );
+  });
+  testWidgets('SensorSystemForm validates and submits correctly',
+      (WidgetTester tester) async {
+    mockOnSubmit(SensorSystem sensorSystem) {
+      expect(sensorSystem.sensorName, "Test Sensor");
+    }
+
     await tester.pumpWidget(
       MaterialApp(
         home: Scaffold(
