@@ -161,7 +161,7 @@ class _SensorSystemFormState extends State<SensorSystemForm> {
                             maxValue: maxTemperature,
                           );
                         } else {
-                          humidityThreshold = null;
+                          temperatureThreshold = null;
                         }
                       },
                     ),
