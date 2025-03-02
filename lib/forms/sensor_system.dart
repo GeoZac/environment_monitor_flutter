@@ -72,6 +72,8 @@ class _SensorSystemFormState extends State<SensorSystemForm> {
         sensorStatus: sensorStatus,
         sensorLocation: sensorLocation?.id == "-1" ? null : sensorLocation,
         unconvUser: widget.unconvUser,
+        humidityThreshold: humidityThreshold,
+        temperatureThreshold: temperatureThreshold,
       );
       widget.onSubmit(newSensorSystem);
     }
