@@ -123,7 +123,10 @@ void main() {
     mockOnSubmit(SensorSystem sensorSystem) {
       expect(sensorSystem.sensorName, "Test Sensor");
       expect(sensorSystem.description, isNotNull);
+      expect(sensorSystem.description, 'Very short validation');
       expect(sensorSystem.sensorLocation, isNotNull);
+      expect(sensorSystem.humidityThreshold, isNotNull);
+      expect(sensorSystem.temperatureThreshold, isNotNull);
     }
 
     await tester.pumpWidget(
@@ -141,17 +144,33 @@ void main() {
     // Enter sensor name
     await tester.enterText(
         find.byKey(const Key('sensorNameField')), 'Test Sensor');
-    await tester.pump();
+    await tester.pumpAndSettle();
 
     await tester.enterText(
         find.byKey(const Key('descriptionField')), 'Very short validation');
-    await tester.pump();
+    await tester.pumpAndSettle();
 
     // Select a location
     await tester.tap(find.byKey(const Key('sensorLocationField')));
     await tester.pumpAndSettle();
     await tester.tap(find.text(existingLocations[0].locationToString()).last);
-    await tester.pump();
+    await tester.pumpAndSettle();
+
+    // Enter humidity thresholds
+    final maxHumidityField = find.byKey(const Key('maxHumidityField'));
+    final minHumidityField = find.byKey(const Key('minHumidityField'));
+
+    await tester.enterText(maxHumidityField, '65.5');
+    await tester.enterText(minHumidityField, '30.2');
+    await tester.pumpAndSettle();
+
+    // Enter temperature thresholds
+    final maxTemperatureField = find.byKey(const Key('maxTemperatureField'));
+    final minTemperatureField = find.byKey(const Key('minTemperatureField'));
+
+    await tester.enterText(maxTemperatureField, '65.5');
+    await tester.enterText(minTemperatureField, '30.2');
+    await tester.pumpAndSettle();
 
     // Submit form
     await tester.tap(find.text('Submit'));
