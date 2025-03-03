@@ -86,7 +86,7 @@ void main() {
       (WidgetTester tester) async {
     mockOnSubmit(SensorSystem sensorSystem) {
       expect(sensorSystem.sensorName, "Test Sensor");
-      expect(sensorSystem.description, "");
+      expect(sensorSystem.description, isNull);
       expect(sensorSystem.sensorLocation, isNull);
       expect(sensorSystem.humidityThreshold, isNull);
       expect(sensorSystem.temperatureThreshold, isNull);

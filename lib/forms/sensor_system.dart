@@ -66,8 +66,10 @@ class _SensorSystemFormState extends State<SensorSystemForm> {
     if (_formKey.currentState!.validate()) {
       _formKey.currentState!.save();
       SensorSystem newSensorSystem = SensorSystem(
-        sensorName: sensorName,
-        description: description,
+        sensorName: _sensorNameController.text,
+        description: _descriptionController.text.isNotEmpty
+            ? _descriptionController.text
+            : null,
         deleted: deleted,
         sensorStatus: sensorStatus,
         sensorLocation: sensorLocation?.id == "-1" ? null : sensorLocation,
