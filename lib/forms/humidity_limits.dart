@@ -49,6 +49,7 @@ class _HumidityLimitsState extends State<HumidityLimits> {
       children: [
         const FormSectionTitle(titleString: "Humidity limits"),
         Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Expanded(
               child: TextFormField(

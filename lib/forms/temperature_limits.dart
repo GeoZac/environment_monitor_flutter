@@ -51,6 +51,7 @@ class _TemperatureLimitsState extends State<TemperatureLimits> {
       children: [
         const FormSectionTitle(titleString: "Temperature limits"),
         Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Expanded(
               child: TextFormField(
