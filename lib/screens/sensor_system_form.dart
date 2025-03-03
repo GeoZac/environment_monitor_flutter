@@ -41,7 +41,9 @@ class _AddSensorSystemState extends State<AddSensorSystem> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Add New Sensor Form'),
+        title: const Text(
+          'Add New Sensor',
+        ),
       ),
       body: (!_init)
           ? const CenteredCircularProgress()
@@ -69,7 +71,7 @@ class _AddSensorSystemState extends State<AddSensorSystem> {
     });
   }
 
-  createNewSensorSystem(SensorSystem sensorSystem) {
+  void createNewSensorSystem(SensorSystem sensorSystem) {
     _init = false;
     SensorSystemProvider sensorSystemProvider = SensorSystemProvider(
       http.Client(),
@@ -79,6 +81,15 @@ class _AddSensorSystemState extends State<AddSensorSystem> {
       setState(() {
         _init = true;
       });
+
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Sucessfully created sensorsystem')),
+      );
+
+      Navigator.pop(
+        context,
+        true,
+      );
     });
   }
 }
