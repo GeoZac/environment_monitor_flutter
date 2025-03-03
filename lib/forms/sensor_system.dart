@@ -12,7 +12,7 @@ import 'temperature_limits.dart';
 class SensorSystemForm extends StatefulWidget {
   final List<SensorLocation> existingSensorLocations;
   final UnconvUser unconvUser;
-  final Function(SensorSystem) onSubmit;
+  final void Function(SensorSystem) onSubmit;
 
   const SensorSystemForm({
     super.key,
@@ -65,7 +65,7 @@ class _SensorSystemFormState extends State<SensorSystemForm> {
   void submitForm() {
     if (_formKey.currentState!.validate()) {
       _formKey.currentState!.save();
-      SensorSystem newSensorSystem = SensorSystem(
+      final SensorSystem newSensorSystem = SensorSystem(
         sensorName: _sensorNameController.text,
         description: _descriptionController.text.isNotEmpty
             ? _descriptionController.text
