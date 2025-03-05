@@ -82,13 +82,13 @@ class _AddSensorSystemState extends State<AddSensorSystem> {
         _init = true;
       });
 
-      if (context.mounted) {
+      if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text('Successfully created sensor system')),
         );
       }
 
-      if (context.mounted) {
+      if (mounted) {
         Navigator.pop(
           context,
           true,
