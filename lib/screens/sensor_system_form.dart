@@ -82,14 +82,18 @@ class _AddSensorSystemState extends State<AddSensorSystem> {
         _init = true;
       });
 
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Sucessfully created sensorsystem')),
-      );
+      if (context.mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Sucessfully created sensorsystem')),
+        );
+      }
 
-      Navigator.pop(
-        context,
-        true,
-      );
+      if (context.mounted) {
+        Navigator.pop(
+          context,
+          true,
+        );
+      }
     });
   }
 }
