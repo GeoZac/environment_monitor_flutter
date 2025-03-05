@@ -3,6 +3,7 @@ import 'package:http/http.dart' as http;
 
 import '../config/globals.dart';
 import '../config/secrets.dart';
+import '../consts/app_constants.dart';
 import '../models/misc/recent_readings.dart';
 import '../models/sensor_system/sensor_system_response.dart';
 import '../utils/token_singleton.dart';
@@ -19,8 +20,9 @@ class SensorSystemProvider with ChangeNotifier {
 
   Future<SensorSystemResponse> fetchSensorSystems(String unconvUserId) async {
     Map<String, String> headers = {
-      "Content-Type": "application/json",
-      "Authorization": "Bearer ${TokenSingleton().bearerToken}",
+      AppConstants.contentTypeKey: AppConstants.contentTypeValue,
+      AppConstants.authorizationKey:
+          "${AppConstants.bearerPrefix}${TokenSingleton().bearerToken}",
     };
 
     Uri uri = Uri(
@@ -43,8 +45,9 @@ class SensorSystemProvider with ChangeNotifier {
 
   Future<RecentReadings> fetchRecentReadings(String sensorSystemId) async {
     Map<String, String> headers = {
-      "Content-Type": "application/json",
-      "Authorization": "Bearer ${TokenSingleton().bearerToken}",
+      AppConstants.contentTypeKey: AppConstants.contentTypeValue,
+      AppConstants.authorizationKey:
+          "${AppConstants.bearerPrefix}${TokenSingleton().bearerToken}",
     };
 
     Uri uri = Uri(
