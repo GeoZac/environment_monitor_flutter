@@ -72,8 +72,9 @@ class SensorSystemProvider with ChangeNotifier {
 
   Future<SensorSystem> createSensorSystem(SensorSystem sensorSystem) async {
     Map<String, String> headers = {
-      "Content-Type": "application/json",
-      "Authorization": "Bearer ${Secrets.bearerToken}",
+      AppConstants.contentTypeKey: AppConstants.contentTypeValue,
+      AppConstants.authorizationKey:
+          "${AppConstants.bearerPrefix}${TokenSingleton().bearerToken}",
     };
 
     Uri uri = Uri(
