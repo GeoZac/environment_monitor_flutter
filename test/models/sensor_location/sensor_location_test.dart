@@ -46,12 +46,10 @@ void main() {
   });
 
   test("Failure", (() {
-    // Test case 2: JSON missing 'id' field
     final json = {
       "sensorLocationText": "Some Place",
       "latitude": 18.499733,
       "longitude": 56.9241666,
-      "sensorLocationType": "OUTDOOR",
     };
 
     expect(() => SensorLocation.fromJson(json), throwsFormatException);
