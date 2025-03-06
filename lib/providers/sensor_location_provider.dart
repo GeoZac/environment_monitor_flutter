@@ -3,7 +3,9 @@ import 'package:http/http.dart' as http;
 
 import '../config/globals.dart';
 import '../config/secrets.dart';
+import '../consts/app_constants.dart';
 import '../models/sensor_location/sensor_location.dart';
+import '../utils/token_singleton.dart';
 import 'api_provider.dart';
 
 class SensorLocationProvider with ChangeNotifier {
@@ -17,8 +19,9 @@ class SensorLocationProvider with ChangeNotifier {
 
   Future<List<SensorLocation>> fetchSensorLocations(String unconvUserId) async {
     Map<String, String> headers = {
-      "Content-Type": "application/json",
-      "Authorization": "Bearer ${Secrets.bearerToken}",
+      AppConstants.contentTypeKey: AppConstants.contentTypeValue,
+      AppConstants.authorizationKey:
+          "${AppConstants.bearerPrefix}${TokenSingleton().bearerToken}",
     };
 
     Uri uri = Uri(
@@ -45,8 +48,9 @@ class SensorLocationProvider with ChangeNotifier {
   Future<SensorLocation> createSensorLocation(
       SensorLocation sensorLocation) async {
     Map<String, String> headers = {
-      "Content-Type": "application/json",
-      "Authorization": "Bearer ${Secrets.bearerToken}",
+      AppConstants.contentTypeKey: AppConstants.contentTypeValue,
+      AppConstants.authorizationKey:
+          "${AppConstants.bearerPrefix}${TokenSingleton().bearerToken}",
     };
 
     Uri uri = Uri(
