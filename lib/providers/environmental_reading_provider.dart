@@ -11,6 +11,8 @@ import 'api_provider.dart';
 class EnvironmentalReadingProvider with ChangeNotifier {
   final http.Client httpClient;
 
+  final String baseUrlPath = "/EnvironmentalReading";
+
   EnvironmentalReadingProvider(
     this.httpClient,
   );
@@ -27,7 +29,7 @@ class EnvironmentalReadingProvider with ChangeNotifier {
       scheme: Globals.uriScheme,
       host: Secrets.baseApiUrl,
       port: Secrets.baseApiPort,
-      path: '/EnvironmentalReading/SensorSystem/$sensorSystemId',
+      path: '$baseUrlPath/SensorSystem/$sensorSystemId',
     );
 
     ApiProvider apiProvider = ApiProvider(
