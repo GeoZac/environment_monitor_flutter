@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
+import '../config/globals.dart';
 import '../config/secrets.dart';
 import '../models/sensor_location/sensor_location.dart';
 import 'api_provider.dart';
@@ -21,8 +22,9 @@ class SensorLocationProvider with ChangeNotifier {
     };
 
     Uri uri = Uri(
-      scheme: 'https',
+      scheme: Globals.uriScheme,
       host: Secrets.baseApiUrl,
+      port: Secrets.baseApiPort,
       path: '$baseUrlPath/UnconvUser/$unconvUserId',
     );
 
@@ -48,8 +50,9 @@ class SensorLocationProvider with ChangeNotifier {
     };
 
     Uri uri = Uri(
-      scheme: 'https',
+      scheme: Globals.uriScheme,
       host: Secrets.baseApiUrl,
+      port: Secrets.baseApiPort,
       path: baseUrlPath,
     );
 
