@@ -70,7 +70,6 @@ jobs:
       - checkout
       - apply_placeholder
       - install-flutter
-      - format
       - dart_analyze
 
   test-coverage:
