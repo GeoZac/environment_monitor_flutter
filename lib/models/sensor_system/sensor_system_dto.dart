@@ -1,7 +1,4 @@
 import '../envt_reading/base_envt_reading.dart';
-import '../sensor_location/sensor_location.dart';
-import '../threshold/threshold.dart';
-import '../user/unconv_user.dart';
 import 'sensor_system.dart';
 
 class SensorSystemDTO extends SensorSystem {
@@ -28,11 +25,6 @@ class SensorSystemDTO extends SensorSystem {
 
   factory SensorSystemDTO.fromJson(Map<String, dynamic> json) {
     final List<String> requiredFields = [
-      'id',
-      'sensorName',
-      'deleted',
-      'sensorStatus',
-      'unconvUser',
       'readingCount',
       'createdDate',
       'updatedDate',
@@ -44,26 +36,21 @@ class SensorSystemDTO extends SensorSystem {
       throw const FormatException("Missing required fields in JSON");
     }
 
+    final sensorSystem = SensorSystem.fromJson(json);
+
     return SensorSystemDTO(
-      id: json['id'],
-      sensorName: json['sensorName'],
-      description: json['description'],
-      deleted: json['deleted'],
-      sensorStatus:
-          SensorSystem.parseSensorStatusFromJson(json['sensorStatus']),
-      sensorLocation: json['sensorLocation'] != null
-          ? SensorLocation.fromJson(json['sensorLocation'])
-          : null,
-      unconvUser: UnconvUser.fromJson(json['unconvUser']),
-      readingCount: json['readingCount'] ?? 0,
+      id: sensorSystem.id,
+      sensorName: sensorSystem.sensorName,
+      description: sensorSystem.description,
+      deleted: sensorSystem.deleted,
+      sensorStatus: sensorSystem.sensorStatus,
+      sensorLocation: sensorSystem.sensorLocation,
+      unconvUser: sensorSystem.unconvUser,
+      humidityThreshold: sensorSystem.humidityThreshold,
+      temperatureThreshold: sensorSystem.temperatureThreshold,
+      readingCount: json['readingCount'],
       latestReading: json['latestReading'] != null
           ? BaseEnvironmentalReading.fromJson(json['latestReading'])
-          : null,
-      humidityThreshold: json['humidityThreshold'] != null
-          ? Threshold.fromJson(json['humidityThreshold'])
-          : null,
-      temperatureThreshold: json['temperatureThreshold'] != null
-          ? Threshold.fromJson(json['temperatureThreshold'])
           : null,
       createdDate: json['createdDate'],
       updatedDate: json['updatedDate'],
