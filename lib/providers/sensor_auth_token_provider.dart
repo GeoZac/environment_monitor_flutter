@@ -3,6 +3,7 @@ import 'package:http/http.dart' as http;
 
 import '../config/globals.dart';
 import '../config/secrets.dart';
+import '../consts/app_constants.dart';
 import '../models/sensor_auth_token/sensor_auth_token.dart';
 import '../models/shared/message_response.dart';
 import '../utils/token_singleton.dart';
@@ -32,8 +33,9 @@ class SensorAuthTokenProvider with ChangeNotifier {
   /// otherwise returns `null`.
   Future<SensorAuthToken?> fetchSensorAuthToken(String sensorSystemId) async {
     Map<String, String> headers = {
-      "Content-Type": "application/json",
-      "Authorization": "Bearer ${TokenSingleton().bearerToken}",
+      AppConstants.contentTypeKey: AppConstants.contentTypeValue,
+      AppConstants.authorizationKey:
+          "${AppConstants.bearerPrefix}${TokenSingleton().bearerToken}",
     };
 
     Uri uri = Uri(
@@ -64,8 +66,9 @@ class SensorAuthTokenProvider with ChangeNotifier {
   Future<MessageResponse<SensorAuthToken>> generateSensorAuthToken(
       String sensorSystemId) async {
     Map<String, String> headers = {
-      "Content-Type": "application/json",
-      "Authorization": "Bearer ${TokenSingleton().bearerToken}",
+      AppConstants.contentTypeKey: AppConstants.contentTypeValue,
+      AppConstants.authorizationKey:
+          "${AppConstants.bearerPrefix}${TokenSingleton().bearerToken}",
     };
 
     Uri uri = Uri(

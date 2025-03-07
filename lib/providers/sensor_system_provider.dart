@@ -3,6 +3,7 @@ import 'package:http/http.dart' as http;
 
 import '../config/globals.dart';
 import '../config/secrets.dart';
+import '../consts/app_constants.dart';
 import '../models/misc/recent_readings.dart';
 import '../models/sensor_system/sensor_system.dart';
 import '../models/sensor_system/sensor_system_response.dart';
@@ -20,8 +21,9 @@ class SensorSystemProvider with ChangeNotifier {
 
   Future<SensorSystemResponse> fetchSensorSystems(String unconvUserId) async {
     Map<String, String> headers = {
-      "Content-Type": "application/json",
-      "Authorization": "Bearer ${TokenSingleton().bearerToken}",
+      AppConstants.contentTypeKey: AppConstants.contentTypeValue,
+      AppConstants.authorizationKey:
+          "${AppConstants.bearerPrefix}${TokenSingleton().bearerToken}",
     };
 
     Uri uri = Uri(
@@ -44,8 +46,9 @@ class SensorSystemProvider with ChangeNotifier {
 
   Future<RecentReadings> fetchRecentReadings(String sensorSystemId) async {
     Map<String, String> headers = {
-      "Content-Type": "application/json",
-      "Authorization": "Bearer ${TokenSingleton().bearerToken}",
+      AppConstants.contentTypeKey: AppConstants.contentTypeValue,
+      AppConstants.authorizationKey:
+          "${AppConstants.bearerPrefix}${TokenSingleton().bearerToken}",
     };
 
     Uri uri = Uri(
@@ -69,13 +72,15 @@ class SensorSystemProvider with ChangeNotifier {
 
   Future<SensorSystem> createSensorSystem(SensorSystem sensorSystem) async {
     Map<String, String> headers = {
-      "Content-Type": "application/json",
-      "Authorization": "Bearer ${Secrets.bearerToken}",
+      AppConstants.contentTypeKey: AppConstants.contentTypeValue,
+      AppConstants.authorizationKey:
+          "${AppConstants.bearerPrefix}${TokenSingleton().bearerToken}",
     };
 
     Uri uri = Uri(
-      scheme: 'https',
+      scheme: Globals.uriScheme,
       host: Secrets.baseApiUrl,
+      port: Secrets.baseApiPort,
       path: baseUrlPath,
     );
 
