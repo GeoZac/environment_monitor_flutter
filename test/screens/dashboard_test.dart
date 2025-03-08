@@ -211,32 +211,9 @@ void main() {
           "latestReading": null,
           "createdDate": "2024-02-29T14:57:56.795247158Z",
           "updatedDate": "2025-01-23T12:57:56.795270236Z",
-        },
-        {
-          "id": "508baef0-bc82-4481-9af8-83d2e5132100",
-          "sensorName": "Test Sensor",
-          "description": "Custom sensor for workspace",
-          "deleted": false,
-          "sensorStatus": "ACTIVE",
-          "sensorLocation": {
-            "id": "a9ea45e2-71c0-4493-8680-5d1282acfe82",
-            "sensorLocationText": "Some Place",
-            "latitude": 18.499733,
-            "longitude": 56.9241666,
-            "sensorLocationType": "OUTDOOR",
-          },
-          "unconvUser": {
-            "id": "a5bbd1bd-c89b-4219-b0a8-379abe41b879",
-            "username": "Test User",
-            "email": "noname@email.com",
-          },
-          "readingCount": 0,
-          "latestReading": null,
-          "createdDate": "2024-02-29T14:57:56.795247158Z",
-          "updatedDate": "2025-01-23T12:57:56.795270236Z",
-        },
+        }
       ],
-      "totalElements": 5,
+      "totalElements": 4,
       "pageNumber": 1,
       "totalPages": 1
     };
@@ -256,11 +233,19 @@ void main() {
     await tester.pumpAndSettle(); // Wait for the Future to complete
 
     // Assert
+
+    expect(
+        find.byType(
+          SensorSystemDashboardCard,
+          skipOffstage: true,
+        ),
+        findsNWidgets(3));
+
     expect(
         find.byType(
           SensorSystemDashboardCard,
           skipOffstage: false,
         ),
-        findsNWidgets(5));
+        findsNWidgets(4));
   });
 }
