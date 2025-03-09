@@ -19,9 +19,9 @@ commands:
       - checkout
       - run:
           name: Set Flutter vesion
-          command: echo 'export FLUTTER_VERSION="3.27.4"' >> $BASH_ENV
+          command: echo 'export FLUTTER_VERSION="3.24.5"' >> $BASH_ENV
       - flutter/install_sdk_and_pub:
-          version: 3.27.4
+          version: 3.24.5
       - run: dart pub upgrade
       - run: flutter pub get
       - run: flutter pub run build_runner build --delete-conflicting-outputs
