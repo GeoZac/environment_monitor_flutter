@@ -59,26 +59,11 @@ class SensorSystemDTO extends SensorSystem {
 
   @override
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['id'] = id;
-    data['sensorName'] = sensorName;
-    data['description'] = description;
-    data['deleted'] = deleted;
-    data['sensorStatus'] = SensorSystem.parseSensorStatusToJson(sensorStatus);
-    if (sensorLocation != null) {
-      data['sensorLocation'] = sensorLocation!.toJson();
-    }
-    data['unconvUser'] = unconvUser.toJson();
+    final data = super.toJson();
     data['readingCount'] = readingCount;
-    data['latestReading'] = latestReading;
-    if (humidityThreshold != null) {
-      data['humidityThreshold'] = humidityThreshold!.toJson();
-    }
-    if (temperatureThreshold != null) {
-      data['temperatureThreshold'] = temperatureThreshold!.toJson();
-    }
+    data['latestReading'] = latestReading?.toJson();
     data['createdDate'] = createdDate;
-    data['updateddate'] = updatedDate;
+    data['updatedDate'] = updatedDate;
     return data;
   }
 }
