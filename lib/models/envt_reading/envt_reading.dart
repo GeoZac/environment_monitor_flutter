@@ -39,11 +39,8 @@ class EnvironmentalReading extends BaseEnvironmentalReading {
 
   @override
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
+    final Map<String, dynamic> data = super.toJson();
     data['id'] = id;
-    data['temperature'] = temperature;
-    data['humidity'] = humidity;
-    data['timestamp'] = timestamp;
     data['sensorSystem'] = sensorSystem.toJson();
     return data;
   }
