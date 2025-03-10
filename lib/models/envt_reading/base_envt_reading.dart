@@ -28,4 +28,12 @@ class BaseEnvironmentalReading {
       timestamp: json['timestamp'],
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['temperature'] = temperature;
+    data['humidity'] = humidity;
+    data['timestamp'] = timestamp;
+    return data;
+  }
 }
