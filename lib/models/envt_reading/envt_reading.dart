@@ -16,10 +16,7 @@ class EnvironmentalReading extends BaseEnvironmentalReading {
   factory EnvironmentalReading.fromJson(Map<String, dynamic> json) {
     final List<String> requiredFields = [
       'id',
-      'temperature',
-      'humidity',
-      'timestamp',
-      'sensorSystem'
+      'sensorSystem',
     ];
 
     final bool missingFields =
@@ -28,11 +25,14 @@ class EnvironmentalReading extends BaseEnvironmentalReading {
       throw const FormatException("Missing required fields in JSON");
     }
 
+    final BaseEnvironmentalReading baseEnvironmentalReading =
+        BaseEnvironmentalReading.fromJson(json);
+
     return EnvironmentalReading(
       id: json['id'],
-      temperature: json['temperature'],
-      humidity: json['humidity'],
-      timestamp: json['timestamp'],
+      temperature: baseEnvironmentalReading.temperature,
+      humidity: baseEnvironmentalReading.humidity,
+      timestamp: baseEnvironmentalReading.timestamp,
       sensorSystem: SensorSystem.fromJson(json['sensorSystem']),
     );
   }
