@@ -2,7 +2,7 @@ version: 2.1
 
 orbs:
   flutter: circleci/flutter@2.1.0
-  codecov: codecov/codecov@4.1.0
+  codecov: codecov/codecov@5.3.0
   sonarcloud: sonarsource/sonarcloud@2.0.0
 
 executors:
