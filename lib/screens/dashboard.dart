@@ -25,7 +25,7 @@ class Dashboard extends StatefulWidget {
   State<Dashboard> createState() => _DashboardState();
 }
 
-class _DashboardState extends State<Dashboard> {
+class _DashboardState extends State<Dashboard> with WidgetsBindingObserver {
   bool _init = false;
   late List<SensorSystemDTO>? sensorSystems;
   late SensorSystemResponse? sensorSystemResponse;
@@ -34,7 +34,15 @@ class _DashboardState extends State<Dashboard> {
   @override
   void initState() {
     super.initState();
+    WidgetsBinding.instance.addObserver(this);
     fetchAllSensorSystems();
+  }
+
+  @override
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+
+    super.dispose();
   }
 
   @override
