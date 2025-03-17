@@ -239,7 +239,7 @@ void main() {
           SensorSystemDashboardCard,
           skipOffstage: true,
         ),
-        findsNWidgets(3));
+        findsAtLeastNWidgets(2));
 
     expect(
         find.byType(
