@@ -25,16 +25,18 @@ commands:
 
       - restore_cache:
           keys:
-            - flutter-deps-{{ checksum "pubspec.lock" }}
+            - flutter-deps-{{ checksum "pubspec.lock" }}-{{ arch }}
 
       - run: dart pub upgrade
       - run: flutter pub get
 
       - save_cache:
           paths:
-            - .pub-cache
-            - .dart_tool/build
-          key: flutter-deps-{{ checksum "pubspec.lock" }}
+            - ~/.pub-cache
+            - .dart_tool
+            - build
+            - gen
+          key: flutter-deps-{{ checksum "pubspec.lock" }}-{{ arch }}
 
       - run:
           name: Generate Code with Build Runner
