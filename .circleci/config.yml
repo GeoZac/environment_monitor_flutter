@@ -25,7 +25,7 @@ commands:
 
       - restore_cache:
           keys:
-            - flutter-deps-v1-{{ checksum "pubspec.yaml" }}-{{ arch }}
+            - flutter-deps-v2-{{ checksum "pubspec.yaml" }}-{{ arch }}
 
       - run: dart pub upgrade
       - run: flutter pub get
@@ -34,12 +34,10 @@ commands:
           command: flutter pub run build_runner build --delete-conflicting-outputs --verbose --track-performance --fail-on-severe
 
       - save_cache:
+          key: flutter-deps-v2-{{ checksum "pubspec.yaml" }}
           paths:
-            - ~/.pub-cache
-            - .dart_tool
-            - build
-            - gen
-          key: flutter-deps-v1-{{ checksum "pubspec.yaml" }}-{{ arch }}
+            - /home/circleci/.pub-cache
+            - /home/circleci/project/.dart_tool
 
 
   apply_placeholder:
