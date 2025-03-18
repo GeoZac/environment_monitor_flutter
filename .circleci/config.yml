@@ -38,7 +38,7 @@ commands:
 
       - run:
           name: Generate Code with Build Runner
-          command: flutter pub run build_runner build --delete-conflicting-outputs
+          command: flutter pub run build_runner build --delete-conflicting-outputs --verbose --track-performance --fail-on-severe
 
   apply_placeholder:
     steps:
