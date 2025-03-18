@@ -25,7 +25,7 @@ commands:
 
       - restore_cache:
           keys:
-            - flutter-deps-{{ checksum "pubspec.lock" }}-{{ arch }}
+            - flutter-deps-v1-{{ checksum "pubspec.lock" }}-{{ arch }}
 
       - run: dart pub upgrade
       - run: flutter pub get
@@ -39,7 +39,7 @@ commands:
             - .dart_tool
             - build
             - gen
-          key: flutter-deps-{{ checksum "pubspec.lock" }}-{{ arch }}
+          key: flutter-deps-v1-{{ checksum "pubspec.lock" }}-{{ arch }}
 
 
   apply_placeholder:
