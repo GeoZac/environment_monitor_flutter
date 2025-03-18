@@ -29,6 +29,9 @@ commands:
 
       - run: dart pub upgrade
       - run: flutter pub get
+      - run:
+          name: Generate Code with Build Runner
+          command: flutter pub run build_runner build --delete-conflicting-outputs --verbose --track-performance --fail-on-severe
 
       - save_cache:
           paths:
@@ -38,9 +41,6 @@ commands:
             - gen
           key: flutter-deps-{{ checksum "pubspec.lock" }}-{{ arch }}
 
-      - run:
-          name: Generate Code with Build Runner
-          command: flutter pub run build_runner build --delete-conflicting-outputs --verbose --track-performance --fail-on-severe
 
   apply_placeholder:
     steps:
