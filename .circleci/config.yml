@@ -36,7 +36,9 @@ commands:
             - .dart_tool/build
           key: flutter-deps-{{ checksum "pubspec.lock" }}
 
-      - run: flutter pub run build_runner build --delete-conflicting-outputs
+      - run:
+          name: Generate Code with Build Runner
+          command: flutter pub run build_runner build --delete-conflicting-outputs
 
   apply_placeholder:
     steps:
