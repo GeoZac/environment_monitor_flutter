@@ -39,6 +39,14 @@ class _DashboardState extends State<Dashboard> with WidgetsBindingObserver {
   }
 
   @override
+  void didChangeAppLifecycleState(AppLifecycleState appLifecycleState) {
+    if (appLifecycleState.name != "resumed") {
+      return;
+    }
+    fetchAllSensorSystems();
+  }
+
+  @override
   void dispose() {
     WidgetsBinding.instance.removeObserver(this);
 
