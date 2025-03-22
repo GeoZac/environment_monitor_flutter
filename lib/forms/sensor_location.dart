@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
 
-// ignore: unused_import
-import '../consts/sensor_location_type.dart';
-
 class SensorLocationForm extends StatefulWidget {
   const SensorLocationForm({
     super.key,
@@ -18,12 +15,14 @@ class _SensorLocationFormState extends State<SensorLocationForm> {
   @override
   Widget build(BuildContext context) {
     return Column(
+      key: const Key('sensorLocationForm'),
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const Center(
           child: Text(
             'New Location',
+            key: Key('titleText'),
             style: TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.bold,
@@ -34,6 +33,7 @@ class _SensorLocationFormState extends State<SensorLocationForm> {
         const Center(
           child: Text(
             'Enter Sensor area location values below',
+            key: Key('subtitleText'),
             style: TextStyle(
               fontSize: 14,
               color: Colors.grey,
@@ -44,9 +44,11 @@ class _SensorLocationFormState extends State<SensorLocationForm> {
         Form(
           key: _formKey,
           child: Column(
+            key: const Key('formFields'),
             children: [
               TextField(
-                decoration: InputDecoration(
+                key: const Key('locationNameField'),
+                decoration: const InputDecoration(
                   labelText: 'Location Name',
                   border: OutlineInputBorder(),
                 ),
@@ -58,8 +60,9 @@ class _SensorLocationFormState extends State<SensorLocationForm> {
                 children: [
                   Expanded(
                     child: TextField(
+                      key: const Key('latitudeField'),
                       keyboardType: TextInputType.number,
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                         labelText: 'Latitude',
                         border: OutlineInputBorder(),
                       ),
@@ -70,8 +73,9 @@ class _SensorLocationFormState extends State<SensorLocationForm> {
                   ),
                   Expanded(
                     child: TextField(
+                      key: const Key('longitudeField'),
                       keyboardType: TextInputType.number,
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                         labelText: 'Longitude',
                         border: OutlineInputBorder(),
                       ),
@@ -79,22 +83,24 @@ class _SensorLocationFormState extends State<SensorLocationForm> {
                   ),
                 ],
               ),
-              const SizedBox(
-                height: 12,
-              ),
               const SizedBox(height: 20),
             ],
           ),
         ),
-        Divider(),
+        const Divider(
+          key: Key('divider'),
+        ),
         Row(
+          key: const Key('actionButtons'),
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             TextButton(
+              key: const Key('cancelButton'),
               onPressed: () => Navigator.of(context).pop(),
               child: const Text('Cancel'),
             ),
             ElevatedButton(
+              key: const Key('addLocationButton'),
               onPressed: () {
                 Navigator.of(context).pop();
               },
