@@ -5,9 +5,11 @@ import 'package:flutter_test/flutter_test.dart';
 void main() {
   testWidgets('SensorLocationForm renders correctly',
       (WidgetTester tester) async {
-    await tester.pumpWidget(const MaterialApp(
+    await tester.pumpWidget(MaterialApp(
         home: Scaffold(
-      body: SensorLocationForm(),
+      body: SensorLocationForm(
+        addSensorLocation: (sensorLocation) {},
+      ),
     )));
 
     expect(find.text('New Location'), findsOneWidget);
@@ -22,8 +24,11 @@ void main() {
 
   testWidgets('Text fields exist and can receive input',
       (WidgetTester tester) async {
-    await tester.pumpWidget(
-        const MaterialApp(home: Scaffold(body: SensorLocationForm())));
+    await tester.pumpWidget(MaterialApp(
+        home: Scaffold(
+            body: SensorLocationForm(
+      addSensorLocation: (sensorLocation) {},
+    ))));
 
     var nameField = find.widgetWithText(TextField, 'Location Name');
     var latField = find.widgetWithText(TextField, 'Latitude');
@@ -42,7 +47,9 @@ void main() {
     await tester.pumpWidget(MaterialApp(
       home: Scaffold(
         body: Builder(
-          builder: (context) => SensorLocationForm(),
+          builder: (context) => SensorLocationForm(
+            addSensorLocation: (sensorLocation) {},
+          ),
         ),
       ),
     ));
@@ -58,7 +65,9 @@ void main() {
     await tester.pumpWidget(MaterialApp(
       home: Scaffold(
         body: Builder(
-          builder: (context) => SensorLocationForm(),
+          builder: (context) => SensorLocationForm(
+            addSensorLocation: (sensorLocation) {},
+          ),
         ),
       ),
     ));
