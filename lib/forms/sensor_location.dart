@@ -18,10 +18,26 @@ class SensorLocationForm extends StatefulWidget {
 
 class _SensorLocationFormState extends State<SensorLocationForm> {
   final _formKey = GlobalKey<FormState>();
-  final TextEditingController _longitudeController = TextEditingController();
-  final TextEditingController _latitudeController = TextEditingController();
-  final TextEditingController _locationNameController = TextEditingController();
+  late TextEditingController _longitudeController;
+  late TextEditingController _latitudeController;
+  late TextEditingController _locationNameController;
   SensorLocationType _locationType = SensorLocationType.outdoor;
+
+  @override
+  void initState() {
+    super.initState();
+    _longitudeController = TextEditingController();
+    _latitudeController = TextEditingController();
+    _locationNameController = TextEditingController();
+  }
+
+  @override
+  void dispose() {
+    _longitudeController.dispose();
+    _latitudeController.dispose();
+    _locationNameController.dispose();
+    super.dispose();
+  }
 
   void submitForm() {
     if (_formKey.currentState!.validate()) {
@@ -78,7 +94,7 @@ class _SensorLocationFormState extends State<SensorLocationForm> {
           child: Column(
             key: const Key('formFields'),
             children: [
-              TextField(
+              TextFormField(
                 key: const Key('locationNameField'),
                 controller: _locationNameController,
                 decoration: const InputDecoration(
@@ -92,7 +108,7 @@ class _SensorLocationFormState extends State<SensorLocationForm> {
               Row(
                 children: [
                   Expanded(
-                    child: TextField(
+                    child: TextFormField(
                       key: const Key('latitudeField'),
                       controller: _latitudeController,
                       keyboardType: TextInputType.number,
@@ -110,7 +126,7 @@ class _SensorLocationFormState extends State<SensorLocationForm> {
                     width: 12,
                   ),
                   Expanded(
-                    child: TextField(
+                    child: TextFormField(
                       key: const Key('longitudeField'),
                       controller: _longitudeController,
                       keyboardType: TextInputType.number,
