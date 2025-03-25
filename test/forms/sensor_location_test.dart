@@ -89,4 +89,30 @@ void main() {
     expect(wasCalled, isTrue);
     expect(find.byType(SensorLocationForm), findsNothing);
   });
+
+  testWidgets('Does not submit form with invalid input',
+      (WidgetTester tester) async {
+    bool wasCalled = false;
+    mockAddSensorLocation(SensorLocation location) {
+      wasCalled = true;
+    }
+
+    await tester.pumpWidget(MaterialApp(
+      home: Scaffold(
+        body: Builder(
+          builder: (context) => SensorLocationForm(
+            addSensorLocation: mockAddSensorLocation,
+          ),
+        ),
+      ),
+    ));
+
+    await tester.enterText(find.byKey(const Key('latitudeField')), 'invalid');
+    await tester.enterText(find.byKey(const Key('longitudeField')), 'invalid');
+
+    await tester.tap(find.byKey(const Key('addLocationButton')));
+    await tester.pump();
+
+    expect(wasCalled, isFalse);
+  });
 }
