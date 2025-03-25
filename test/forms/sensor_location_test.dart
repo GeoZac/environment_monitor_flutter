@@ -1,4 +1,5 @@
 import 'package:environment_monitor/forms/sensor_location.dart';
+import 'package:environment_monitor/models/sensor_location/sensor_location.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
@@ -62,19 +63,30 @@ void main() {
 
   testWidgets('Add Location button dismisses the form',
       (WidgetTester tester) async {
+    bool wasCalled = false;
+    mockAddSensorLocation(SensorLocation location) {
+      wasCalled = true;
+    }
+
     await tester.pumpWidget(MaterialApp(
       home: Scaffold(
         body: Builder(
           builder: (context) => SensorLocationForm(
-            addSensorLocation: (sensorLocation) {},
+            addSensorLocation: mockAddSensorLocation,
           ),
         ),
       ),
     ));
 
-    await tester.tap(find.text('Add Location'));
+    await tester.enterText(
+        find.byKey(const Key('locationNameField')), 'Test Location');
+    await tester.enterText(find.byKey(const Key('latitudeField')), '37.7749');
+    await tester.enterText(find.byKey(const Key('longitudeField')), '12.4194');
+
+    await tester.tap(find.byKey(const Key('addLocationButton')));
     await tester.pumpAndSettle();
 
+    expect(wasCalled, isTrue);
     expect(find.byType(SensorLocationForm), findsNothing);
   });
 }
