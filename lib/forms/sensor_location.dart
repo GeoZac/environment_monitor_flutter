@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 
 import '../consts/sensor_location_type.dart';
 import '../models/sensor_location/sensor_location.dart';
+import '../utils/sensor_location_utils.dart';
 
 class SensorLocationForm extends StatefulWidget {
   final void Function(SensorLocation) addSensorLocation;
@@ -97,6 +98,8 @@ class _SensorLocationFormState extends State<SensorLocationForm> {
               TextFormField(
                 key: const Key('locationNameField'),
                 controller: _locationNameController,
+                validator: (value) =>
+                    value!.isEmpty ? 'Please enter a location name' : null,
                 decoration: const InputDecoration(
                   labelText: 'Location Name',
                   border: OutlineInputBorder(),
@@ -106,17 +109,22 @@ class _SensorLocationFormState extends State<SensorLocationForm> {
                 height: 12,
               ),
               Row(
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Expanded(
                     child: TextFormField(
                       key: const Key('latitudeField'),
                       controller: _latitudeController,
                       keyboardType: TextInputType.number,
+                      validator: (value) => validateLatitudeValue(
+                        value!,
+                      ),
                       inputFormatters: [
                         FilteringTextInputFormatter.allow(
                             RegExp(r'^[0-9]*[.]?[0-9]*'))
                       ],
                       decoration: const InputDecoration(
+                        errorMaxLines: 2,
                         labelText: 'Latitude',
                         border: OutlineInputBorder(),
                       ),
@@ -130,11 +138,15 @@ class _SensorLocationFormState extends State<SensorLocationForm> {
                       key: const Key('longitudeField'),
                       controller: _longitudeController,
                       keyboardType: TextInputType.number,
+                      validator: (value) => validateLongitudeValue(
+                        value!,
+                      ),
                       inputFormatters: [
                         FilteringTextInputFormatter.allow(
                             RegExp(r'^[0-9]*[.]?[0-9]*'))
                       ],
                       decoration: const InputDecoration(
+                        errorMaxLines: 2,
                         labelText: 'Longitude',
                         border: OutlineInputBorder(),
                       ),
