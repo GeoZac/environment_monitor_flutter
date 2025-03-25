@@ -1,3 +1,4 @@
+import 'package:environment_monitor/consts/sensor_location_type.dart';
 import 'package:environment_monitor/forms/sensor_location.dart';
 import 'package:environment_monitor/models/sensor_location/sensor_location.dart';
 import 'package:flutter/material.dart';
@@ -82,6 +83,16 @@ void main() {
         find.byKey(const Key('locationNameField')), 'Test Location');
     await tester.enterText(find.byKey(const Key('latitudeField')), '37.7749');
     await tester.enterText(find.byKey(const Key('longitudeField')), '12.4194');
+
+    final dropdownFinder = find.byKey(const Key('locationTypeDropdown'));
+    expect(dropdownFinder, findsOneWidget);
+
+    await tester.tap(dropdownFinder);
+    await tester.pumpAndSettle();
+
+    final dropdownItem = find.text(SensorLocationType.values.first.name).last;
+    await tester.tap(dropdownItem);
+    await tester.pumpAndSettle();
 
     await tester.tap(find.byKey(const Key('addLocationButton')));
     await tester.pumpAndSettle();

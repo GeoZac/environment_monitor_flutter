@@ -158,6 +158,7 @@ class _SensorLocationFormState extends State<SensorLocationForm> {
                 height: 12,
               ),
               DropdownButtonFormField<SensorLocationType>(
+                key: const Key('locationTypeDropdown'),
                 value: _locationType,
                 items: SensorLocationType.values
                     .map((SensorLocationType locationType) {
@@ -171,7 +172,7 @@ class _SensorLocationFormState extends State<SensorLocationForm> {
                     _locationType = newValue!;
                   });
                 },
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: 'Location Type',
                   border: OutlineInputBorder(),
                 ),
