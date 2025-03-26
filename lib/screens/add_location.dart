@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import '../forms/sensor_location.dart';
 import '../models/sensor_location/sensor_location.dart';
 
-class LocationBottomSheet extends StatefulWidget {
+class _LocationBottomSheet extends StatefulWidget {
   final void Function(SensorLocation) addSensorLocation;
 
-  const LocationBottomSheet({
+  const _LocationBottomSheet({
     super.key,
     required this.addSensorLocation,
   });
@@ -14,7 +14,7 @@ class LocationBottomSheet extends StatefulWidget {
   _LocationBottomSheetState createState() => _LocationBottomSheetState();
 }
 
-class _LocationBottomSheetState extends State<LocationBottomSheet> {
+class _LocationBottomSheetState extends State<_LocationBottomSheet> {
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -52,10 +52,8 @@ void showLocationBottomSheet(
       )),
     ),
     isScrollControlled: true,
-    builder: (context) => LocationBottomSheet(
-      addSensorLocation: (SensorLocation sensorLocation) {
-        addSensorLocation(sensorLocation);
-      },
+    builder: (context) => _LocationBottomSheet(
+      addSensorLocation: addSensorLocation,
     ),
   );
 }
