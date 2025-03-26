@@ -7,7 +7,6 @@ class _LocationBottomSheet extends StatefulWidget {
   final void Function(SensorLocation) addSensorLocation;
 
   const _LocationBottomSheet({
-    super.key,
     required this.addSensorLocation,
   });
   @override
