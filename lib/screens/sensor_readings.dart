@@ -42,6 +42,16 @@ class _SensorReadingsState extends State<SensorReadings>
   }
 
   @override
+  void didChangeAppLifecycleState(AppLifecycleState appLifecycleState) {
+    if (appLifecycleState.name != "resumed") {
+      return;
+    }
+    fetchSensorReadings(
+      widget.selectedSensor.id!,
+    );
+  }
+
+  @override
   void dispose() {
     WidgetsBinding.instance.removeObserver(this);
 
