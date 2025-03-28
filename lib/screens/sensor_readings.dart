@@ -43,7 +43,7 @@ class _SensorReadingsState extends State<SensorReadings>
 
   @override
   void didChangeAppLifecycleState(AppLifecycleState appLifecycleState) {
-    if (appLifecycleState.name != "resumed") {
+    if (appLifecycleState != AppLifecycleState.resumed) {
       return;
     }
     fetchSensorReadings(
