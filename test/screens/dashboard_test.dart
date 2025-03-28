@@ -111,6 +111,70 @@ void main() {
     expect(find.text('Test Sensor'), findsOneWidget);
   });
 
+  testWidgets('should call fetchSensorReadings when resumed',
+      (WidgetTester tester) async {
+    int callCount = 0;
+    Map<String, dynamic> jsonData = {
+      "isFirst": true,
+      "isLast": true,
+      "hasNext": false,
+      "hasPrevious": false,
+      "data": [
+        {
+          "id": "508baef0-bc82-4481-9af8-83d2e5132100",
+          "sensorName": "Test Sensor",
+          "description": "Custom sensor for workspace",
+          "deleted": false,
+          "sensorStatus": "ACTIVE",
+          "sensorLocation": {
+            "id": "a9ea45e2-71c0-4493-8680-5d1282acfe82",
+            "sensorLocationText": "Some Place",
+            "latitude": 18.499733,
+            "longitude": 56.9241666,
+            "sensorLocationType": "OUTDOOR",
+          },
+          "unconvUser": {
+            "id": "a5bbd1bd-c89b-4219-b0a8-379abe41b879",
+            "username": "Test User",
+            "email": "noname@email.com",
+          },
+          "readingCount": 0,
+          "latestReading": null,
+          "createdDate": "2024-02-29T14:57:56.795247158Z",
+          "updatedDate": "2025-01-23T12:57:56.795270236Z",
+        },
+      ],
+      "totalElements": 1,
+      "pageNumber": 1,
+      "totalPages": 1
+    };
+
+    final mockClient = MockClient((request) async {
+      callCount++;
+      return http.Response(jsonEncode(jsonData), 200);
+    });
+
+    expect(callCount, 0);
+
+    await tester.pumpWidget(MaterialApp(
+      home: Dashboard(
+        httpClient: mockClient,
+        unconvUser: unconvUser,
+      ),
+    ));
+
+    await tester.pumpAndSettle();
+
+    expect(callCount, 1);
+
+    final lifecycleEvent = AppLifecycleState.resumed;
+    tester.binding.handleAppLifecycleStateChanged(lifecycleEvent);
+
+    await tester.pumpAndSettle();
+
+    expect(callCount, 2);
+  });
+
   testWidgets('Displays sensor readings after data is fetched',
       (WidgetTester tester) async {
     // Arrange
