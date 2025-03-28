@@ -115,4 +115,65 @@ void main() {
     expect(find.byType(SensorReadingCard), findsNWidgets(1));
     expect(find.text('Test Sensor'), findsOneWidget);
   });
+
+  testWidgets('should call fetchSensorReadings when resumed',
+      (WidgetTester tester) async {
+    int callCount = 0;
+    Map<String, dynamic> jsonData = {
+      "isFirst": true,
+      "isLast": true,
+      "hasNext": false,
+      "hasPrevious": false,
+      "data": [
+        {
+          "id": "c4bd4221-369f-4ba8-b3d8-a7c7d6e25c10",
+          "temperature": -8532.269,
+          "humidity": 74.344,
+          "timestamp": "2068-11-12T07:40:41.578527Z",
+          "sensorSystem": {
+            "id": "eacc8c6d-d16b-4a8d-ba83-47f1a2cd4846",
+            "sensorName": "Specific Sensor System",
+            "deleted": false,
+            "sensorStatus": "ACTIVE",
+            "sensorLocation": null,
+            "unconvUser": {
+              "id": "532c476c-0eed-4d46-97f5-e7a6eefaa2d0",
+              "username": "UnconvUser",
+              "email": "unconvuser@email.com"
+            },
+            "readingCount": 0,
+            "latestReading": null,
+          }
+        },
+      ],
+      "totalElements": 1,
+      "pageNumber": 1,
+      "totalPages": 1
+    };
+
+    final mockClient = MockClient((request) async {
+      callCount++;
+      return http.Response(jsonEncode(jsonData), 200);
+    });
+
+    expect(callCount, 0);
+
+    await tester.pumpWidget(MaterialApp(
+      home: SensorReadings(
+        selectedSensor: mockSensorSystem,
+        httpClient: mockClient,
+      ),
+    ));
+
+    await tester.pumpAndSettle();
+
+    expect(callCount, 1);
+
+    final lifecycleEvent = AppLifecycleState.resumed;
+    tester.binding.handleAppLifecycleStateChanged(lifecycleEvent);
+
+    await tester.pumpAndSettle();
+
+    expect(callCount, 2);
+  });
 }
