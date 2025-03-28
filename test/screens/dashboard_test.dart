@@ -111,7 +111,7 @@ void main() {
     expect(find.text('Test Sensor'), findsOneWidget);
   });
 
-  testWidgets('should call fetchSensorReadings when resumed',
+  testWidgets('should call fetchAllSensorSystems when resumed',
       (WidgetTester tester) async {
     int callCount = 0;
     Map<String, dynamic> jsonData = {
