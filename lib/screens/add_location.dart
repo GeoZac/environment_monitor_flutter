@@ -25,15 +25,9 @@ class _LocationBottomSheetState extends State<_LocationBottomSheet> {
       ),
       child: SingleChildScrollView(
         child: SensorLocationForm(
-          addSensorLocation: addSensorLocation,
+          addSensorLocation: widget.addSensorLocation,
         ),
       ),
-    );
-  }
-
-  void addSensorLocation(SensorLocation sensorLocation) {
-    widget.addSensorLocation(
-      sensorLocation,
     );
   }
 }
