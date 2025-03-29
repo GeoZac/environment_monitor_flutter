@@ -26,7 +26,8 @@ class SensorReadings extends StatefulWidget {
   State<SensorReadings> createState() => _SensorReadingsState();
 }
 
-class _SensorReadingsState extends State<SensorReadings> {
+class _SensorReadingsState extends State<SensorReadings>
+    with WidgetsBindingObserver {
   bool _init = false;
 
   List<EnvironmentalReading>? environmentalReadings;
@@ -36,7 +37,25 @@ class _SensorReadingsState extends State<SensorReadings> {
   @override
   void initState() {
     super.initState();
+    WidgetsBinding.instance.addObserver(this);
     fetchSensorReadings(widget.selectedSensor.id!);
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState appLifecycleState) {
+    if (appLifecycleState != AppLifecycleState.resumed) {
+      return;
+    }
+    fetchSensorReadings(
+      widget.selectedSensor.id!,
+    );
+  }
+
+  @override
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+
+    super.dispose();
   }
 
   @override
