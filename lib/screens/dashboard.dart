@@ -5,9 +5,11 @@ import 'package:http/http.dart' as http;
 import '../models/sensor_system/sensor_system_dto.dart';
 import '../models/sensor_system/sensor_system_response.dart';
 import '../models/user/unconv_user.dart';
+import '../navigation/sensor_system_form_arguments.dart';
 import '../providers/sensor_system_provider.dart';
 import '../widgets/common/center_circular_progress.dart';
 import '../widgets/dashboard_sensor_card.dart';
+import 'sensor_system_form.dart';
 
 class Dashboard extends StatefulWidget {
   const Dashboard({
@@ -56,6 +58,12 @@ class _DashboardState extends State<Dashboard> with WidgetsBindingObserver {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          navigateToCreateSensorSystem();
+        },
+        child: const Icon(Icons.add),
+      ),
       appBar: AppBar(
         title: const Text("Environment Monitor"),
         actions: <Widget>[
@@ -176,5 +184,15 @@ class _DashboardState extends State<Dashboard> with WidgetsBindingObserver {
         _init = true;
       });
     });
+  }
+
+  Future<void> navigateToCreateSensorSystem() async {
+    await Navigator.pushNamed(
+      context,
+      AddSensorSystem.routeName,
+      arguments: SensorSystemFormArguments(
+        widget.unconvUser,
+      ),
+    );
   }
 }
