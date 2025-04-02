@@ -6,6 +6,7 @@ import '../models/sensor_location/sensor_location.dart';
 import '../models/sensor_system/sensor_system.dart';
 import '../models/threshold/threshold.dart' as u_threshold;
 import '../models/user/unconv_user.dart';
+import '../screens/add_location.dart';
 import 'humidity_limits.dart';
 import 'temperature_limits.dart';
 
@@ -129,7 +130,10 @@ class _SensorSystemFormState extends State<SensorSystemForm> {
                           const FormSectionTitle(
                               titleString: "Location details *"),
                           TextButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                showLocationBottomSheet(context,
+                                    addSensorLocation: addNewSensorLocation);
+                              },
                               child: const Text("Add new",
                                   style:
                                       TextStyle(fontWeight: FontWeight.bold)))
@@ -221,6 +225,14 @@ class _SensorSystemFormState extends State<SensorSystemForm> {
         ),
       ],
     );
+  }
+
+  addNewSensorLocation(SensorLocation sensorLocation) {
+    setState(() {
+      widget.existingSensorLocations.add(
+        sensorLocation,
+      );
+    });
   }
 }
 

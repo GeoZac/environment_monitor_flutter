@@ -6,11 +6,13 @@ import 'package:http/http.dart' as http;
 import 'config/globals.dart';
 import 'config/secrets.dart';
 import 'models/sensor_system/sensor_system_dto.dart';
+import 'navigation/sensor_system_form_arguments.dart';
 import 'providers/environmental_reading_provider.dart';
 import 'providers/sensor_system_provider.dart';
 import 'providers/unconv_api_provider.dart';
 import 'screens/login.dart';
 import 'screens/sensor_readings.dart';
+import 'screens/sensor_system_form.dart';
 
 Future<void> main() async {
   if (Globals.analyticsEnabled) {
@@ -49,6 +51,15 @@ class MyApp extends StatelessWidget {
                 return SensorReadings(
                   selectedSensor: args.sensorSystem,
                   httpClient: http.Client(),
+                );
+              },
+            );
+          } else if (settings.name == AddSensorSystem.routeName) {
+            final args = settings.arguments as SensorSystemFormArguments;
+            return MaterialPageRoute(
+              builder: (context) {
+                return AddSensorSystem(
+                  unconvUser: args.unconvUser,
                 );
               },
             );
