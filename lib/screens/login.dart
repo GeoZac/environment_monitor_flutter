@@ -24,8 +24,8 @@ class _LoginScreenState extends State<LoginScreen> {
   TextEditingController usernameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
-  bool rememberMe = false;
-  bool isPassword = true;
+  bool rememberCredentials = false;
+  bool isPasswordObscured = true;
   bool isButtonDisabled = true;
 
   @override
@@ -87,7 +87,7 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
               child: TextFormField(
                 textAlignVertical: TextAlignVertical.center,
-                obscureText: isPassword,
+                obscureText: isPasswordObscured,
                 style: const TextStyle(
                   color: Colors.black,
                 ),
@@ -96,7 +96,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   prefixIcon: InkWell(
                       onTap: () {
                         setState(() {
-                          isPassword = !isPassword;
+                          isPasswordObscured = !isPasswordObscured;
                         });
                       },
                       child: const Icon(
@@ -106,10 +106,10 @@ class _LoginScreenState extends State<LoginScreen> {
                   suffixIcon: InkWell(
                     onTap: () {
                       setState(() {
-                        isPassword = !isPassword;
+                        isPasswordObscured = !isPasswordObscured;
                       });
                     },
-                    child: isPassword
+                    child: isPasswordObscured
                         ? const Icon(
                             Icons.lock_outline,
                             color: Colors.black,
@@ -130,10 +130,10 @@ class _LoginScreenState extends State<LoginScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Checkbox(
-                    value: rememberMe,
+                    value: rememberCredentials,
                     onChanged: (bool? value) {
                       setState(() {
-                        rememberMe = value!;
+                        rememberCredentials = value!;
                       });
                     },
                   ),
@@ -171,8 +171,8 @@ class _LoginScreenState extends State<LoginScreen> {
   void loadSavedCredentials() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     setState(() {
-      rememberMe = prefs.getBool('rememberMe') ?? false;
-      if (rememberMe) {
+      rememberCredentials = prefs.getBool('rememberMe') ?? false;
+      if (rememberCredentials) {
         usernameController.text = prefs.getString('username') ?? '';
         passwordController.text = prefs.getString('password') ?? '';
       }
@@ -181,14 +181,14 @@ class _LoginScreenState extends State<LoginScreen> {
 
   void saveCredentials() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    if (rememberMe) {
+    if (rememberCredentials) {
       await prefs.setString('username', usernameController.text);
       await prefs.setString('password', passwordController.text);
     } else {
       await prefs.remove('username');
       await prefs.remove('password');
     }
-    await prefs.setBool('rememberMe', rememberMe);
+    await prefs.setBool('rememberMe', rememberCredentials);
   }
 
   Future<void> _handleLogin() async {
