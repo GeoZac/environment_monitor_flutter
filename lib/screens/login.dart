@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 
@@ -51,6 +52,11 @@ class _LoginScreenState extends State<LoginScreen> {
         body: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            SvgPicture.asset(
+              "assets/icon/sensor.svg",
+              semanticsLabel: 'App Logo',
+              height: 300,
+            ),
             Container(
               margin: const EdgeInsets.symmetric(
                 horizontal: 30,
