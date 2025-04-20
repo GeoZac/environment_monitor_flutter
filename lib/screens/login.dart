@@ -101,16 +101,10 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
                 controller: passwordController,
                 decoration: InputDecoration(
-                  prefixIcon: InkWell(
-                      onTap: () {
-                        setState(() {
-                          isPasswordObscured = !isPasswordObscured;
-                        });
-                      },
-                      child: const Icon(
-                        Icons.key,
-                        color: Colors.black,
-                      )),
+                  prefixIcon: const Icon(
+                    Icons.key,
+                    color: Colors.black,
+                  ),
                   suffixIcon: InkWell(
                     onTap: () {
                       setState(() {
