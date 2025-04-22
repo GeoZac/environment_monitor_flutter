@@ -58,14 +58,21 @@ class ApiProvider {
   ) async {
     dynamic responseJson;
     try {
-      final response = await httpClient.post(
-        url,
-        headers: headers,
-        body: jsonEncode(body),
-      );
+      final response = await httpClient
+          .post(
+            url,
+            headers: headers,
+            body: jsonEncode(body),
+          )
+          .timeout(const Duration(
+            seconds: 10,
+          ));
+
       responseJson = _response(response);
     } on SocketException {
       throw FetchDataException('No Internet connection');
+    } on TimeoutException {
+      throw FetchDataException('Request timed out');
     }
     return responseJson;
   }
