@@ -18,13 +18,18 @@ class ApiProvider {
   }) async {
     dynamic responseJson;
     try {
-      final response = await httpClient.get(
-        url,
-        headers: headers,
-      );
+      final response = await httpClient
+          .get(
+            url,
+            headers: headers,
+          )
+          .timeout(const Duration(seconds: 10));
+
       responseJson = _response(response);
     } on SocketException {
       throw FetchDataException('No Internet connection');
+    } on TimeoutException {
+      throw FetchDataException('Request timed out');
     }
     return responseJson;
   }
