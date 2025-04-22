@@ -26,6 +26,9 @@ void main() {
       httpClient: mockClient,
     )));
 
+    final sensorIconFinder = find.byKey(const Key('sensor_svg_icon'));
+    expect(sensorIconFinder, findsOneWidget);
+
     final loginButton =
         tester.widget<ElevatedButton>(find.byType(ElevatedButton));
     expect(loginButton.onPressed, isNull);

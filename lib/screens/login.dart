@@ -53,6 +53,7 @@ class _LoginScreenState extends State<LoginScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             SvgPicture.asset(
+              key: const Key('sensor_svg_icon'),
               "assets/icon/sensor.svg",
               semanticsLabel: 'App Logo',
               height: 300,
