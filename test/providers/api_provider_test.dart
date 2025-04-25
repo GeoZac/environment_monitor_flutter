@@ -132,6 +132,29 @@ void main() {
         ),
       );
     });
+
+    test('Test makeHttpPost timeout failure', () async {
+      final url = Uri.parse('https://example.com/api/endpoint');
+      final requestBody = {'key': 'value'};
+
+      when(
+        mockClient.post(
+          url,
+          headers: anyNamed('headers'),
+          body: jsonEncode(requestBody),
+        ),
+      ).thenAnswer(
+        (_) => Future.delayed(
+          const Duration(seconds: 11), // Simulate delay to trigger timeout
+          () => http.Response('{}', 200),
+        ),
+      );
+
+      expect(
+        () async => await apiProvider.makeHttpPost(url, null, requestBody),
+        throwsA(isA<FetchDataException>()),
+      );
+    });
   });
 
   test('Test makeHttpPost 400 failure', () {
