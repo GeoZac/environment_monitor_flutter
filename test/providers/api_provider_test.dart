@@ -59,6 +59,27 @@ void main() {
       );
     });
 
+    test('Test makeHttpGet timeout failure', () async {
+      final url = Uri.parse('https://example.com/api/timeout_endpoint');
+
+      when(
+        mockClient.get(
+          url,
+          headers: anyNamed('headers'),
+        ),
+      ).thenAnswer(
+        (_) => Future.delayed(
+          const Duration(seconds: 11),
+          () => http.Response('{}', 200),
+        ),
+      );
+
+      expect(
+        () async => await apiProvider.makeHttpGet(url),
+        throwsA(isA<FetchDataException>()),
+      );
+    });
+
     test('Test makeHttpPost success', () async {
       final url = Uri.parse('https://example.com/api/endpoint');
       final requestBody = {'key': 'value'};
