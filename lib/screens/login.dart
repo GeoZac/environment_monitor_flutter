@@ -3,6 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 
+import '../models/http/custom_exception.dart';
 import '../models/user/auth_request.dart';
 import '../models/user/auth_response.dart';
 import '../providers/unconv_api_provider.dart';
@@ -226,10 +227,17 @@ class _LoginScreenState extends State<LoginScreen> {
         ),
       );
     } catch (error) {
+      String message;
+      if (error.runtimeType == FetchDataException) {
+        message = error.toString();
+      } else {
+        message = "Invalid User Name or Password!";
+      }
+
       if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text("Invalid User Name or Password!"),
+        SnackBar(
+          content: Text(message),
           backgroundColor: Colors.red,
         ),
       );
