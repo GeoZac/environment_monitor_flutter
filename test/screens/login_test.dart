@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:environment_monitor/models/http/custom_exception.dart';
 import 'package:environment_monitor/screens/dashboard.dart';
 import 'package:environment_monitor/screens/login.dart';
 import 'package:environment_monitor/utils/token_singleton.dart';
@@ -125,5 +126,26 @@ void main() {
     await tester.pumpAndSettle();
 
     expect(find.text('Invalid User Name or Password!'), findsOneWidget);
+  });
+
+  testWidgets('Invalid login throws FetchDataException',
+      (WidgetTester tester) async {
+    final mockClient = MockClient((request) async {
+      throw FetchDataException('Network error');
+    });
+
+    await tester.pumpWidget(MaterialApp(
+      home: LoginScreen(httpClient: mockClient),
+    ));
+
+    await tester.enterText(find.byType(TextFormField).first, 'wrongUser');
+    await tester.enterText(find.byType(TextFormField).last, 'wrongPassword');
+    await tester.pump();
+
+    await tester.tap(find.byType(ElevatedButton));
+    await tester.pumpAndSettle();
+
+    expect(
+        find.text('Error During Communication: Network error'), findsOneWidget);
   });
 }
