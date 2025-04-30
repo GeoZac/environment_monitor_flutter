@@ -3,6 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 
+import '../models/http/custom_exception.dart';
 import '../models/user/auth_request.dart';
 import '../models/user/auth_response.dart';
 import '../providers/unconv_api_provider.dart';
@@ -25,8 +26,8 @@ class _LoginScreenState extends State<LoginScreen> {
   TextEditingController usernameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
-  bool rememberMe = false;
-  bool isPassword = true;
+  bool rememberCredentials = false;
+  bool isPasswordObscured = true;
   bool isButtonDisabled = true;
 
   @override
@@ -94,37 +95,28 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
               child: TextFormField(
                 textAlignVertical: TextAlignVertical.center,
-                obscureText: isPassword,
+                obscureText: isPasswordObscured,
                 style: const TextStyle(
                   color: Colors.black,
                 ),
                 controller: passwordController,
                 decoration: InputDecoration(
-                  prefixIcon: InkWell(
-                      onTap: () {
-                        setState(() {
-                          isPassword = !isPassword;
-                        });
-                      },
-                      child: const Icon(
-                        Icons.key,
-                        color: Colors.black,
-                      )),
+                  prefixIcon: const Icon(
+                    Icons.lock,
+                    color: Colors.black,
+                  ),
                   suffixIcon: InkWell(
                     onTap: () {
                       setState(() {
-                        isPassword = !isPassword;
+                        isPasswordObscured = !isPasswordObscured;
                       });
                     },
-                    child: isPassword
-                        ? const Icon(
-                            Icons.lock_outline,
-                            color: Colors.black,
-                          )
-                        : const Icon(
-                            Icons.lock_open,
-                            color: Colors.black,
-                          ),
+                    child: Icon(
+                      isPasswordObscured
+                          ? Icons.visibility_off
+                          : Icons.visibility,
+                      color: Colors.black,
+                    ),
                   ),
                   border: InputBorder.none,
                   hintText: 'Password',
@@ -137,10 +129,10 @@ class _LoginScreenState extends State<LoginScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Checkbox(
-                    value: rememberMe,
+                    value: rememberCredentials,
                     onChanged: (bool? value) {
                       setState(() {
-                        rememberMe = value!;
+                        rememberCredentials = value!;
                       });
                     },
                   ),
@@ -178,8 +170,8 @@ class _LoginScreenState extends State<LoginScreen> {
   void loadSavedCredentials() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     setState(() {
-      rememberMe = prefs.getBool('rememberMe') ?? false;
-      if (rememberMe) {
+      rememberCredentials = prefs.getBool('rememberMe') ?? false;
+      if (rememberCredentials) {
         usernameController.text = prefs.getString('username') ?? '';
         passwordController.text = prefs.getString('password') ?? '';
       }
@@ -188,14 +180,14 @@ class _LoginScreenState extends State<LoginScreen> {
 
   void saveCredentials() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    if (rememberMe) {
+    if (rememberCredentials) {
       await prefs.setString('username', usernameController.text);
       await prefs.setString('password', passwordController.text);
     } else {
       await prefs.remove('username');
       await prefs.remove('password');
     }
-    await prefs.setBool('rememberMe', rememberMe);
+    await prefs.setBool('rememberMe', rememberCredentials);
   }
 
   Future<void> _handleLogin() async {
@@ -226,10 +218,17 @@ class _LoginScreenState extends State<LoginScreen> {
         ),
       );
     } catch (error) {
+      String message;
+      if (error.runtimeType == FetchDataException) {
+        message = error.toString();
+      } else {
+        message = "Invalid User Name or Password!";
+      }
+
       if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text("Invalid User Name or Password!"),
+        SnackBar(
+          content: Text(message),
           backgroundColor: Colors.red,
         ),
       );
