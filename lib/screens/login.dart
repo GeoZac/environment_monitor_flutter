@@ -102,7 +102,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 controller: passwordController,
                 decoration: InputDecoration(
                   prefixIcon: const Icon(
-                    Icons.key,
+                    Icons.lock,
                     color: Colors.black,
                   ),
                   suffixIcon: InkWell(
@@ -111,15 +111,12 @@ class _LoginScreenState extends State<LoginScreen> {
                         isPasswordObscured = !isPasswordObscured;
                       });
                     },
-                    child: isPasswordObscured
-                        ? const Icon(
-                            Icons.lock_outline,
-                            color: Colors.black,
-                          )
-                        : const Icon(
-                            Icons.lock_open,
-                            color: Colors.black,
-                          ),
+                    child: Icon(
+                      isPasswordObscured
+                          ? Icons.visibility_off
+                          : Icons.visibility,
+                      color: Colors.black,
+                    ),
                   ),
                   border: InputBorder.none,
                   hintText: 'Password',

@@ -74,21 +74,21 @@ void main() {
     await tester.pump();
 
     // Initially: lock closed should be visible
-    expect(find.byIcon(Icons.lock_outline), findsOneWidget);
+    expect(find.byIcon(Icons.visibility_off), findsOneWidget);
 
     // Tap to toggle visibility
-    await tester.tap(find.byIcon(Icons.lock_outline));
+    await tester.tap(find.byIcon(Icons.visibility_off));
     await tester.pump();
 
     // After tap: lock open should be visible
-    expect(find.byIcon(Icons.lock_open), findsOneWidget);
+    expect(find.byIcon(Icons.visibility), findsOneWidget);
 
     // Tap again to toggle back
-    await tester.tap(find.byIcon(Icons.lock_open));
+    await tester.tap(find.byIcon(Icons.visibility));
     await tester.pump();
 
     // After second tap: lock closed should be visible again
-    expect(find.byIcon(Icons.lock_outline), findsOneWidget);
+    expect(find.byIcon(Icons.visibility_off), findsOneWidget);
   });
 
   testWidgets('Remember Me checkbox toggles correctly',
