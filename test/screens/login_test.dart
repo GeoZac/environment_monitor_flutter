@@ -56,6 +56,41 @@ void main() {
     expect(loginButton.onPressed, isNotNull);
   });
 
+  testWidgets('Password visibility toggles when tapping icons',
+      (WidgetTester tester) async {
+    Map<String, dynamic> jsonData = {};
+
+    final mockClient = MockClient((request) async {
+      return http.Response(jsonEncode(jsonData), 200);
+    });
+    await tester.pumpWidget(MaterialApp(
+        home: LoginScreen(
+      httpClient: mockClient,
+    )));
+
+    // Enter password
+    final Finder passwordFieldFinder = find.byType(TextFormField).at(1);
+    await tester.enterText(passwordFieldFinder, 'password123');
+    await tester.pump();
+
+    // Initially: lock closed should be visible
+    expect(find.byIcon(Icons.lock_outline), findsOneWidget);
+
+    // Tap to toggle visibility
+    await tester.tap(find.byIcon(Icons.lock_outline));
+    await tester.pump();
+
+    // After tap: lock open should be visible
+    expect(find.byIcon(Icons.lock_open), findsOneWidget);
+
+    // Tap again to toggle back
+    await tester.tap(find.byIcon(Icons.lock_open));
+    await tester.pump();
+
+    // After second tap: lock closed should be visible again
+    expect(find.byIcon(Icons.lock_outline), findsOneWidget);
+  });
+
   testWidgets('Tapping login button calls API and navigates on success',
       (WidgetTester tester) async {
     Map<String, dynamic> authData = {
