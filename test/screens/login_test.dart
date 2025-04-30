@@ -91,6 +91,39 @@ void main() {
     expect(find.byIcon(Icons.lock_outline), findsOneWidget);
   });
 
+  testWidgets('Remember Me checkbox toggles correctly',
+      (WidgetTester tester) async {
+    Map<String, dynamic> jsonData = {};
+
+    final mockClient = MockClient((request) async {
+      return http.Response(jsonEncode(jsonData), 200);
+    });
+    await tester.pumpWidget(MaterialApp(
+        home: LoginScreen(
+      httpClient: mockClient,
+    )));
+
+    final Finder checkboxFinder = find.byType(Checkbox);
+
+    // Initially unchecked
+    Checkbox checkbox = tester.widget(checkboxFinder);
+    expect(checkbox.value, isFalse);
+
+    // Tap to check it
+    await tester.tap(checkboxFinder);
+    await tester.pump();
+
+    checkbox = tester.widget(checkboxFinder);
+    expect(checkbox.value, isTrue);
+
+    // Tap again to uncheck
+    await tester.tap(checkboxFinder);
+    await tester.pump();
+
+    checkbox = tester.widget(checkboxFinder);
+    expect(checkbox.value, isFalse);
+  });
+
   testWidgets('Tapping login button calls API and navigates on success',
       (WidgetTester tester) async {
     Map<String, dynamic> authData = {
