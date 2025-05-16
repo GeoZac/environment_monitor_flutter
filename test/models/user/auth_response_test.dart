@@ -12,6 +12,13 @@ void main() {
         "id": "8058c27e-6a6c-4bd0-95b4-c47f08eb5e31",
         "username": "new_user",
         "email": "testuser@gmail.com",
+        "accountNonExpired": true,
+        "accountNonLocked": true,
+        "credentialsNonExpired": true,
+        "enabled": true,
+        "authorities": [
+          {'authority': 'UNCONV_USER'},
+        ],
       },
       "token":
           "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJVc2VyIERldGFpbHMiLCJ1c2VybmFtZSI6Im5ld191c2VyIiwiaWF0IjoxNjkyNTAyNTk2LCJpc3MiOiJ1bmNvbnYiLCJleHAiOjE2OTI1MDYxOTZ9.DDamZcTHVkI_m4KUV9AVIFDQ9XbeyEsAix7Kz9CTQUg",
