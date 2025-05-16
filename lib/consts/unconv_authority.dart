@@ -1,11 +1,24 @@
 enum UnconvAuthority {
-  UNCONV_USER,
-  UNCONV_MANAGER;
+  unconvUser,
+  unconvManager;
 
   static UnconvAuthority fromString(String value) {
-    return UnconvAuthority.values.firstWhere(
-      (e) => e.name == value,
-      orElse: () => throw FormatException("Unknown authority: $value"),
-    );
+    switch (value) {
+      case 'UNCONV_USER':
+        return UnconvAuthority.unconvUser;
+      case 'UNCONV_MANAGER':
+        return UnconvAuthority.unconvManager;
+      default:
+        throw FormatException("Unknown authority: $value");
+    }
+  }
+
+  String toJsonString() {
+    switch (this) {
+      case UnconvAuthority.unconvUser:
+        return 'UNCONV_USER';
+      case UnconvAuthority.unconvManager:
+        return 'UNCONV_MANAGER';
+    }
   }
 }
