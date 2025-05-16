@@ -1,3 +1,5 @@
+import '../../consts/unconv_authority.dart';
+
 class UnconvUser {
   String id;
   String username;
@@ -6,7 +8,7 @@ class UnconvUser {
   bool accountNonLocked;
   bool credentialsNonExpired;
   bool enabled;
-  List<String> authorities;
+  List<UnconvAuthority> authorities;
 
   UnconvUser({
     required this.id,
@@ -46,7 +48,7 @@ class UnconvUser {
       credentialsNonExpired: json['credentialsNonExpired'],
       enabled: json['enabled'],
       authorities: (json['authorities'] as List)
-          .map((auth) => auth['authority'].toString())
+          .map((auth) => UnconvAuthority.fromString(auth['authority']))
           .toList(),
     );
   }
