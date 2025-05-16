@@ -1,4 +1,5 @@
 import 'package:environment_monitor/consts/sensor_location_type.dart';
+import 'package:environment_monitor/consts/unconv_authority.dart';
 import 'package:environment_monitor/forms/sensor_system.dart';
 import 'package:environment_monitor/models/sensor_location/sensor_location.dart';
 import 'package:environment_monitor/models/sensor_system/sensor_system.dart';
@@ -32,6 +33,13 @@ void main() {
       id: "a5bbd1bd-c89b-4219-b0a8-379abe41b879",
       username: "Test User",
       email: "test@example.com",
+      accountNonExpired: true,
+      accountNonLocked: true,
+      credentialsNonExpired: true,
+      enabled: true,
+      authorities: [
+        UnconvAuthority.unconvUser,
+      ],
     );
   });
 
