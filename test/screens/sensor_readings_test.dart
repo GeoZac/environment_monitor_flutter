@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:environment_monitor/consts/sensor_status.dart';
+import 'package:environment_monitor/consts/unconv_authority.dart';
 import 'package:environment_monitor/models/sensor_system/sensor_system_dto.dart';
 import 'package:environment_monitor/models/user/unconv_user.dart';
 import 'package:environment_monitor/screens/sensor_readings.dart';
@@ -65,6 +66,13 @@ void main() {
         id: "a5bbd1bd-c89b-4219-b0a8-379abe41b879",
         username: "Test User",
         email: "test@example.com",
+        accountNonExpired: true,
+        accountNonLocked: true,
+        credentialsNonExpired: true,
+        enabled: true,
+        authorities: [
+          UnconvAuthority.unconvUser,
+        ],
       ),
       readingCount: 0,
       createdDate: "2024-02-29T14:57:56.795247158Z",
