@@ -27,6 +27,13 @@ void main() {
         "id": "a5bbd1bd-c89b-4219-b0a8-379abe41b879",
         "username": "Test User",
         "email": "noname@email.com",
+        "accountNonExpired": true,
+        "accountNonLocked": true,
+        "credentialsNonExpired": true,
+        "enabled": true,
+        "authorities": [
+          {'authority': 'UNCONV_USER'},
+        ],
       },
       "readingCount": 0,
       "latestReading": null,
@@ -62,6 +69,13 @@ void main() {
         "id": "a5bbd1bd-c89b-4219-b0a8-379abe41b879",
         "username": "Test User",
         "email": "noname@email.com",
+        "accountNonExpired": true,
+        "accountNonLocked": true,
+        "credentialsNonExpired": true,
+        "enabled": true,
+        "authorities": [
+          {'authority': 'UNCONV_USER'},
+        ],
       },
       "readingCount": 0,
       "latestReading": null,
@@ -87,6 +101,13 @@ void main() {
         "id": "a5bbd1bd-c89b-4219-b0a8-379abe41b879",
         "username": "Test User",
         "email": "noname@email.com",
+        "accountNonExpired": true,
+        "accountNonLocked": true,
+        "credentialsNonExpired": true,
+        "enabled": true,
+        "authorities": [
+          {'authority': 'UNCONV_USER'},
+        ],
       }
     };
 
@@ -104,6 +125,13 @@ void main() {
         "id": "a5bbd1bd-c89b-4219-b0a8-379abe41b879",
         "username": "Test User",
         "email": "noname@email.com",
+        "accountNonExpired": true,
+        "accountNonLocked": true,
+        "credentialsNonExpired": true,
+        "enabled": true,
+        "authorities": [
+          {'authority': 'UNCONV_USER'},
+        ],
       },
       "readingCount": 0,
       "latestReading": null,
