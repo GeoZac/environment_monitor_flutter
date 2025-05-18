@@ -62,7 +62,8 @@ class UnconvUser {
     data['accountNonLocked'] = accountNonLocked;
     data['credentialsNonExpired'] = credentialsNonExpired;
     data['enabled'] = enabled;
-    data['authorities'] = authorities.map((a) => {'authority': a}).toList();
+    data['authorities'] =
+        authorities.map((a) => {'authority': a.toJsonString()}).toList();
     return data;
   }
 }
