@@ -33,7 +33,14 @@ void main() {
         "unconvUser": {
           "id": "fca88312-bc2a-45bb-bf6f-750a473c5de0",
           "username": "UnconvUser",
-          "email": "unconvuser@email.com"
+          "email": "unconvuser@email.com",
+          "accountNonExpired": true,
+          "accountNonLocked": true,
+          "credentialsNonExpired": true,
+          "enabled": true,
+          "authorities": [
+            {'authority': 'UNCONV_USER'},
+          ],
         },
         "humidityThreshold": null,
         "temperatureThreshold": null
@@ -99,7 +106,14 @@ void main() {
           "unconvUser": {
             "id": "876b35f9-f8b2-425b-8371-a48560981834",
             "username": "UnconvUser",
-            "email": "unconvuser@email.com"
+            "email": "unconvuser@email.com",
+            "accountNonExpired": true,
+            "accountNonLocked": true,
+            "credentialsNonExpired": true,
+            "enabled": true,
+            "authorities": [
+              {'authority': 'UNCONV_USER'},
+            ],
           },
           "humidityThreshold": null,
           "temperatureThreshold": null
