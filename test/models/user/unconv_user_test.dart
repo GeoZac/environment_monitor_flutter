@@ -26,7 +26,7 @@ void main() {
     expect(user.id, "a5bbd1bd-c89b-4219-b0a8-379abe41b879");
     expect(user.username, "Test User");
     expect(user.email, "noname@email.com");
-    expect(user.authorities!.length, 2);
+    expect(user.authorities.length, 2);
   });
 
   test("Failure", (() {
