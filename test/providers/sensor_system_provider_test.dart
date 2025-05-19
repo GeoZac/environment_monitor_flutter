@@ -33,6 +33,13 @@ void main() {
             "id": "9c06ee96-4353-4377-b423-83a186da7f7a",
             "username": "Specific UnconvUser",
             "email": "unconvuser@email.com",
+            "accountNonExpired": true,
+            "accountNonLocked": true,
+            "credentialsNonExpired": true,
+            "enabled": true,
+            "authorities": [
+              {'authority': 'UNCONV_USER'},
+            ],
           },
           "readingCount": 0,
           "latestReading": null,
@@ -49,6 +56,13 @@ void main() {
             "id": "9c06ee96-4353-4377-b423-83a186da7f7a",
             "username": "Specific UnconvUser",
             "email": "unconvuser@email.com",
+            "accountNonExpired": true,
+            "accountNonLocked": true,
+            "credentialsNonExpired": true,
+            "enabled": true,
+            "authorities": [
+              {'authority': 'UNCONV_USER'},
+            ],
           },
           "readingCount": 0,
           "latestReading": null,
@@ -120,7 +134,14 @@ void main() {
       "unconvUser": {
         "id": "1b671fc4-8249-48f1-843a-15534438ae60",
         "username": "UnconvUser",
-        "email": "unconvuser@email.com"
+        "email": "unconvuser@email.com",
+        "accountNonExpired": true,
+        "accountNonLocked": true,
+        "credentialsNonExpired": true,
+        "enabled": true,
+        "authorities": [
+          {'authority': 'UNCONV_USER'},
+        ],
       },
       "readingCount": 0,
       "latestReading": null

@@ -1,5 +1,6 @@
 import 'package:environment_monitor/consts/sensor_location_type.dart';
 import 'package:environment_monitor/consts/sensor_status.dart';
+import 'package:environment_monitor/consts/unconv_authority.dart';
 import 'package:environment_monitor/models/envt_reading/base_envt_reading.dart';
 import 'package:environment_monitor/models/sensor_location/sensor_location.dart';
 import 'package:environment_monitor/models/sensor_system/sensor_system_dto.dart';
@@ -23,6 +24,13 @@ void main() {
         id: "a5bbd1bd-c89b-4219-b0a8-379abe41b879",
         username: "Test User",
         email: "test@example.com",
+        accountNonExpired: true,
+        accountNonLocked: true,
+        credentialsNonExpired: true,
+        enabled: true,
+        authorities: [
+          UnconvAuthority.unconvUser,
+        ],
       ),
       readingCount: 5,
       createdDate: "2024-02-29T14:57:56.795247158Z",
@@ -67,6 +75,13 @@ void main() {
           id: "a5bbd1bd-c89b-4219-b0a8-379abe41b879",
           username: "Test User",
           email: "test@example.com",
+          accountNonExpired: true,
+          accountNonLocked: true,
+          credentialsNonExpired: true,
+          enabled: true,
+          authorities: [
+            UnconvAuthority.unconvUser,
+          ],
         ),
         readingCount: 10,
         createdDate: "2024-02-29T14:57:56.795247158Z",
@@ -110,6 +125,13 @@ void main() {
         id: "a5bbd1bd-c89b-4219-b0a8-379abe41b879",
         username: "Test User",
         email: "test@example.com",
+        accountNonExpired: true,
+        accountNonLocked: true,
+        credentialsNonExpired: true,
+        enabled: true,
+        authorities: [
+          UnconvAuthority.unconvUser,
+        ],
       ),
       readingCount: 0,
       createdDate: "2024-02-29T14:57:56.795247158Z",

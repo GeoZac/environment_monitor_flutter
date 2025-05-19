@@ -26,6 +26,13 @@ void main() {
             "id": "606e3bd7-c573-4ed9-b87c-0bc426e49dd4",
             "username": "NHVZSSET",
             "email": "UUCPUHJA",
+            "accountNonExpired": true,
+            "accountNonLocked": true,
+            "credentialsNonExpired": true,
+            "enabled": true,
+            "authorities": [
+              {'authority': 'UNCONV_USER'},
+            ],
           },
           "readingCount": 9,
           "latestReading": {
@@ -53,6 +60,13 @@ void main() {
             "id": "a4c30a5c-4d50-4435-9283-de003be0cc86",
             "username": "UZW",
             "email": "TMABI",
+            "accountNonExpired": true,
+            "accountNonLocked": true,
+            "credentialsNonExpired": true,
+            "enabled": true,
+            "authorities": [
+              {'authority': 'UNCONV_USER'},
+            ],
           },
           "readingCount": 10,
           "latestReading": {
@@ -80,6 +94,13 @@ void main() {
             "id": "43641895-4fe6-44ad-b96c-1d40527337cf",
             "username": "MAIPG",
             "email": "VGH",
+            "accountNonExpired": true,
+            "accountNonLocked": true,
+            "credentialsNonExpired": true,
+            "enabled": true,
+            "authorities": [
+              {'authority': 'UNCONV_USER'},
+            ],
           },
           "readingCount": 11,
           "latestReading": {
@@ -107,6 +128,13 @@ void main() {
             "id": "79d5c30d-f845-420c-b728-e33df4f52d46",
             "username": "HCUSFPYUN",
             "email": "ZZNI",
+            "accountNonExpired": true,
+            "accountNonLocked": true,
+            "credentialsNonExpired": true,
+            "enabled": true,
+            "authorities": [
+              {'authority': 'UNCONV_USER'},
+            ],
           },
           "readingCount": 6,
           "latestReading": {
@@ -134,6 +162,13 @@ void main() {
             "id": "fc28bbc3-2aa2-4e12-9ee1-601468ddc582",
             "username": "ZEMYEEU",
             "email": "PYX",
+            "accountNonExpired": true,
+            "accountNonLocked": true,
+            "credentialsNonExpired": true,
+            "enabled": true,
+            "authorities": [
+              {'authority': 'UNCONV_USER'},
+            ],
           },
           "readingCount": 9,
           "latestReading": {
@@ -161,6 +196,13 @@ void main() {
             "id": "4f85034f-c39a-4a81-8a35-b98a3f4c947f",
             "username": "IPNCRAYBID",
             "email": "QVTEVOXGV",
+            "accountNonExpired": true,
+            "accountNonLocked": true,
+            "credentialsNonExpired": true,
+            "enabled": true,
+            "authorities": [
+              {'authority': 'UNCONV_USER'},
+            ],
           },
           "readingCount": 5,
           "latestReading": {
