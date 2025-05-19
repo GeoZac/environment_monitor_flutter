@@ -104,8 +104,8 @@ jobs:
       - install-flutter
       - build-apk
       - store_artifacts:
-          path: build/app/outputs/flutter-apk/app-debug.apk
-          destination: app-debug.apk
+          path: build/app/outputs/flutter-apk
+          destination: flutter-apk-artifacts
 
 workflows:
   main:
