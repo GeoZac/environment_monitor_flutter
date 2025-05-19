@@ -106,6 +106,9 @@ jobs:
       - store_artifacts:
           path: build/app/outputs/flutter-apk
           destination: flutter-apk-artifacts
+      - store_artifacts:
+          path: build/app/outputs/apk/debug
+          destination: apk-json-artifacts
 
 workflows:
   main:
