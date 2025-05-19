@@ -4,31 +4,18 @@ enum UnconvAuthority {
   unconvTenant,
   unconvManager;
 
+  static const _map = {
+    'UNCONV_USER': unconvUser,
+    'UNCONV_ADMIN': unconvAdmin,
+    'UNCONV_TENANT': unconvTenant,
+    'UNCONV_MANAGER': unconvManager,
+  };
+
   static UnconvAuthority fromString(String value) {
-    switch (value) {
-      case 'UNCONV_USER':
-        return UnconvAuthority.unconvUser;
-      case 'UNCONV_ADMIN':
-        return UnconvAuthority.unconvAdmin;
-      case 'UNCONV_TENANT':
-        return UnconvAuthority.unconvTenant;
-      case 'UNCONV_MANAGER':
-        return UnconvAuthority.unconvManager;
-      default:
-        throw FormatException("Unknown authority: $value");
-    }
+    return _map[value] ?? (throw FormatException("Unknown authority: $value"));
   }
 
   String toJsonString() {
-    switch (this) {
-      case UnconvAuthority.unconvUser:
-        return 'UNCONV_USER';
-      case UnconvAuthority.unconvAdmin:
-        return 'UNCONV_ADMIN';
-      case UnconvAuthority.unconvTenant:
-        return 'UNCONV_TENANT';
-      case UnconvAuthority.unconvManager:
-        return 'UNCONV_MANAGER';
-    }
+    return _map.entries.firstWhere((e) => e.value == this).key;
   }
 }
