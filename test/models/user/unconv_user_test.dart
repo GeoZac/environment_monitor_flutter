@@ -3,7 +3,7 @@ import 'package:environment_monitor/models/user/unconv_user.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
-  test('Test SensorSystem.fromJson', () {
+  test('Test UnconvUser.fromJson', () {
     // Sample JSON data
     final json = {
       "id": "a5bbd1bd-c89b-4219-b0a8-379abe41b879",
@@ -15,6 +15,7 @@ void main() {
       "enabled": true,
       "authorities": [
         {'authority': 'UNCONV_USER'},
+        {'authority': 'UNCONV_MANAGER'},
       ],
     };
 
@@ -25,6 +26,7 @@ void main() {
     expect(user.id, "a5bbd1bd-c89b-4219-b0a8-379abe41b879");
     expect(user.username, "Test User");
     expect(user.email, "noname@email.com");
+    expect(user.authorities!.length, 2);
   });
 
   test("Failure", (() {
