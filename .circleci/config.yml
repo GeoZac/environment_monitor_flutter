@@ -50,7 +50,7 @@ commands:
     description: Builds APK for Android
     steps:
       - run:
-          command: flutter build apk --debug
+          command: flutter build apk --debug --split-per-abi
           name: Build APK
 
   format:
