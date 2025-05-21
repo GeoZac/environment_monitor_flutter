@@ -49,104 +49,115 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xFFFAF8F1),
-      resizeToAvoidBottomInset: false,
-      body: Padding(
-        padding: const EdgeInsets.all(20.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const Spacer(),
-            SvgPicture.asset(
-              key: const Key('sensor_svg_icon'),
-              "assets/icon/sensor.svg",
-              semanticsLabel: 'App Logo',
-              height: 300,
+      resizeToAvoidBottomInset: true,
+      body: SafeArea(
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.all(20.0),
+          child: ConstrainedBox(
+            constraints: BoxConstraints(
+              minHeight: MediaQuery.of(context).size.height -
+                  MediaQuery.of(context).padding.top -
+                  MediaQuery.of(context).padding.bottom,
             ),
-            const SizedBox(height: 25),
-            const Text(
-              "Environment Monitor",
-              style: TextStyle(
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            const SizedBox(height: 30),
-            TextFormField(
-              controller: usernameController,
-              decoration: InputDecoration(
-                prefixIcon: const Icon(Icons.person),
-                hintText: 'Username',
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10),
-                ),
-              ),
-            ),
-            const SizedBox(height: 10),
-            TextFormField(
-              obscureText: isPasswordObscured,
-              controller: passwordController,
-              decoration: InputDecoration(
-                prefixIcon: const Icon(Icons.lock),
-                suffixIcon: InkWell(
-                  onTap: () {
-                    setState(() {
-                      isPasswordObscured = !isPasswordObscured;
-                    });
-                  },
-                  child: Icon(
-                    isPasswordObscured
-                        ? Icons.visibility_off
-                        : Icons.visibility,
-                    color: Colors.black,
+            child: IntrinsicHeight(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Spacer(),
+                  SvgPicture.asset(
+                    key: const Key('sensor_svg_icon'),
+                    "assets/icon/sensor.svg",
+                    semanticsLabel: 'App Logo',
+                    height: 300,
                   ),
-                ),
-                hintText: 'Password',
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10),
-                ),
-              ),
-            ),
-            const SizedBox(height: 10),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Row(
-                  children: [
-                    Checkbox(
-                      value: rememberCredentials,
-                      onChanged: (bool? value) {
-                        setState(() {
-                          rememberCredentials = value!;
-                        });
-                      },
+                  const SizedBox(height: 25),
+                  const Text(
+                    "Environment Monitor",
+                    style: TextStyle(
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold,
                     ),
-                    const Text('Remember me'),
-                  ],
-                ),
-              ],
-            ),
-            const SizedBox(height: 18),
-            ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                backgroundColor: const Color(0xFFC4F12E),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                padding:
-                    const EdgeInsets.symmetric(vertical: 12, horizontal: 50),
+                  ),
+                  const SizedBox(height: 30),
+                  TextFormField(
+                    controller: usernameController,
+                    decoration: InputDecoration(
+                      prefixIcon: const Icon(Icons.person),
+                      hintText: 'Username',
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 10),
+                  TextFormField(
+                    obscureText: isPasswordObscured,
+                    controller: passwordController,
+                    decoration: InputDecoration(
+                      prefixIcon: const Icon(Icons.lock),
+                      suffixIcon: InkWell(
+                        onTap: () {
+                          setState(() {
+                            isPasswordObscured = !isPasswordObscured;
+                          });
+                        },
+                        child: Icon(
+                          isPasswordObscured
+                              ? Icons.visibility_off
+                              : Icons.visibility,
+                          color: Colors.black,
+                        ),
+                      ),
+                      hintText: 'Password',
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 10),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Row(
+                        children: [
+                          Checkbox(
+                            value: rememberCredentials,
+                            onChanged: (bool? value) {
+                              setState(() {
+                                rememberCredentials = value!;
+                              });
+                            },
+                          ),
+                          const Text('Remember me'),
+                        ],
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 18),
+                  ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: const Color(0xFFC4F12E),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 12, horizontal: 50),
+                    ),
+                    onPressed: isButtonDisabled ? null : _handleLogin,
+                    child: const Text(
+                      "Login Now",
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 18,
+                      ),
+                    ),
+                  ),
+                  const Spacer(),
+                  const SizedBox(height: 10),
+                ],
               ),
-              onPressed: isButtonDisabled ? null : _handleLogin,
-              child: const Text(
-                "Login Now",
-                style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 18,
-                ),
-              ),
             ),
-            const Spacer(),
-            const SizedBox(height: 10),
-          ],
+          ),
         ),
       ),
     );
