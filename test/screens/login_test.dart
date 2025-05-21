@@ -174,6 +174,7 @@ void main() {
     await tester.enterText(find.byType(TextFormField).last, 'password123');
     await tester.pump();
 
+    await tester.ensureVisible(find.byType(ElevatedButton));
     await tester.tap(find.byType(ElevatedButton));
     await tester.pumpAndSettle();
 
@@ -197,6 +198,7 @@ void main() {
     await tester.enterText(find.byType(TextFormField).last, 'wrongPassword');
     await tester.pump();
 
+    await tester.ensureVisible(find.byType(ElevatedButton));
     await tester.tap(find.byType(ElevatedButton));
     await tester.pumpAndSettle();
 
@@ -217,6 +219,7 @@ void main() {
     await tester.enterText(find.byType(TextFormField).last, 'wrongPassword');
     await tester.pump();
 
+    await tester.ensureVisible(find.byType(ElevatedButton));
     await tester.tap(find.byType(ElevatedButton));
     await tester.pumpAndSettle();
 
