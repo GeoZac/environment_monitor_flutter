@@ -2,13 +2,13 @@ version: 2.1
 
 orbs:
   flutter: circleci/flutter@2.1.0
-  codecov: codecov/codecov@5.3.0
-  sonarcloud: sonarsource/sonarcloud@2.0.0
+  codecov: codecov/codecov@5.4.1
+  sonarcloud: sonarsource/sonarcloud@3.0.0
 
 executors:
   android:
     docker:
-      - image: "cimg/android:2022.06"
+      - image: "cimg/android:2023.12"
   base:
     docker:
       - image: "cimg/base:current"
@@ -50,7 +50,7 @@ commands:
     description: Builds APK for Android
     steps:
       - run:
-          command: flutter build apk --debug
+          command: flutter build apk --debug --split-per-abi
           name: Build APK
 
   format:
@@ -104,8 +104,11 @@ jobs:
       - install-flutter
       - build-apk
       - store_artifacts:
-          path: build/app/outputs/flutter-apk/app-debug.apk
-          destination: app-debug.apk
+          path: build/app/outputs/flutter-apk
+          destination: flutter-apk-artifacts
+      - store_artifacts:
+          path: build/app/outputs/apk/debug
+          destination: apk-json-artifacts
 
 workflows:
   main:

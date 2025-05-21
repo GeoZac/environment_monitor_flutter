@@ -36,7 +36,14 @@ void main() {
             "unconvUser": {
               "id": "532c476c-0eed-4d46-97f5-e7a6eefaa2d0",
               "username": "UnconvUser",
-              "email": "unconvuser@email.com"
+              "email": "unconvuser@email.com",
+              "accountNonExpired": true,
+              "accountNonLocked": true,
+              "credentialsNonExpired": true,
+              "enabled": true,
+              "authorities": [
+                {'authority': 'UNCONV_USER'},
+              ],
             },
             "readingCount": 0,
             "latestReading": null,
@@ -56,7 +63,14 @@ void main() {
             "unconvUser": {
               "id": "532c476c-0eed-4d46-97f5-e7a6eefaa2d0",
               "username": "UnconvUser",
-              "email": "unconvuser@email.com"
+              "email": "unconvuser@email.com",
+              "accountNonExpired": true,
+              "accountNonLocked": true,
+              "credentialsNonExpired": true,
+              "enabled": true,
+              "authorities": [
+                {'authority': 'UNCONV_USER'},
+              ],
             },
             "readingCount": 0,
             "latestReading": null,
@@ -76,7 +90,14 @@ void main() {
             "unconvUser": {
               "id": "532c476c-0eed-4d46-97f5-e7a6eefaa2d0",
               "username": "UnconvUser",
-              "email": "unconvuser@email.com"
+              "email": "unconvuser@email.com",
+              "accountNonExpired": true,
+              "accountNonLocked": true,
+              "credentialsNonExpired": true,
+              "enabled": true,
+              "authorities": [
+                {'authority': 'UNCONV_USER'},
+              ],
             },
             "readingCount": 0,
             "latestReading": null,
@@ -96,7 +117,14 @@ void main() {
             "unconvUser": {
               "id": "532c476c-0eed-4d46-97f5-e7a6eefaa2d0",
               "username": "UnconvUser",
-              "email": "unconvuser@email.com"
+              "email": "unconvuser@email.com",
+              "accountNonExpired": true,
+              "accountNonLocked": true,
+              "credentialsNonExpired": true,
+              "enabled": true,
+              "authorities": [
+                {'authority': 'UNCONV_USER'},
+              ],
             },
             "readingCount": 0,
             "latestReading": null,
@@ -116,7 +144,14 @@ void main() {
             "unconvUser": {
               "id": "532c476c-0eed-4d46-97f5-e7a6eefaa2d0",
               "username": "UnconvUser",
-              "email": "unconvuser@email.com"
+              "email": "unconvuser@email.com",
+              "accountNonExpired": true,
+              "accountNonLocked": true,
+              "credentialsNonExpired": true,
+              "enabled": true,
+              "authorities": [
+                {'authority': 'UNCONV_USER'},
+              ],
             },
             "readingCount": 0,
             "latestReading": null,
