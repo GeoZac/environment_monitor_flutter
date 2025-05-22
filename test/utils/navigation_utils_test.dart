@@ -11,6 +11,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/testing.dart';
 import 'package:http/http.dart' as http;
+import 'package:mockito/mockito.dart';
+
+class MockBuildContext extends Mock implements BuildContext {}
 
 void main() {
   Map<String, dynamic> jsonData = {
@@ -62,6 +65,9 @@ void main() {
 
     final route = routeFactory(settings)!;
     expect(route, isA<MaterialPageRoute>());
-    expect((route as MaterialPageRoute).builder, isNotNull);
+    final widget = (route as MaterialPageRoute).builder(
+      MockBuildContext(),
+    );
+    expect(widget, isA<SensorReadings>());
   });
 }
