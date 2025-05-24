@@ -100,6 +100,10 @@ jobs:
     executor: android
     steps:
       - checkout
+      - restore_cache:
+          keys:
+            - em-v1-dependencies-{{ checksum "android/app/build.gradle" }}
+            - em-v1-dependencies-
       - apply_placeholder
       - install-flutter
       - build-apk
@@ -109,6 +113,10 @@ jobs:
       - store_artifacts:
           path: build/app/outputs/apk/debug
           destination: apk-json-artifacts
+      - save_cache:
+          paths:
+            - ~/.gradle
+          key: em-v1-dependencies-{{ checksum "android/app/build.gradle" }}
 
 workflows:
   main:
