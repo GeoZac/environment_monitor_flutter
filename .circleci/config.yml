@@ -18,13 +18,16 @@ commands:
     steps:
       - checkout
       - run:
-          name: Set Flutter vesion
+          name: Set Flutter version
           command: echo 'export FLUTTER_VERSION="3.24.5"' >> $BASH_ENV
       - flutter/install_sdk_and_pub:
           version: 3.24.5
       - run: dart pub upgrade
       - run: flutter pub get
-      - run: flutter pub run build_runner build --delete-conflicting-outputs
+      - run:
+          name: Generate Code with Build Runner
+          command: |
+            flutter pub run build_runner build --delete-conflicting-outputs
 
   apply_placeholder:
     steps:
@@ -100,6 +103,10 @@ jobs:
     executor: android
     steps:
       - checkout
+      - restore_cache:
+          keys:
+            - em-v1-dependencies-{{ checksum "android/app/build.gradle" }}
+            - em-v1-dependencies-
       - apply_placeholder
       - install-flutter
       - build-apk
@@ -109,6 +116,10 @@ jobs:
       - store_artifacts:
           path: build/app/outputs/apk/debug
           destination: apk-json-artifacts
+      - save_cache:
+          paths:
+            - ~/.gradle
+          key: em-v1-dependencies-{{ checksum "android/app/build.gradle" }}
 
 workflows:
   main:
