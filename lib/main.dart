@@ -5,14 +5,11 @@ import 'package:http/http.dart' as http;
 
 import 'config/globals.dart';
 import 'config/secrets.dart';
-import 'models/sensor_system/sensor_system_dto.dart';
-import 'navigation/sensor_system_form_arguments.dart';
 import 'providers/environmental_reading_provider.dart';
 import 'providers/sensor_system_provider.dart';
 import 'providers/unconv_api_provider.dart';
 import 'screens/login.dart';
-import 'screens/sensor_readings.dart';
-import 'screens/sensor_system_form.dart';
+import 'utils/navigation_utils.dart';
 
 Future<void> main() async {
   if (Globals.analyticsEnabled) {
@@ -43,29 +40,9 @@ class MyApp extends StatelessWidget {
                 ))),
       ],
       child: MaterialApp(
-        onGenerateRoute: (settings) {
-          if (settings.name == SensorReadings.routeName) {
-            final args = settings.arguments as ScreenArguments;
-            return MaterialPageRoute(
-              builder: (context) {
-                return SensorReadings(
-                  selectedSensor: args.sensorSystem,
-                  httpClient: http.Client(),
-                );
-              },
-            );
-          } else if (settings.name == AddSensorSystem.routeName) {
-            final args = settings.arguments as SensorSystemFormArguments;
-            return MaterialPageRoute(
-              builder: (context) {
-                return AddSensorSystem(
-                  unconvUser: args.unconvUser,
-                );
-              },
-            );
-          }
-          return null;
-        },
+        onGenerateRoute: createRouteFactory(
+          http.Client(),
+        ),
         title: 'Environment Monitor',
         theme: ThemeData(
           primarySwatch: Colors.blue,
@@ -77,12 +54,6 @@ class MyApp extends StatelessWidget {
       ),
     );
   }
-}
-
-class ScreenArguments {
-  final SensorSystemDTO sensorSystem;
-
-  ScreenArguments(this.sensorSystem);
 }
 
 class MyHomePage extends StatefulWidget {

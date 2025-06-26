@@ -26,6 +26,9 @@ void main() {
       httpClient: mockClient,
     )));
 
+    final sensorIconFinder = find.byKey(const Key('sensor_svg_icon'));
+    expect(sensorIconFinder, findsOneWidget);
+
     final loginButton =
         tester.widget<ElevatedButton>(find.byType(ElevatedButton));
     expect(loginButton.onPressed, isNull);
@@ -60,6 +63,13 @@ void main() {
         "id": "6b7e32a7-0c42-4bf4-95d0-e6e2c4d1e3e7",
         "username": "test_user",
         "email": "test_user@email.com",
+        "accountNonExpired": true,
+        "accountNonLocked": true,
+        "credentialsNonExpired": true,
+        "enabled": true,
+        "authorities": [
+          {'authority': 'UNCONV_USER'},
+        ],
       },
       "token":
           "hICKORYdICKORYdOCK_THEmOUSErANupTHecLOCK_tHEcLOCKSTRUCKONE_THEmOUSErANdown_hICKORYdICKORYdOCK"
