@@ -99,4 +99,14 @@ void main() {
     );
     expect(widget, isA<AddSensorSystem>());
   });
+
+  test('returns null when route name does not match any known route', () {
+    final settings = RouteSettings(
+      name: '/unknown-route',
+      arguments: null,
+    );
+
+    final route = routeFactory(settings);
+    expect(route, isNull);
+  });
 }
