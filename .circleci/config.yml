@@ -2,13 +2,13 @@ version: 2.1
 
 orbs:
   flutter: circleci/flutter@2.1.0
-  codecov: codecov/codecov@5.4.1
-  sonarcloud: sonarsource/sonarcloud@3.0.0
+  codecov: codecov/codecov@5.3.0
+  sonarcloud: sonarsource/sonarcloud@2.0.0
 
 executors:
   android:
     docker:
-      - image: "cimg/android:2023.12"
+      - image: "cimg/android:2022.06"
   base:
     docker:
       - image: "cimg/base:current"
@@ -18,16 +18,13 @@ commands:
     steps:
       - checkout
       - run:
-          name: Set Flutter version
+          name: Set Flutter vesion
           command: echo 'export FLUTTER_VERSION="3.24.5"' >> $BASH_ENV
       - flutter/install_sdk_and_pub:
           version: 3.24.5
       - run: dart pub upgrade
       - run: flutter pub get
-      - run:
-          name: Generate Code with Build Runner
-          command: |
-            flutter pub run build_runner build --delete-conflicting-outputs
+      - run: flutter pub run build_runner build --delete-conflicting-outputs
 
   apply_placeholder:
     steps:
@@ -53,7 +50,7 @@ commands:
     description: Builds APK for Android
     steps:
       - run:
-          command: flutter build apk --debug --split-per-abi
+          command: flutter build apk --debug
           name: Build APK
 
   format:
@@ -103,23 +100,12 @@ jobs:
     executor: android
     steps:
       - checkout
-      - restore_cache:
-          keys:
-            - em-v1-dependencies-{{ checksum "android/app/build.gradle" }}
-            - em-v1-dependencies-
       - apply_placeholder
       - install-flutter
       - build-apk
       - store_artifacts:
-          path: build/app/outputs/flutter-apk
-          destination: flutter-apk-artifacts
-      - store_artifacts:
-          path: build/app/outputs/apk/debug
-          destination: apk-json-artifacts
-      - save_cache:
-          paths:
-            - ~/.gradle
-          key: em-v1-dependencies-{{ checksum "android/app/build.gradle" }}
+          path: build/app/outputs/flutter-apk/app-debug.apk
+          destination: app-debug.apk
 
 workflows:
   main:

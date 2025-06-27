@@ -25,7 +25,7 @@ class SensorLocation {
   /// [longitude]: The longitude coordinate of the sensor location.
   /// [sensorLocationType]: The type of sensor location (indoor or outdoor).
   SensorLocation({
-    required this.id,
+    this.id,
     required this.sensorLocationText,
     required this.latitude,
     required this.longitude,
