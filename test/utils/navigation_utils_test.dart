@@ -5,7 +5,9 @@ import 'package:environment_monitor/consts/unconv_authority.dart';
 import 'package:environment_monitor/models/sensor_system/sensor_system_dto.dart';
 import 'package:environment_monitor/models/user/unconv_user.dart';
 import 'package:environment_monitor/navigation/sensor_readings_screen_arguments.dart';
+import 'package:environment_monitor/navigation/sensor_system_form_arguments.dart';
 import 'package:environment_monitor/screens/sensor_readings.dart';
+import 'package:environment_monitor/screens/sensor_system_form.dart';
 import 'package:environment_monitor/utils/navigation_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -69,5 +71,32 @@ void main() {
       MockBuildContext(),
     );
     expect(widget, isA<SensorReadings>());
+  });
+
+  test('returns AddSensorSystem route when name matches', () {
+    final unconvUser = UnconvUser(
+      id: "a5bbd1bd-c89b-4219-b0a8-379abe41b879",
+      username: "Test User",
+      email: "test@example.com",
+      accountNonExpired: true,
+      accountNonLocked: true,
+      credentialsNonExpired: true,
+      enabled: true,
+      authorities: [
+        UnconvAuthority.unconvUser,
+      ],
+    );
+
+    final settings = RouteSettings(
+      name: AddSensorSystem.routeName,
+      arguments: SensorSystemFormArguments(unconvUser),
+    );
+
+    final route = routeFactory(settings)!;
+    expect(route, isA<MaterialPageRoute>());
+    final widget = (route as MaterialPageRoute).builder(
+      MockBuildContext(),
+    );
+    expect(widget, isA<AddSensorSystem>());
   });
 }
