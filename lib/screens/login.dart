@@ -3,6 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 
+import '../models/http/custom_exception.dart';
 import '../models/user/auth_request.dart';
 import '../models/user/auth_response.dart';
 import '../providers/unconv_api_provider.dart';
@@ -25,8 +26,8 @@ class _LoginScreenState extends State<LoginScreen> {
   TextEditingController usernameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
-  bool rememberMe = false;
-  bool isPassword = true;
+  bool rememberCredentials = false;
+  bool isPasswordObscured = true;
   bool isButtonDisabled = true;
 
   @override
@@ -47,125 +48,119 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.white,
-        resizeToAvoidBottomInset: false,
-        body: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            SvgPicture.asset(
-              key: const Key('sensor_svg_icon'),
-              "assets/icon/sensor.svg",
-              semanticsLabel: 'App Logo',
-              height: 300,
+      backgroundColor: const Color(0xFFFAF8F1),
+      resizeToAvoidBottomInset: true,
+      body: SafeArea(
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.all(20.0),
+          child: ConstrainedBox(
+            constraints: BoxConstraints(
+              minHeight: MediaQuery.of(context).size.height -
+                  MediaQuery.of(context).padding.top -
+                  MediaQuery.of(context).padding.bottom,
             ),
-            Container(
-              margin: const EdgeInsets.symmetric(
-                horizontal: 30,
-                vertical: 10,
-              ),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(25),
-                border: Border.all(
-                  width: 2,
-                  color: Colors.grey,
-                ),
-              ),
-              child: TextFormField(
-                textAlignVertical: TextAlignVertical.center,
-                style: const TextStyle(
-                  color: Colors.black,
-                ),
-                controller: usernameController,
-                decoration: const InputDecoration(
-                  prefixIcon: Icon(
-                    Icons.person,
-                    color: Colors.black,
-                  ),
-                  border: InputBorder.none,
-                  hintText: 'Username',
-                ),
-              ),
-            ),
-            Container(
-              margin: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(25),
-                border: Border.all(width: 2, color: Colors.grey),
-              ),
-              child: TextFormField(
-                textAlignVertical: TextAlignVertical.center,
-                obscureText: isPassword,
-                style: const TextStyle(
-                  color: Colors.black,
-                ),
-                controller: passwordController,
-                decoration: InputDecoration(
-                  prefixIcon: InkWell(
-                      onTap: () {
-                        setState(() {
-                          isPassword = !isPassword;
-                        });
-                      },
-                      child: const Icon(
-                        Icons.key,
-                        color: Colors.black,
-                      )),
-                  suffixIcon: InkWell(
-                    onTap: () {
-                      setState(() {
-                        isPassword = !isPassword;
-                      });
-                    },
-                    child: isPassword
-                        ? const Icon(
-                            Icons.lock_outline,
-                            color: Colors.black,
-                          )
-                        : const Icon(
-                            Icons.lock_open,
-                            color: Colors.black,
-                          ),
-                  ),
-                  border: InputBorder.none,
-                  hintText: 'Password',
-                ),
-              ),
-            ),
-            Container(
-              margin: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
-              child: Row(
+            child: IntrinsicHeight(
+              child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Checkbox(
-                    value: rememberMe,
-                    onChanged: (bool? value) {
-                      setState(() {
-                        rememberMe = value!;
-                      });
-                    },
+                  const Spacer(),
+                  SvgPicture.asset(
+                    key: const Key('sensor_svg_icon'),
+                    "assets/icon/sensor.svg",
+                    semanticsLabel: 'App Logo',
+                    height: 300,
                   ),
-                  const Text('Remember Me'),
+                  const SizedBox(height: 25),
+                  const Text(
+                    "Environment Monitor",
+                    style: TextStyle(
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  const SizedBox(height: 30),
+                  TextFormField(
+                    controller: usernameController,
+                    decoration: InputDecoration(
+                      prefixIcon: const Icon(Icons.person),
+                      hintText: 'Username',
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 10),
+                  TextFormField(
+                    obscureText: isPasswordObscured,
+                    controller: passwordController,
+                    decoration: InputDecoration(
+                      prefixIcon: const Icon(Icons.lock),
+                      suffixIcon: InkWell(
+                        onTap: () {
+                          setState(() {
+                            isPasswordObscured = !isPasswordObscured;
+                          });
+                        },
+                        child: Icon(
+                          isPasswordObscured
+                              ? Icons.visibility_off
+                              : Icons.visibility,
+                          color: Colors.black,
+                        ),
+                      ),
+                      hintText: 'Password',
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 10),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Row(
+                        children: [
+                          Checkbox(
+                            value: rememberCredentials,
+                            onChanged: (bool? value) {
+                              setState(() {
+                                rememberCredentials = value!;
+                              });
+                            },
+                          ),
+                          const Text('Remember me'),
+                        ],
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 18),
+                  ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: const Color(0xFFC4F12E),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 12, horizontal: 50),
+                    ),
+                    onPressed: isButtonDisabled ? null : _handleLogin,
+                    child: const Text(
+                      "Login Now",
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 18,
+                      ),
+                    ),
+                  ),
+                  const Spacer(),
+                  const SizedBox(height: 10),
                 ],
               ),
             ),
-            ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                minimumSize: const Size(150, 40),
-                shape: const StadiumBorder(),
-                elevation: 0,
-              ),
-              onPressed: isButtonDisabled ? null : _handleLogin,
-              child: const Text(
-                "Login",
-                style: TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 18,
-                ),
-              ),
-            ),
-          ],
-        ));
+          ),
+        ),
+      ),
+    );
   }
 
   void _checkFields() {
@@ -178,8 +173,8 @@ class _LoginScreenState extends State<LoginScreen> {
   void loadSavedCredentials() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     setState(() {
-      rememberMe = prefs.getBool('rememberMe') ?? false;
-      if (rememberMe) {
+      rememberCredentials = prefs.getBool('rememberMe') ?? false;
+      if (rememberCredentials) {
         usernameController.text = prefs.getString('username') ?? '';
         passwordController.text = prefs.getString('password') ?? '';
       }
@@ -188,14 +183,14 @@ class _LoginScreenState extends State<LoginScreen> {
 
   void saveCredentials() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    if (rememberMe) {
+    if (rememberCredentials) {
       await prefs.setString('username', usernameController.text);
       await prefs.setString('password', passwordController.text);
     } else {
       await prefs.remove('username');
       await prefs.remove('password');
     }
-    await prefs.setBool('rememberMe', rememberMe);
+    await prefs.setBool('rememberMe', rememberCredentials);
   }
 
   Future<void> _handleLogin() async {
@@ -226,10 +221,17 @@ class _LoginScreenState extends State<LoginScreen> {
         ),
       );
     } catch (error) {
+      String message;
+      if (error.runtimeType == FetchDataException) {
+        message = error.toString();
+      } else {
+        message = "Invalid User Name or Password!";
+      }
+
       if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text("Invalid User Name or Password!"),
+        SnackBar(
+          content: Text(message),
           backgroundColor: Colors.red,
         ),
       );
