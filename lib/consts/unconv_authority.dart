@@ -1,9 +1,17 @@
 enum UnconvAuthority {
+  /// Represents a regular Unconv user with limited permissions.
   unconvUser,
+
+  /// Represents an administrator with elevated access privileges.
   unconvAdmin,
+
+  /// Represents a tenant user associated with specific organizational data.
   unconvTenant,
+
+  /// Represents a manager role with intermediate or supervisory access.
   unconvManager;
 
+  /// Internal mapping between string keys and enum values.
   static const _map = {
     'UNCONV_USER': unconvUser,
     'UNCONV_ADMIN': unconvAdmin,
