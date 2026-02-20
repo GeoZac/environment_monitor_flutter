@@ -19,10 +19,26 @@ enum UnconvAuthority {
     'UNCONV_MANAGER': unconvManager,
   };
 
+  /// Returns the [UnconvAuthority] corresponding to a string value.
+  ///
+  /// Example:
+  /// ```dart
+  /// final authority = UnconvAuthority.fromString('UNCONV_ADMIN');
+  /// print(authority); // Output: UnconvAuthority.unconvAdmin
+  /// ```
+  ///
+  /// Throws a [FormatException] if the given [value] does not match any known authority.
   static UnconvAuthority fromString(String value) {
     return _map[value] ?? (throw FormatException("Unknown authority: $value"));
   }
 
+  /// Returns the string representation (e.g., `'UNCONV_ADMIN'`) of this enum value.
+  ///
+  /// Example:
+  /// ```dart
+  /// final str = UnconvAuthority.unconvTenant.toJsonString();
+  /// print(str); // Output: UNCONV_TENANT
+  /// ```
   String toJsonString() {
     return _map.entries.firstWhere((e) => e.value == this).key;
   }
