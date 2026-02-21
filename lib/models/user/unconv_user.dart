@@ -1,13 +1,32 @@
 import '../../consts/unconv_authority.dart';
 
+/// Represents a user in the Unconv system.
+///
+/// Stores user identity, account status flags, and assigned authorities.
+/// Includes JSON serialization and deserialization for API or local storage.
 class UnconvUser {
+  /// Unique identifier of the user.
   String id;
+
+  /// Username of the user.
   String username;
+
+  /// Email address of the user.
   String email;
+
+  /// Indicates whether the account is non-expired.
   bool accountNonExpired;
+
+  /// Indicates whether the account is non-locked.
   bool accountNonLocked;
+
+  /// Indicates whether the credentials are non-expired.
   bool credentialsNonExpired;
+
+  /// Indicates whether the user account is enabled.
   bool enabled;
+
+  /// List of authorities/roles assigned to the user.
   List<UnconvAuthority> authorities;
 
   UnconvUser({
@@ -21,6 +40,9 @@ class UnconvUser {
     required this.authorities,
   });
 
+  /// Creates a [UnconvUser] instance from a JSON map.
+  ///
+  /// Expects all required fields to be present. Throws [FormatException] if missing.
   factory UnconvUser.fromJson(Map<String, dynamic> json) {
     final List<String> requiredFields = [
       'id',
@@ -53,6 +75,7 @@ class UnconvUser {
     );
   }
 
+  /// Converts this [UnconvUser] instance to a JSON map.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['id'] = id;
