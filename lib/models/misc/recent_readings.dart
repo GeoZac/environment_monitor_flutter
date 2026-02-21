@@ -1,10 +1,20 @@
 class RecentReadings {
+  /// Reading count or value in the past 1 hour.
   int? i1;
+
+  /// Reading count or value in the past 3 hours.
   int? i3;
+
+  /// Reading count or value in the past 8 hours.
   int? i8;
+
+  /// Reading count or value in the past 24 hours.
   int? i24;
+
+  /// Reading count or value in the past 168 hours (1 week).
   int? i168;
 
+  /// Creates a [RecentReadings] instance with optional interval readings.
   RecentReadings({
     this.i1,
     this.i3,
@@ -13,6 +23,12 @@ class RecentReadings {
     this.i168,
   });
 
+  /// Creates a [RecentReadings] instance from a JSON map.
+  ///
+  /// Expects all of the following keys to be present in [json]:
+  /// `'1'`, `'3'`, `'8'`, `'24'`, `'168'`.
+  ///
+  /// Throws a [FormatException] if any of the required fields are missing.
   factory RecentReadings.fromJson(Map<String, dynamic> json) {
     const requiredFields = [
       '1',
