@@ -1,9 +1,20 @@
-// Humidity threshold limits
+/// Utility constants and validation methods for environmental sensor thresholds.
+///
+/// This file defines minimum and maximum limits for humidity and temperature
+/// readings, along with validation helper functions that ensure user-provided
+/// values fall within acceptable sensor data ranges.
+library;
+
+/// Minimum allowed humidity value (percentage).
 const double minHumidityValue = 0;
+
+/// Maximum allowed humidity value (percentage).
 const double maxHumidityValue = 100;
 
-// Temperature threshold limits
+/// Minimum allowed temperature value (in degrees Celsius).
 const double minTemperatureValue = -9999.000;
+
+/// Maximum allowed temperature value (in degrees Celsius).
 const double maxTemperatureValue = 9999.000;
 
 String? validateHumidityValue(String? value) {
