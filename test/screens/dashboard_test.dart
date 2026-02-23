@@ -113,7 +113,7 @@ void main() {
     expect(find.text('Environment Monitor'), findsOneWidget);
   });
 
-  testWidgets('Displays sensor readings after data is fetched',
+  testWidgets('Displays SensorSystemDashboardCard widget after data is fetched',
       (WidgetTester tester) async {
     final mockClient = createMockClient();
 
@@ -156,7 +156,7 @@ void main() {
     expect(callCount, 2);
   });
 
-  testWidgets('Displays sensor readings after data is fetched',
+  testWidgets('Display SensorSystemDashboardCards after data is fetched',
       (WidgetTester tester) async {
     // Arrange
     Map<String, dynamic> jsonData = {
