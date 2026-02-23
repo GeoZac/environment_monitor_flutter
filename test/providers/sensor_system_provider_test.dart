@@ -89,7 +89,7 @@ void main() {
     expect(result.totalElements, jsonData['totalElements']);
   });
 
-  test('fetchSensorSystems should return a valid SensorSystemResponse',
+  test('fetchRecentReadings should return a valid RecentReadings object',
       () async {
     final mockClient = MockClient();
 
