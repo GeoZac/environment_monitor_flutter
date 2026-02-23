@@ -87,7 +87,7 @@ void main() {
     );
   });
 
-  testWidgets('Displays loading spinner while data is being fetched',
+  testWidgets('Displays loading spinner while SensorReadings data is being fetched',
       (WidgetTester tester) async {
     // Arrange
     Map<String, dynamic> jsonData = {
@@ -118,7 +118,7 @@ void main() {
     expect(find.text('Sensor Readings'), findsOneWidget);
   });
 
-  testWidgets('Displays sensor readings after data is fetched',
+  testWidgets('Displays SensorReadingCard widget after data is fetched',
       (WidgetTester tester) async {
     final mockClient = createMockClient();
 
