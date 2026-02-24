@@ -9,7 +9,7 @@ import 'package:http/http.dart' as http;
 import 'package:http/testing.dart';
 
 void main() {
-  testWidgets('Displays loading spinner while data is being fetched',
+  testWidgets('Displays loading spinner while RecentReadings data is being fetched',
       (WidgetTester tester) async {
     // Arrange
     Map<String, dynamic> jsonData = {
@@ -33,7 +33,7 @@ void main() {
     expect(find.byType(CenteredCircularProgress), findsOneWidget);
   });
 
-  testWidgets('Displays sensor readings after data is fetched',
+  testWidgets('Display RecentReadingsCard widget after data is fetched',
       (WidgetTester tester) async {
     // Arrange
     Map<String, dynamic> jsonData = {
