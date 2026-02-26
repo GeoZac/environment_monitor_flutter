@@ -3,8 +3,7 @@
 /// This file defines minimum and maximum limits for humidity and temperature
 /// readings, along with validation helper functions that ensure user-provided
 /// values fall within acceptable sensor data ranges.
-library;
-
+///
 /// Minimum allowed humidity value (percentage).
 const double minHumidityValue = 0;
 
