@@ -87,7 +87,8 @@ void main() {
     );
   });
 
-  testWidgets('Displays loading spinner while SensorReadings data is being fetched',
+  testWidgets(
+      'Displays loading spinner while SensorReadings data is being fetched',
       (WidgetTester tester) async {
     // Arrange
     Map<String, dynamic> jsonData = {

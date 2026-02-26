@@ -9,7 +9,8 @@ import 'package:http/http.dart' as http;
 import 'package:http/testing.dart';
 
 void main() {
-  testWidgets('Displays loading spinner while RecentReadings data is being fetched',
+  testWidgets(
+      'Displays loading spinner while RecentReadings data is being fetched',
       (WidgetTester tester) async {
     // Arrange
     Map<String, dynamic> jsonData = {
