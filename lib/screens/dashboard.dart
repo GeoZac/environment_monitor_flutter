@@ -161,7 +161,7 @@ class _DashboardState extends State<Dashboard> with WidgetsBindingObserver {
     );
   }
 
-  fetchAllSensorSystems() {
+  void fetchAllSensorSystems() {
     _init = false;
     SensorSystemProvider sensorSystemProvider = SensorSystemProvider(
       widget.httpClient,
