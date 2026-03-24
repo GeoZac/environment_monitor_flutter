@@ -75,7 +75,6 @@ class SensorSystem {
       case SensorStatus.active:
         return 'ACTIVE';
       case SensorStatus.inactive:
-      default:
         return 'INACTIVE';
     }
   }
