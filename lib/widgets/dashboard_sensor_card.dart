@@ -3,8 +3,8 @@
 import 'package:flutter/material.dart';
 
 import '../consts/color_consts.dart';
-import '../main.dart';
 import '../models/sensor_system/sensor_system_dto.dart';
+import '../navigation/sensor_readings_screen_arguments.dart';
 import '../screens/sensor_readings.dart';
 import '../widgets/sensor_location_container.dart';
 import 'sensor_reading_container.dart';
@@ -87,7 +87,7 @@ class SensorSystemDashboardCard extends StatelessWidget {
                               Navigator.pushNamed(
                                 context,
                                 SensorReadings.routeName,
-                                arguments: ScreenArguments(
+                                arguments: SensorReadingsScreenArguments(
                                   sensorSystem!,
                                 ),
                               );
