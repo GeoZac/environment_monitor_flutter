@@ -8,7 +8,7 @@ orbs:
 executors:
   android:
     docker:
-      - image: "cimg/android:2023.12"
+      - image: "cimg/android:2025.10-ndk"
   base:
     docker:
       - image: "cimg/base:current"
@@ -19,9 +19,9 @@ commands:
       - checkout
       - run:
           name: Set Flutter version
-          command: echo 'export FLUTTER_VERSION="3.24.5"' >> $BASH_ENV
+          command: echo 'export FLUTTER_VERSION="3.38.10"' >> $BASH_ENV
       - flutter/install_sdk_and_pub:
-          version: 3.24.5
+          version: 3.38.10
       - run: dart pub upgrade
       - run: flutter pub get
       - run:
@@ -105,7 +105,7 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-            - em-v1-dependencies-{{ checksum "android/app/build.gradle" }}
+            - em-v1-dependencies-{{ checksum "android/app/build.gradle.kts" }}
             - em-v1-dependencies-
       - apply_placeholder
       - install-flutter
@@ -119,7 +119,7 @@ jobs:
       - save_cache:
           paths:
             - ~/.gradle
-          key: em-v1-dependencies-{{ checksum "android/app/build.gradle" }}
+          key: em-v1-dependencies-{{ checksum "android/app/build.gradle.kts" }}
 
 workflows:
   main:
