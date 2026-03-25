@@ -91,7 +91,6 @@ class SensorLocation {
       case SensorLocationType.indoor:
         return 'INDOOR';
       case SensorLocationType.outdoor:
-      default:
         return 'OUTDOOR';
     }
   }
