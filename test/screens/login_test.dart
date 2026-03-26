@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:environment_monitor/models/http/custom_exception.dart';
 import 'package:environment_monitor/screens/dashboard.dart';
 import 'package:environment_monitor/screens/login.dart';
 import 'package:environment_monitor/utils/token_singleton.dart';
@@ -55,6 +56,74 @@ void main() {
     expect(loginButton.onPressed, isNotNull);
   });
 
+  testWidgets('Password visibility toggles when tapping icons',
+      (WidgetTester tester) async {
+    Map<String, dynamic> jsonData = {};
+
+    final mockClient = MockClient((request) async {
+      return http.Response(jsonEncode(jsonData), 200);
+    });
+    await tester.pumpWidget(MaterialApp(
+        home: LoginScreen(
+      httpClient: mockClient,
+    )));
+
+    // Enter password
+    final Finder passwordFieldFinder = find.byType(TextFormField).at(1);
+    await tester.enterText(passwordFieldFinder, 'password123');
+    await tester.pump();
+
+    // Initially: lock closed should be visible
+    expect(find.byIcon(Icons.visibility_off), findsOneWidget);
+
+    // Tap to toggle visibility
+    await tester.tap(find.byIcon(Icons.visibility_off));
+    await tester.pump();
+
+    // After tap: lock open should be visible
+    expect(find.byIcon(Icons.visibility), findsOneWidget);
+
+    // Tap again to toggle back
+    await tester.tap(find.byIcon(Icons.visibility));
+    await tester.pump();
+
+    // After second tap: lock closed should be visible again
+    expect(find.byIcon(Icons.visibility_off), findsOneWidget);
+  });
+
+  testWidgets('Remember Me checkbox toggles correctly',
+      (WidgetTester tester) async {
+    Map<String, dynamic> jsonData = {};
+
+    final mockClient = MockClient((request) async {
+      return http.Response(jsonEncode(jsonData), 200);
+    });
+    await tester.pumpWidget(MaterialApp(
+        home: LoginScreen(
+      httpClient: mockClient,
+    )));
+
+    final Finder checkboxFinder = find.byType(Checkbox);
+
+    // Initially unchecked
+    Checkbox checkbox = tester.widget(checkboxFinder);
+    expect(checkbox.value, isFalse);
+
+    // Tap to check it
+    await tester.tap(checkboxFinder);
+    await tester.pump();
+
+    checkbox = tester.widget(checkboxFinder);
+    expect(checkbox.value, isTrue);
+
+    // Tap again to uncheck
+    await tester.tap(checkboxFinder);
+    await tester.pump();
+
+    checkbox = tester.widget(checkboxFinder);
+    expect(checkbox.value, isFalse);
+  });
+
   testWidgets('Tapping login button calls API and navigates on success',
       (WidgetTester tester) async {
     Map<String, dynamic> authData = {
@@ -105,6 +174,7 @@ void main() {
     await tester.enterText(find.byType(TextFormField).last, 'password123');
     await tester.pump();
 
+    await tester.ensureVisible(find.byType(ElevatedButton));
     await tester.tap(find.byType(ElevatedButton));
     await tester.pumpAndSettle();
 
@@ -128,9 +198,32 @@ void main() {
     await tester.enterText(find.byType(TextFormField).last, 'wrongPassword');
     await tester.pump();
 
+    await tester.ensureVisible(find.byType(ElevatedButton));
     await tester.tap(find.byType(ElevatedButton));
     await tester.pumpAndSettle();
 
     expect(find.text('Invalid User Name or Password!'), findsOneWidget);
+  });
+
+  testWidgets('Invalid login throws FetchDataException',
+      (WidgetTester tester) async {
+    final mockClient = MockClient((request) async {
+      throw FetchDataException('Network error');
+    });
+
+    await tester.pumpWidget(MaterialApp(
+      home: LoginScreen(httpClient: mockClient),
+    ));
+
+    await tester.enterText(find.byType(TextFormField).first, 'wrongUser');
+    await tester.enterText(find.byType(TextFormField).last, 'wrongPassword');
+    await tester.pump();
+
+    await tester.ensureVisible(find.byType(ElevatedButton));
+    await tester.tap(find.byType(ElevatedButton));
+    await tester.pumpAndSettle();
+
+    expect(
+        find.text('Error During Communication: Network error'), findsOneWidget);
   });
 }
