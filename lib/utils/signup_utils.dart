@@ -1,3 +1,15 @@
+/// Validates a password based on the following rules:
+///
+/// - Must not be null
+/// - Must be between 6 and 25 characters long
+/// - Must contain at least one uppercase letter
+/// - Must contain at least one lowercase letter
+/// - Must contain at least one digit
+/// - Must contain at least one special character
+/// - Must not contain any whitespace characters
+///
+/// Returns `true` if the password satisfies all conditions,
+/// otherwise returns `false`.
 bool isValidPassword(String value) {
   // Length between 6 and 25
   if (value.length < 6 || value.length > 25) {
@@ -32,6 +44,15 @@ bool isValidPassword(String value) {
   return true;
 }
 
+/// Validates a username based on the following rules:
+///
+/// - Must not be null
+/// - Must be between 6 and 25 characters long
+/// - Must contain at least one uppercase letter
+/// - Must not contain any whitespace characters
+///
+/// Returns `true` if the username satisfies all conditions,
+/// otherwise returns `false`.
 bool isValidUsername(String? value) {
   if (value == null) return false;
 
