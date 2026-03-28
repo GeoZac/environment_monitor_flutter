@@ -227,10 +227,10 @@ class _SensorSystemFormState extends State<SensorSystemForm> {
     );
   }
 
-  void addNewSensorLocation(SensorLocation sensorLocation) {
+  void addNewSensorLocation(SensorLocation newSensorLocation) {
     setState(() {
       widget.existingSensorLocations.add(
-        sensorLocation,
+        newSensorLocation,
       );
     });
   }
