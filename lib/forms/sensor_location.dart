@@ -58,6 +58,8 @@ class _SensorLocationFormState extends State<SensorLocationForm> {
       widget.addSensorLocation(
         sensorLocation,
       );
+
+      Navigator.of(context).pop();
     }
   }
 
@@ -197,7 +199,6 @@ class _SensorLocationFormState extends State<SensorLocationForm> {
               key: const Key('addLocationButton'),
               onPressed: () {
                 submitForm();
-                Navigator.of(context).pop();
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.lightGreen,
