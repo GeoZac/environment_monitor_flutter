@@ -147,6 +147,7 @@ class _SensorSystemFormState extends State<SensorSystemForm> {
                           decoration:
                               InputDecoration(border: outlineInputBorder8()),
                           hint: const Text("Select a Sensor Location"),
+                          initialValue: sensorLocation,
                           items: widget.existingSensorLocations
                               .map((sensorLocation) => DropdownMenuItem(
                                     value: sensorLocation,
@@ -232,6 +233,8 @@ class _SensorSystemFormState extends State<SensorSystemForm> {
       widget.existingSensorLocations.add(
         newSensorLocation,
       );
+
+      sensorLocation = newSensorLocation;
     });
   }
 }
