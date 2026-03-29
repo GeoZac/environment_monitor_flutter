@@ -24,10 +24,7 @@ commands:
           version: 3.38.10
       - run: dart pub upgrade
       - run: flutter pub get
-      - run:
-          name: Generate Code with Build Runner
-          command: |
-            flutter pub run build_runner build --delete-conflicting-outputs
+      - run: flutter pub run build_runner build --delete-conflicting-outputs
 
   apply_placeholder:
     steps:
@@ -53,7 +50,7 @@ commands:
     description: Builds APK for Android
     steps:
       - run:
-          command: flutter build apk --debug --split-per-abi
+          command: flutter build apk --debug
           name: Build APK
 
   format:
