@@ -39,4 +39,54 @@ void main() {
       expect(isValidUsername('User_Name'), true);
     });
   });
+
+  group('isValidPassword', () {
+    test('fails when length is less than 6', () {
+      expect(isValidPassword('Aa1!'), false);
+    });
+
+    test('fails when length is greater than 25', () {
+      expect(isValidPassword('Aa1!aaaaaaaaaaaaaaaaaaaaaaa'), false);
+    });
+
+    test('fails when missing uppercase letter', () {
+      expect(isValidPassword('aa1!aa'), false);
+    });
+
+    test('fails when missing lowercase letter', () {
+      expect(isValidPassword('AA1!AA'), false);
+    });
+
+    test('fails when missing digit', () {
+      expect(isValidPassword('Aa!aaa'), false);
+    });
+
+    test('fails when missing special character', () {
+      expect(isValidPassword('Aa1aaa'), false);
+    });
+
+    test('fails when whitespace is present', () {
+      expect(isValidPassword('Aa1! aa'), false);
+    });
+
+    test('passes for valid password (minimum boundary)', () {
+      expect(isValidPassword('Aa1!aa'), true);
+    });
+
+    test('passes for valid password (maximum boundary)', () {
+      expect(isValidPassword('Aa1!aaaaaaaaaaaaaaaaaaaa'), true);
+    });
+
+    test('passes for typical valid password', () {
+      expect(isValidPassword('StrongP@ss1'), true);
+    });
+
+    test('passes with multiple special characters', () {
+      expect(isValidPassword('Aa1!@#\$'), true);
+    });
+
+    test('fails when only one rule is violated (no digit)', () {
+      expect(isValidPassword('Aa!aaaa'), false);
+    });
+  });
 }
