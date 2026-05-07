@@ -52,7 +52,7 @@ dev_dependencies:
     sdk: flutter
 
   # Development-only tools moved from regular dependencies
-  build_runner: ^2.13.1
+  build_runner: ^2.15.0
   mockito: ^5.6.4
   flutter_launcher_icons: ^0.12.0
 
