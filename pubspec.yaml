@@ -43,7 +43,7 @@ dependencies:
   # fluttertoast: ^8.2.12
   # bugsnag_flutter_performance: ^1.0.0
   # bugsnag_http_client: ^1.2.0
-  bugsnag_flutter: ^4.2.0
+  bugsnag_flutter: ^4.2.1
   fluttertoast: ^9.0.0
   flutter_svg: ^2.2.4
 
