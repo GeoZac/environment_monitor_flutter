@@ -77,7 +77,8 @@ jobs:
     executor:
       name: base
     steps:
-      - checkout
+      - checkout:
+          method: full
       - apply_placeholder
       - install-flutter
       - run:
