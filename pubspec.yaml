@@ -45,7 +45,7 @@ dependencies:
   # bugsnag_http_client: ^1.2.0
   bugsnag_flutter: ^4.2.1
   fluttertoast: ^9.0.0
-  flutter_svg: ^2.2.4
+  flutter_svg: ^2.3.0
 
 dev_dependencies:
   flutter_test:
