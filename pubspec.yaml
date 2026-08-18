@@ -53,7 +53,7 @@ dev_dependencies:
 
   # Development-only tools moved from regular dependencies
   build_runner: ^2.15.1
-  mockito: ^5.6.4
+  mockito: ^5.8.1
   flutter_launcher_icons: ^0.14.4
 
   # The "flutter_lints" package below contains a set of recommended lints to
